@@ -1,7 +1,30 @@
 [package]
 name = "cazic"
 version = "0.0.1"
-authors = ["Jaydon Nelson <xxandrr@proton.me>"]
+description = ""
+authors = ["Jaydon 'XandrCopyrighted' Nelson <xxandrr@proton.me>"]
+license = "MIT"
+repository = "https://github.com/XandrCopyrighted/Cazic"
+edition = "2021"
+rust-version = "1.60"
+
+[build-dependencies]
+tauri-build = { version = "1.5.1", features = [] }
 
 [dependencies]
-ratatui = "0.26.1"
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "1.5.4", features = [] }
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
+# If you use cargo directly instead of tauri's cli you can use this feature flag to switch between tauri's `dev` and `build` modes.
+# DO NOT REMOVE!!
+custom-protocol = [ "tauri/custom-protocol" ]
