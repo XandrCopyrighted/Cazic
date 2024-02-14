@@ -1,0 +1,24 @@
+body {
+    font-family: system-ui;
+    background-color: #000;
+    color: white;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button {
+    height: 100vh;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.audio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

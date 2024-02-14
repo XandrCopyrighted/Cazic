@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="controls">
+        <button class="button" onclick="prevTrack()"><i class="las la-angle-left la-2x"></i></button>
+        <button class="button" onclick="togglePlayPause()"><i id="playPauseIcon" class="las la-pause la-3x"></i></button>
+        <button class="button" onclick="nextTrack()"><i class="las la-angle-right la-2x"></i></button>
+    </div>
+    <div class="audio">
+        <audio id="play_music" autoplay onended="nextTrack()"></audio>
+        <input type="file" id="audio" name="pick_music" multiple="multiple" accept="audio/mp3, audio/wav, audio/flac, audio/ogg" onchange="loadAndPlaySelectedFile()"/>
+        <script src="audio.js"></script>
+    </div>
+</body>
+</html>

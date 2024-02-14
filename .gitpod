@@ -1,0 +1,9 @@
+tasks:
+  - name: Install Tauri
+    command: cargo install tauri-cli
+
+  - name: Build Cazic
+    command: cargo tauri build
+
+  - name: Watch for Changes and Run
+    command: cargo watch -c -w src -x run

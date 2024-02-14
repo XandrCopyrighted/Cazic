@@ -1,64 +1,45 @@
 {
   "build": {
-    "beforeBuildCommand": "",
     "beforeDevCommand": "",
-    "devPath": "icons",
-    "distDir": "icons"
+    "beforeBuildCommand": "",
+    "devPath": "src_html",
+    "distDir": "src_html",
+    "withGlobalTauri": true
   },
   "package": {
-    "productName": "cazic",
+    "productName": "Cazic",
     "version": "0.0.1"
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true
+      }
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
-      "deb": {
-        "depends": []
-      },
-      "externalBin": [],
+      "targets": "all",
+      "identifier": "com.xdr.cazic",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
         "icons/128x128@2x.png",
         "icons/icon.icns",
         "icons/icon.ico"
-      ],
-      "identifier": "com.xdr.cazic",
-      "longDescription": "",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
-      "resources": [],
-      "shortDescription": "",
-      "targets": "all",
-      "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": ""
-      }
+      ]
     },
     "security": {
       "csp": null
     },
-    "updater": {
-      "active": false
-    },
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
-        "resizable": true,
+        "resizable": false,
         "title": "Cazic Music Player",
-        "width": 800
+        "width": 800,
+        "height": 600
       }
     ]
   }
