@@ -11,10 +11,9 @@ edition = "2021"
 tauri-build = { version = "1.5.1", features = [] }
 
 [dependencies]
-color-thief = "0.2.2"
 
 [dependencies.tauri]
-version = "1.5"
+version = "1.5.4"
 features = ["shell-open", "shell-open-api", "wry", "tauri-runtime-wry", "open"]
 default-features = false
 
