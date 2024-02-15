@@ -2,27 +2,29 @@ body {
     font-family: system-ui;
     background-color: #000;
     color: white;
+    overflow: hidden
 }
 
 .controls {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
 .button {
     /* height: 100vh; */
     background-color: transparent;
     border: none;
     color: white;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .audio {
     display: none;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
+
 
 .artwork {
  /* i'll work on this later */
@@ -31,5 +33,5 @@ body {
 .nav {
     margin-bottom: 30px;
     justify-content: space-between;
-    display: flex;
+    display: flex
 }
