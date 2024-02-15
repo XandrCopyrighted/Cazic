@@ -17,6 +17,9 @@ function loadAndPlaySelectedFile() {
 }
 
 function playTrack(index) {
+    rust_set_new_rpc_song();
+    start_rpc();
+
     currentTrackIndex = index;
     audioPlayer.src = playlist[index].src;
     audioPlayer.load();
@@ -26,6 +29,7 @@ function playTrack(index) {
 
 function togglePlayPause() {
     if (audioPlayer.paused) {
+        start_rpc();
         audioPlayer.play();
     } else {
         audioPlayer.pause();
@@ -68,6 +72,15 @@ function getCurrentTrack() {
 
 function rust_set_new_rpc_song() {
     let next = getCurrentTrack();
-    invoke('set_song', { invoke_message: next })
+    invoke("set_song", { invoke_message: next })
+}
+
+function start_rpc() {
+    // TODO: implement properly
+    invoke("start_rpc_thread");
+}
+
+function stop_rpc() {
+    // TODO: implement
 }
 
