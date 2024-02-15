@@ -6,7 +6,7 @@ body {
 }
 
 .controls {
-    height: 100vh;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center
@@ -19,15 +19,32 @@ body {
     cursor: pointer
 }
 
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
 .audio {
     display: none;
     justify-content: center;
     align-items: center
 }
 
+#progress {
+    height: 100%;
+    width: 0;
+    background-color: #c210aa
+}
 
-.artwork {
- /* i'll work on this later */
+#progressContainer {
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    height: 10px;
+    position: relative
 }
 
 .nav {
