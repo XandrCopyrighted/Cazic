@@ -5,12 +5,13 @@ body {
 }
 
 .controls {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .button {
-    height: 100vh;
+    /* height: 100vh; */
     background-color: transparent;
     border: none;
     color: white;
@@ -21,4 +22,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.artwork {
+ /* i'll work on this later */
+}
+
+.nav {
+    margin-bottom: 30px;
+    justify-content: space-between;
+    display: flex;
 }

@@ -6,15 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <div class="nav">
+        <button class="button" onclick="prevTrack()"><i class="las la-bars la-2x"></i></button>
+        <button class="button" onclick="selectFile()" id="pick"><i class="las la-plus-circle la-2x"></i></button>
+    </div>
     <div class="controls">
         <button class="button" onclick="prevTrack()"><i class="las la-angle-left la-2x"></i></button>
         <button class="button" onclick="togglePlayPause()"><i id="playPauseIcon" class="las la-pause la-3x"></i></button>
         <button class="button" onclick="nextTrack()"><i class="las la-angle-right la-2x"></i></button>
     </div>
     <div class="audio">
-        <audio id="play_music" autoplay onended="nextTrack()"></audio>
-        <input type="file" id="audio" name="pick_music" multiple="multiple" accept="audio/mp3, audio/wav, audio/flac, audio/ogg" onchange="loadAndPlaySelectedFile()"/>
-        <script src="audio.js"></script>
+        <audio id="play" autoplay onended="nextTrack()"></audio>
+        <input type="hidden" id="audio" name="pick_music" multiple="multiple" accept="audio/mp3, audio/wav, audio/flac, audio/ogg" onchange="loadAndPlaySelectedFile()"/>
+        <script src="../src_javascript/audio.js"></script>
     </div>
 </body>
 </html>

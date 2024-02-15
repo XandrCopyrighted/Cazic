@@ -1,17 +1,17 @@
 // *Some* of the code here is from ChatGPT
 var playlist = [];
 var currentTrackIndex = 0;
-var audioPlayer = document.getElementById('play_music');
+var audioPlayer = document.getElementById('play');
 var playPauseIcon = document.getElementById('playPauseIcon');
 
 function loadAndPlaySelectedFile() {
-    var fileInput = document.getElementById('audio');
-    for (var i = 0; i < fileInput.files.length; i++) {
-        var selectedFile = fileInput.files[i];
+    var fileselect = document.getElementById('audio');
+    for (var i = 0; i < fileselect.files.length; i++) {
+        var selectedFile = fileselect.files[i];
         var objectURL = URL.createObjectURL(selectedFile);
         playlist.push({ src: objectURL, title: selectedFile.name });
     }
-    if (playlist.length === fileInput.files.length) {
+    if (playlist.length === fileselect.files.length) {
         playTrack(0);
     }
 }
@@ -51,4 +51,12 @@ function prevTrack() {
     } else {
         playTrack(playlist.length - 1);
     }
+}
+
+function selectFile() {
+    var select = document.getElementById('audio');
+    select.type = 'file';
+    select.multiple = "multiple"
+    select.accept = "audio/mp3, audio/wav, audio/flac, audio/ogg"
+    select.click();
 }
