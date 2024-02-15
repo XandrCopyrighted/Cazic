@@ -205,6 +205,7 @@ version = "0.0.3"
 dependencies = [
  "discord-rich-presence",
  "lazy_static",
+ "once_cell",
  "tauri",
  "tauri-build",
 ]

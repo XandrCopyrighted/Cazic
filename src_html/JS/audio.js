@@ -34,6 +34,7 @@ function togglePlayPause() {
         start_rpc();
         audioPlayer.play();
     } else {
+        stop_rpc();
         audioPlayer.pause();
     }
     updatePlayPauseIcon();
@@ -79,10 +80,11 @@ function rust_set_new_rpc_song() {
 }
 
 function start_rpc() {
-    invoke("set_rpc_thread");
+    invoke("start_rpc_thread");
 }
 
 function stop_rpc() {
     // TODO: implement
+    invoke("stop_rpc_thread_wrapper")
 }
 
