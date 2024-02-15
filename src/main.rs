@@ -38,7 +38,7 @@ fn set_rpc_thread(stop_flag: Arc<AtomicBool>) {
         let _ = client.set_activity(activity_base.assets(activity_assets));
 
         while !stop_flag_clone.load(Ordering::Relaxed) {
-            thread::sleep(std::time::Duration::from_secs(5));
+            thread::sleep(std::time::Duration::from_secs(1));
         }
         println!("got stop signal");
         let _ = client.close();
@@ -53,6 +53,9 @@ fn start_rpc_thread() {
 
 fn stop_rpc_thread(stop_flag: Arc<AtomicBool>) {
     stop_flag.store(true, Ordering::Relaxed);
+
+    thread::sleep(std::time::Duration::from_millis(1100));
+    stop_flag.store(false, Ordering::Relaxed);
 }
 
 #[tauri::command]
