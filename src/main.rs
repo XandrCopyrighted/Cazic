@@ -6,11 +6,12 @@ use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
 
 static mut DISCORDRPC_SONG_NAME: &str = "song name";
+static mut DISCORDRPC_ARTIST: &str = "artist";
 
 #[tauri::command]
 unsafe fn set_rpc_thread() {
     std::thread::spawn(move || {
-        // this code is reused from https://github.com/WilliamAnimate/discord-rpc/blob/main/src-tauri/src/main.rs
+        // this code is reused from https://shorturl.at/foDJU
         let mut client = DiscordIpcClient::new(&DISCORDRPC_APPLICATION_ID).unwrap();
 
         let _ = client.connect();
@@ -18,7 +19,7 @@ unsafe fn set_rpc_thread() {
         let mut activity_base = activity::Activity::new();
         let mut activity_assets = activity::Assets::new();
 
-        activity_base = activity_base.details("Listening to music on Cazic!");
+        activity_base = activity_base.details(DISCORDRPC_ARTIST);
         activity_base = activity_base.state(&DISCORDRPC_SONG_NAME);
 
         let _ = client.set_activity(activity_base.assets(activity_assets));
