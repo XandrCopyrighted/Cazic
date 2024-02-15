@@ -60,3 +60,14 @@ function selectFile() {
     select.accept = "audio/mp3, audio/wav, audio/flac, audio/ogg"
     select.click();
 }
+
+function getCurrentTrack() {
+    let raw = playlist[currentTrackIndex];
+    return raw["title"]; // raw title hahah
+}
+
+function rust_set_new_rpc_song() {
+    let next = getCurrentTrack();
+    invoke('set_song', { invoke_message: next })
+}
+
