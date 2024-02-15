@@ -13,6 +13,7 @@ tauri-build = { version = "1.5.1", features = [] }
 [dependencies]
 tauri = { version = "1.5.4", features = ["shell-open"] }
 color-thief = "0.2.2"
+discord-rich-presence = "0.2.3"
 
 [profile.release]
 opt-level = 'z'
