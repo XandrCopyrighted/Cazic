@@ -2,7 +2,7 @@
 name = "cazic"
 version = "0.0.2"
 description = "Another music player written in Rust."
-authors = ["Jaydon 'XandrCopyrighted' Nelson <xxandrr@proton.me>"]
+authors = ["Jaydon 'XandrCopyrighted' Nelson <xxandrr@proton.me>", "WilliamAnimate"]
 license = "MIT"
 repository = "https://github.com/XandrCopyrighted/Cazic"
 edition = "2021"
@@ -11,9 +11,20 @@ edition = "2021"
 tauri-build = { version = "1.5.1", features = [] }
 
 [dependencies]
-tauri = { version = "1.5.4", features = ["shell-open"] }
 color-thief = "0.2.2"
 discord-rich-presence = "0.2.3"
+
+[dependencies.tauri]
+version = "1.5"
+features = ["shell-open", "shell-open-api", "wry", "tauri-runtime-wry", "open"]
+default-features = false
+
+[build-dependencies.tauri-build]
+version = "1.5"
+features = []
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
 
 [profile.release]
 opt-level = 'z'
@@ -21,6 +32,3 @@ lto = true
 codegen-units = 1
 panic = "abort"
 strip = true
-
-[features]
-custom-protocol = [ "tauri/custom-protocol" ]
