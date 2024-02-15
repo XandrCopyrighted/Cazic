@@ -11,7 +11,7 @@ edition = "2021"
 tauri-build = { version = "1.5.1", features = [] }
 
 [dependencies]
-discord-rich-presence = "0.2.3"
+
 
 [dependencies.tauri]
 version = "1.5.4"
