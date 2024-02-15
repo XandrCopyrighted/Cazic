@@ -25,16 +25,16 @@ function playTrack(index) {
     audioPlayer.play();
     updatePlayPauseIcon();
 
-    rust_set_new_rpc_song();
-    start_rpc();
+    setDiscordRPCSong();
+    startDiscordRPC();
 }
 
 function togglePlayPause() {
     if (audioPlayer.paused) {
-        start_rpc();
+        startDiscordRPC();
         audioPlayer.play();
     } else {
-        stop_rpc();
+        stopDiscordRPC();
         audioPlayer.pause();
     }
     updatePlayPauseIcon();
@@ -73,18 +73,16 @@ function getCurrentTrack() {
     return raw["title"]; // raw title hahah
 }
 
-function rust_set_new_rpc_song() {
-    let next = getCurrentTrack();
-    // invoke("set_song", { newName: "hi" });
+function setDiscordRPCSong() {
+    const next = getCurrentTrack();
     invoke("set_song", { newName: next });
 }
 
-function start_rpc() {
+function startDiscordRPC() {
     invoke("start_rpc_thread");
 }
 
-function stop_rpc() {
-    // TODO: implement
+function stopDiscordRPC() {
     invoke("stop_rpc_thread_wrapper")
 }
 
