@@ -21,7 +21,7 @@ fn set_song(new_name: String) {
 #[tauri::command]
 fn set_rpc_thread() {
     std::thread::spawn(move || {
-        // this code is reused from https://github.com/WilliamAnimate/discord-rpc/blob/main/src-tauri/src/main.rs
+        // this code is reused from https://shorturl.at/foDJU
         // I, WilliamAnimate, literally wrote this code and i give this usage the green light yeah etc
         let discordrpc_song_name = DISCORDRPC_SONG_NAME.lock().unwrap();
         let mut client = DiscordIpcClient::new(&DISCORDRPC_APPLICATION_ID).unwrap();
