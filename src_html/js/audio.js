@@ -1,5 +1,5 @@
-// *Some* of the code here is from ChatGPT, since I just started learning JavaScript... - XandrCopyrighted
-var playlist = [];                          // by that, I mean like 96% of the code here lol
+// Some of the code here is from ChatGPT, since I just started learning JavaScript... - XandrCopyrighted
+var playlist = []; // by that, I mean like 96% of the code here lol
 var currentTrackIndex = 0;
 var audioPlayer = document.getElementById('play');
 var playPauseIcon = document.getElementById('playPauseIcon');
