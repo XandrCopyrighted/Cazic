@@ -16,7 +16,7 @@ lazy_static! {
 #[tauri::command]
 fn set_song(new_name: String) {
     *DISCORDRPC_SONG_NAME.lock().unwrap() = new_name;
-} 
+}
 
 #[tauri::command]
 fn set_rpc_thread() {

@@ -1,3 +1,5 @@
+const invoke = window.__TAURI__.invoke; // load tauri's invoke so we can call rust from here.
+
 // *Some* of the code here is from ChatGPT
 var playlist = [];
 var currentTrackIndex = 0;
@@ -17,14 +19,14 @@ function loadAndPlaySelectedFile() {
 }
 
 function playTrack(index) {
-    rust_set_new_rpc_song();
-    start_rpc();
-
     currentTrackIndex = index;
     audioPlayer.src = playlist[index].src;
     audioPlayer.load();
     audioPlayer.play();
     updatePlayPauseIcon();
+
+    rust_set_new_rpc_song();
+    start_rpc();
 }
 
 function togglePlayPause() {
@@ -72,12 +74,12 @@ function getCurrentTrack() {
 
 function rust_set_new_rpc_song() {
     let next = getCurrentTrack();
-    invoke("set_song", { invoke_message: next })
+    // invoke("set_song", { newName: "hi" });
+    invoke("set_song", { newName: next });
 }
 
 function start_rpc() {
-    // TODO: implement properly
-    invoke("start_rpc_thread");
+    invoke("set_rpc_thread");
 }
 
 function stop_rpc() {
