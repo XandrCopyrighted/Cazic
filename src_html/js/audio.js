@@ -3,14 +3,13 @@ var playlist = [];
 var currentTrackIndex = 0;
 var audioPlayer = document.getElementById('play');
 var playPauseIcon = document.getElementById('playPauseIcon');
-var progressContainer = document.getElementById("progressContainer");
+var bar = document.getElementById('bar');
+var audio = document.getElementById('audio');
 
 navigator.mediaSession.setActionHandler('play', () => {audioPlayer.play();});
 navigator.mediaSession.setActionHandler('pause', () => {audioPlayer.pause();});
 navigator.mediaSession.setActionHandler('nexttrack', () => {nextTrack();});
-navigator.mediaSession.setActionHandler('previoustrack', () => {prevTrack();});
-
-audioPlayer.addEventListener('timeupdate', updateProgressBar);
+navigator.mediaSession.setActionHandler('previoustrack', () => {prevTrack();}); // Browser, not Tauri, smh - XandrCopyrighted
 
 function loadAndPlaySelectedFile() {
     var fileselect = document.getElementById('audio');
@@ -42,7 +41,7 @@ function togglePlayPause() {
 }
 
 function updatePlayPauseIcon() {
-    playPauseIcon.className = audioPlayer.paused ? 'las la-play la-3x' : 'las la-pause la-3x';
+    playPauseIcon.className = audioPlayer.paused ? 'bx bx-play-circle bx-md' : 'bx bx-pause-circle bx-md';
 }
 
 function nextTrack() {
@@ -62,14 +61,16 @@ function prevTrack() {
 }
 
 function selectFile() {
-    var select = document.getElementById('audio');
-    select.type = 'file';
-    select.multiple = "multiple"
-    select.accept = "audio/mp3, audio/wav, audio/flac, audio/ogg"
-    select.click();
+    audio.type = 'file';
+    audio.multiple = "multiple"
+    audio.accept = "audio/mp3, audio/wav, audio/flac, audio/ogg"
+    audio.click();
 }
 
-function updateProgressBar() {
-    var progressValue = (audioPlayer.currentTime / audioPlayer.duration) * 101;
-    progress.style.width = progressValue + '%';
+function bar() {
+    if (playTrack > 0) {
+        setInterval(() => {
+            bar.value = audioPlayer.currentTime;
+        }, 500);
+    }
 }

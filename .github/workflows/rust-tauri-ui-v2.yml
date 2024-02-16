@@ -1,8 +1,8 @@
-name: Cazic_main
+name: Cazic_ui-v2
 
 on:
   push:
-    branches: ["main"]
+    branches: ["ui-v2"]
 
 env:
   CARGO_TERM_COLOR: always
