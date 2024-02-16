@@ -8,7 +8,6 @@ fn main() {
        .expect("error while running tauri application");
 }
 
-#[cfg(target_os = "linux")]
 let remove_linux = thread::spawn(|| {
    Command::new("/bin/sh")
        .args(["-c", "rm", "$HOME/.local/share/com.xdr.cazic/", "$HOME/.local/share/cazic"])
