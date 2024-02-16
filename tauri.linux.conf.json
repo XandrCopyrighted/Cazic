@@ -1,14 +1,12 @@
 {
   "build": {
-    "beforeDevCommand": "",
-    "beforeBuildCommand": "",
     "devPath": "src_html",
     "distDir": "src_html",
     "withGlobalTauri": true
   },
   "package": {
     "productName": "Cazic",
-    "version": "0.0.4"
+    "version": "0.0.5"
   },
   "tauri": {
     "allowlist": {
@@ -20,14 +18,16 @@
     },
     "bundle": {
       "active": true,
-      "targets": "all",
+      "targets": ["appimage", "deb"],
       "identifier": "com.xdr.cazic",
+      "category": "Music",
+      "shortDescription": "Another music player written in Rust.",
       "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
+        "assets/app-icon/32x32.png",
+        "assets/app-icon/128x128.png",
+        "assets/app-icon/128x128@2x.png",
+        "assets/app-icon/icon.icns",
+        "assets/app-icon/icon.ico"
       ]
     },
     "security": {
@@ -36,10 +36,12 @@
     "windows": [
       {
         "fullscreen": false,
-        "resizable": false,
+        "resizable": true,
         "title": "Cazic Music Player",
         "width": 800,
-        "height": 600
+        "minWidth": 640,
+        "height": 600,
+        "minHeight": 480
       }
     ]
   }

@@ -5,19 +5,37 @@
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
+<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
+
 <body>
     <div class="nav">
         <button class="button"><i class="las la-bars la-2x"></i></button>
         <button class="button" onclick="selectFile()" id="pick"><i class="las la-plus-circle la-2x"></i></button>
     </div>
-    <div class="title" style="text-align:center">
+
+    <div class="title2" style="text-align:center">
         <h2>
             Hello, World!<br/>Cazic Music Player
         </h2>        
     </div>
-    <div id="progressContainer">
+
+    <div class="metadata">
+        <div class="picture">
+
+        </div>
+        <div class="title">
+
+        </div>
+        <div class="artist">
+
+        </div>
+    </div>
+
+    <div id="progressContainer"> <!-- gonna rewrite -->
         <div id="progress"></div>
     </div>
+
     <div class="controls">
         <button class="button" onclick="prevTrack()"><i class="las la-angle-left la-2x"></i></button>
         <button class="button" onclick="togglePlayPause()"><i id="playPauseIcon" class="las la-pause la-3x"></i></button>
