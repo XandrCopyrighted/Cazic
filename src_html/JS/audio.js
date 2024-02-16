@@ -25,6 +25,8 @@ function playTrack(index) {
     audioPlayer.play();
     updatePlayPauseIcon();
 
+    stopDiscordRPC(); // TODO: add check to see if rpc is actually running
+
     setDiscordRPCSong();
     startDiscordRPC();
 }
