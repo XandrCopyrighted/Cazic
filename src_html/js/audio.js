@@ -10,8 +10,6 @@ navigator.mediaSession.setActionHandler('pause', () => {audioPlayer.pause();});
 navigator.mediaSession.setActionHandler('nexttrack', () => {nextTrack();});
 navigator.mediaSession.setActionHandler('previoustrack', () => {prevTrack();});
 
-audioPlayer.addEventListener('timeupdate', updateProgressBar);
-
 function loadAndPlaySelectedFile() {
     var fileselect = document.getElementById('audio');
     for (var i = 0; i < fileselect.files.length; i++) {
@@ -67,9 +65,4 @@ function selectFile() {
     select.multiple = "multiple"
     select.accept = "audio/mp3, audio/wav, audio/flac, audio/ogg"
     select.click();
-}
-
-function updateProgressBar() {
-    var progressValue = (audioPlayer.currentTime / audioPlayer.duration) * 101;
-    progress.style.width = progressValue + '%';
 }
