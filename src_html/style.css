@@ -51,7 +51,7 @@ body {
     height: 10px;
 }
 
-#bar::-ms-track {
+#bar::-ms-thumb {
     background-color: #a5adce;
     border: 3px solid #51576d;
     width: 10px;
