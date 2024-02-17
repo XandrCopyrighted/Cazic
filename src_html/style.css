@@ -33,7 +33,29 @@ body {
     width: 60%;
     cursor: pointer;
     right: 20%;
-    margin: 0 auto
+    margin: 0 auto;
+    background-color: #a5adce;
+}
+
+#bar::-webkit-slider-thumb {
+    background-color: #a5adce;
+    border: 3px solid #51576d;
+    width: 10px;
+    height: 10px
+}
+
+#bar::-moz-range-thumb {
+    background-color: #a5adce;
+    border: 3px solid #51576d;
+    width: 10px;
+    height: 10px;
+}
+
+#bar::-ms-track {
+    background-color: #a5adce;
+    border: 3px solid #51576d;
+    width: 10px;
+    height: 10px;
 }
 
 .controls {
