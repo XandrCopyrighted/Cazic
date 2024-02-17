@@ -2,7 +2,8 @@ body {
     font-family: system-ui;
     background-color: #414559;
     color: white;
-    overflow: hidden
+    overflow: hidden;
+    transition: background 2s; /* cover art bg anim */
 }
 
 .watermark {
@@ -98,4 +99,19 @@ body {
     display: none;
     justify-content: center;
     align-items: center
+}
+
+#cover {
+    z-index: -999; /* overlap a single element and its game over. */
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    top: 0px;
+    width: 50vw;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+
+    transition: all 2s; /* TODO: make this work */
+    /* filter: blur(8px); */
 }

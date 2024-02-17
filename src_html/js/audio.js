@@ -4,6 +4,8 @@ var currentTrackIndex = 0;
 var audioPlayer = document.getElementById('play');
 var playPauseIcon = document.getElementById('playPauseIcon');
 
+// wtf();
+
 navigator.mediaSession.setActionHandler('play', () => {audioPlayer.play();});
 navigator.mediaSession.setActionHandler('pause', () => {audioPlayer.pause();});
 navigator.mediaSession.setActionHandler('nexttrack', () => {nextTrack();});
@@ -23,6 +25,8 @@ function loadAndPlaySelectedFile() { // ChatGPT
         var selectedFile = fileselect.files[i];
         var objectURL = URL.createObjectURL(selectedFile);
         playlist.push({ src: objectURL, title: selectedFile.name });
+
+        wtf();
     }
     if (playlist.length === fileselect.files.length) {
         playTrack(0);
