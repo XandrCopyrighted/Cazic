@@ -30,7 +30,10 @@ function playTrack(index) {
     audioPlayer.play();
     updatePlayPauseIcon();
 
-    stopDiscordRPC(); // TODO: add check to see if rpc is actually running
+    
+    invoke("is_rpc_thread_up", { kill: false }).then((isRPCThreadUp) => {
+        if (!isRPCThreadUp) stopDiscordRPC();
+    });
 
     setDiscordRPCSong();
     startDiscordRPC();

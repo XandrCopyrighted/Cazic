@@ -24,7 +24,7 @@ fn start_rpc_thread() {
         println!("client.connect succeeded");
 
         let song_name = DISCORDRPC_SONG_NAME.lock().unwrap().clone();
-        println!("obtained the song name Mutex: {}", song_name);
+        println!("Obtained the song name Mutex: {}", song_name);
 
         let mut activity_base = activity::Activity::new();
         let activity_assets = activity::Assets::new();
@@ -33,7 +33,7 @@ fn start_rpc_thread() {
         activity_base = activity_base.state(&song_name);
 
         let _ = client.set_activity(activity_base.assets(activity_assets));
-        println!("set activity! check your discord to see if its working.");
+        println!("Activity set! Check your Discord to see if its working.");
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(86400)).await;
@@ -75,11 +75,11 @@ fn is_rpc_thread_up(kill: bool) -> bool {
 
 #[tauri::command]
 fn stop_rpc_thread() {
-    println!("attempting to stop Discord RPC thread!");
+    println!("Attempting to stop Discord RPC thread!");
     if is_rpc_thread_up(true) {
-        println!("thread was up and should be stopped.");
+        println!("Thread was up and should be stopped.");
     } else {
-        eprintln!("[warn] Discord RPC thread is not running! could this be a JS problem?");
+        eprintln!("[WARN] Discord RPC thread is not running! could this be a JS problem?");
     }
 }
 
