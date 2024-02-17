@@ -3,7 +3,7 @@ use lazy_static::lazy_static;
 use std::sync::{Arc, Mutex};
 use tauri::async_runtime::TokioJoinHandle;
 
-const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
+const DISCORDRPC_APPLICATION_ID: &str = "1208230530362118195";
 
 lazy_static! {
     static ref DISCORDRPC_SONG_NAME: Mutex<String> = Mutex::new(String::new());
@@ -93,8 +93,7 @@ async fn main() -> std::io::Result<()> {
             is_rpc_thread_up
         ])
         .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .expect("Error while running Cazic");
 
     Ok(())
 }
-
