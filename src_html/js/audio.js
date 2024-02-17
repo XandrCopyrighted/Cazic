@@ -29,13 +29,12 @@ function loadAndPlaySelectedFile() { // ChatGPT
     }
 }
 
-function playTrack(index) { // Edited by ChatGPT
+function playTrack(index) {
     currentTrackIndex = index;
     audioPlayer.src = playlist[index].src;
     audioPlayer.load();
-    audioPlayer.play().then(() => {
-        updatePlayPauseIcon();
-    });
+    audioPlayer.play();
+    updatePlayPauseIcon();
 }
 
 function togglePlayandPause() {
@@ -91,11 +90,11 @@ audioPlayer.addEventListener('timeupdate', function () {
     bar.value = position;
 });
 
-audioPlayer.addEventListener('ended', function () {
+audioPlayer.addEventListener('ended', function () { // ChatGPT
     if (currentTrackIndex < playlist.length - 1) {
-        playTrack(currentTrackIndex + 1); // Play the next track
+        playTrack(currentTrackIndex + 1);
     } else {
-        audioPlayer.pause(); // Stop playing when it's the end of the playlist
+        audioPlayer.pause();
         updatePlayPauseIcon();
     }
 });
