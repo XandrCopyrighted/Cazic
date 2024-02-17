@@ -1,5 +1,6 @@
-var fullscreenButton = document.getElementById('fullscreen'); // JavaScript is a pain in the ass.
-var fullscreenIcon = document.getElementById('fullscreenIcon'); // This took me 15 mins, maybe it's a skill issue. - XandrCopyrighted
+var fullscreenButton = document.getElementById('fullscreen');
+/* JavaScript is a pain in the ass.
+This took me 15 mins, maybe it's a skill issue. - XandrCopyrighted */
 
 function toggleFullscreen() {
     if (document.fullscreenElement) {

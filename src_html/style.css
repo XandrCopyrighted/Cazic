@@ -28,27 +28,29 @@ body {
 }
 
 #bar {
-    -webkit-appearance: none;
     height: 4px;
-    width: 100%;
+    position: fixed;
+    width: 60%;
     cursor: pointer;
-    margin: 0 auto;
-    border-radius: 10px
+    right: 20%;
+    margin: 0 auto
 }
 
 .controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
     margin: 0 auto
 }
 
-.title {
-}
-
-.boxtitle {
-}
+/* 
+.minicontrols {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+} 
+*/
 
 .box {
     position: fixed;
@@ -69,9 +71,6 @@ body {
     position: fixed;
     bottom: 0;
     right: 0;
-    justify-content: flex-end;
-    align-items: flex-end;
-    display: flex;
 }
 
 
