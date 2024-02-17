@@ -1,4 +1,5 @@
-// Some of the code here is from ChatGPT, since I just started learning JavaScript... - XandrCopyrighted
+const invoke = window.__TAURI__.invoke; // load tauri's invoke so we can call rust from here.
+
 var playlist = [];
 var currentTrackIndex = 0;
 var audioPlayer = document.getElementById('play');
