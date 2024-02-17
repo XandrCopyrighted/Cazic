@@ -44,13 +44,6 @@ body {
     height: 10px
 }
 
-#bar::-moz-range-thumb {
-    background-color: #a5adce;
-    border: 3px solid #51576d;
-    width: 10px;
-    height: 10px;
-}
-
 #bar::-ms-thumb {
     background-color: #a5adce;
     border: 3px solid #51576d;
