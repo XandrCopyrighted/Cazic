@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
+<script src="./js/general.js"></script>
 
 <body>
     <div class="nav">
-        <button class="button"><i class="las la-bars la-2x"></i></button>
-        <button class="button" onclick="selectFile()" id="pick"><i class="las la-plus-circle la-2x"></i></button>
+        <button class="button" onclick="selectFile()" id="pick"><i class="bx bx-plus-circle bx-sm"></i></button>
+        <button class="button"><i class="bx bxs-playlist bx-sm"></i></button>
+        <button class="button"><i class="bx bx-cog bx-sm"></i></button>
     </div>
 
-    <div class="title2" style="text-align:center">
-        <h2>
-            Hello, World!<br/>Cazic Music Player
-        </h2>        
+    <div class="watermark">
+        <h3>Cazic Music Player</h3>
     </div>
 
-    <div class="metadata">
-        <div class="picture">
-
+    </div>
+    <div class="box">
+        <div class="progress">
+            <audio id="play" controls></audio>
+            <input id="bar" type="range" value="0">
         </div>
-        <div class="title">
-
+        <div class="controls">
+            <button class="button" onclick="playPrevTrack()"><i class="bx bx-fast-forward-circle bx-rotate-180 bx-sm"></i></button>
+            <button class="button" onclick="togglePlayandPause()"><i id="playPauseIcon" class="bx bx-stop-circle bx-md"></i></button>
+            <button class="button" onclick="playNextTrack()"><i class="bx bx-fast-forward-circle bx-sm"></i></button>
         </div>
-        <div class="artist">
-
+        <div class="audio"> <!--should ALWAYS be below "controls"-->
+            <audio id="play" autoplay onended="nextTrack()"></audio>
+            <input type="file" id="audio" name="pick_music" multiple="multiple" accept="audio/mp3, audio/wav, audio/flac, audio/ogg" onchange="loadAndPlaySelectedFile()"/>
+            <script src="./js/audio.js"></script>
         </div>
+        <!-- <div class="minicontrols">
+            <button class="button"><i class="bx bx-shuffle bx-xs"></i></button>
+        </div> -->
     </div>
-
-    <div class="controls">
-        <button class="button" onclick="prevTrack()"><i class="las la-angle-left la-2x"></i></button>
-        <button class="button" onclick="togglePlayPause()"><i id="playPauseIcon" class="las la-pause la-3x"></i></button>
-        <button class="button" onclick="nextTrack()"><i class="las la-angle-right la-2x"></i></button>
-    </div>
-    <div class="audio">
-        <audio id="play" autoplay onended="nextTrack()"></audio>
-        <input type="file" id="audio" name="pick_music" multiple="multiple" accept="audio/mp3, audio/wav, audio/flac, audio/ogg" onchange="loadAndPlaySelectedFile()"/>
-        <script src="./js/audio.js"></script>
-    </div>
+    <button class="button" id="fullscreen"><i class="bx bx-fullscreen bx-xs"></i></button>
+    <script src="./js/fullscreen.js"></script>
 </body>
 </html>

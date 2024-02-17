@@ -1,15 +1,24 @@
 body {
     font-family: system-ui;
-    background-color: #000;
+    background-color: #414559;
     color: white;
     overflow: hidden
 }
 
-.controls {
+.watermark {
+    position: fixed;
+    top: 0;
+    right: 0;
+    justify-content: flex-end;
+    align-items: flex-end;
     display: flex;
-    justify-content: center;
-    align-items: center
+    padding-right: 10px;
 }
+
+.nav {
+    margin-bottom: 30px;
+}
+
 .button {
     /* height: 100vh; */
     background-color: transparent;
@@ -18,20 +27,71 @@ body {
     cursor: pointer
 }
 
-.title {
+#bar {
+    -webkit-appearance: none;
+    height: 4px;
+    position: fixed;
+    width: 60%;
+    cursor: pointer;
+    right: 20%;
+    margin: 0 auto;
+    background-color: #a5adce;
+}
+
+
+#bar::-ms-thumb {
+    -webkit-appearance: none;
+    background-color: #a5adce;
+    border: 3px solid #51576d;
+    width: 10px;
+    height: 10px;
+}
+
+.controls {
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    margin: 0 auto
+}
+
+/* 
+.minicontrols {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+} 
+*/
+
+.box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100px;
+    width: 80vw;
+    margin: 0 auto;
+    background-color: #51576d;
+    border-radius: 8px;
+    display: flex;
+    padding: 20px;
+    box-sizing: border-box
+}
+
+#fullscreen {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+
+/* front "backend" stuff, idk I can't comment - XandrCopyrighted */
+#play {
+    display: none;
 }
 
 .audio {
     display: none;
     justify-content: center;
     align-items: center
-}
-
-.nav {
-    margin-bottom: 30px;
-    justify-content: space-between;
-    display: flex
 }
