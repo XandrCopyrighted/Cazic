@@ -1,6 +1,6 @@
 [package]
 name = "cazic"
-version = "0.0.3"
+version = "0.0.4"
 description = "Another music player written in Rust."
 authors = ["Jaydon 'XandrCopyrighted' Nelson <xxandrr@proton.me>", "WilliamAnimate"]
 license = "MIT"
@@ -11,9 +11,13 @@ edition = "2021"
 tauri-build = { version = "1.5.1", features = [] }
 
 [dependencies]
+<<<<<<< HEAD
 discord-rich-presence = "0.2.3"
 lazy_static = "1.4.0"
 tokio = { version = "1.36.0", features = ["full"] }
+=======
+
+>>>>>>> main
 
 [dependencies.tauri]
 version = "1.5.4"
