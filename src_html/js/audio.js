@@ -29,12 +29,19 @@ function playTrack(index) {
     audioPlayer.load();
     audioPlayer.play();
     updatePlayPauseIcon();
+
+    stopDiscordRPC(); // TODO: add check to see if rpc is actually running
+
+    setDiscordRPCSong();
+    startDiscordRPC();
 }
 
 function togglePlayPause() {
     if (audioPlayer.paused) {
+        startDiscordRPC();
         audioPlayer.play();
     } else {
+        stopDiscordRPC();
         audioPlayer.pause();
     }
     updatePlayPauseIcon();
@@ -67,3 +74,22 @@ function selectFile() {
     select.accept = "audio/mp3, audio/wav, audio/flac, audio/ogg"
     select.click();
 }
+
+function getCurrentTrack() {
+    let raw = playlist[currentTrackIndex];
+    return raw["title"]; // raw title hahah
+}
+
+function setDiscordRPCSong() {
+    const next = getCurrentTrack();
+    invoke("set_song", { newName: next });
+}
+
+function startDiscordRPC() {
+    invoke("start_rpc_thread");
+}
+
+function stopDiscordRPC() {
+    invoke("stop_rpc_thread")
+}
+
