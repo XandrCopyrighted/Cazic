@@ -4,6 +4,12 @@ var playlist = [];
 var currentTrackIndex = 0;
 var audioPlayer = document.getElementById('play');
 var playPauseIcon = document.getElementById('playPauseIcon');
+var progressContainer = document.getElementById("progressContainer");
+
+navigator.mediaSession.setActionHandler('play', () => {audioPlayer.play();});
+navigator.mediaSession.setActionHandler('pause', () => {audioPlayer.pause();});
+navigator.mediaSession.setActionHandler('nexttrack', () => {nextTrack();});
+navigator.mediaSession.setActionHandler('previoustrack', () => {prevTrack();});
 
 function loadAndPlaySelectedFile() {
     var fileselect = document.getElementById('audio');

@@ -18,8 +18,9 @@
     },
     "bundle": {
       "active": true,
-      "targets": "all",
+      "targets": ["nsis", "msi"],
       "identifier": "com.xdr.cazic",
+      "publisher": "XandrCopyrighted",
       "category": "Music",
       "shortDescription": "Another music player written in Rust.",
       "icon": [
@@ -37,7 +38,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "Cazic Music Player",
+        "title": "Cazic",
         "width": 800,
         "minWidth": 640,
         "height": 600,

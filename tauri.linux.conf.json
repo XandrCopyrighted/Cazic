@@ -18,7 +18,7 @@
     },
     "bundle": {
       "active": true,
-      "targets": "all",
+      "targets": ["appimage", "deb"],
       "identifier": "com.xdr.cazic",
       "category": "Music",
       "shortDescription": "Another music player written in Rust.",
