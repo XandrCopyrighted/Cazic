@@ -44,7 +44,7 @@ body {
     height: 10px
 }
 
-#bar::-ms-thumb {
+#bar::-ms-track {
     background-color: #a5adce;
     border: 3px solid #51576d;
     width: 10px;
