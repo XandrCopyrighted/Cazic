@@ -16,7 +16,7 @@ fn set_song(new_name: String) {
 }
 
 #[tauri::command]
-fn set_rpc_thread() {
+fn start_rpc_thread() {
     let rpc_thread = tokio::spawn(async {
         println!("Discord RPC thread started!");
         let mut client = DiscordIpcClient::new(&DISCORDRPC_APPLICATION_ID).unwrap();
@@ -43,27 +43,44 @@ fn set_rpc_thread() {
 }
 
 #[tauri::command]
-#[deprecated(note="techinical debt when i didnt know you can actually .abort() a task.")]
-fn start_rpc_thread() {
-    set_rpc_thread();
+/// Lets you know whether the Discord RPC thread is up.
+///
+/// This code will try and get a Mutex to the RPC_THREAD mutex lock from lazy_static. This can
+/// potentally deadlock if something is hogging the Mutex. This returns true if it is up, false if
+/// its down.
+///
+/// Append `true` to the parameters to kill the thread. If you do that, then the `true` return
+/// value should be intrepreted as "the thread was up".
+///
+/// Example:
+///
+/// ```rust
+/// if is_rpc_thread_up(false) { // change to true to kill the thread, if its up.
+///     println!("RPC thread is up!");
+/// } else {
+///     println!("RPC thread is down!");
+/// }
+/// ```
+fn is_rpc_thread_up(kill: bool) -> bool {
+    let rpc_thread = RPC_THREAD.lock().unwrap().take();
+    if let Some(handle) = rpc_thread {
+        if kill {
+            handle.abort();
+        }
+        true
+    } else {
+        false
+    }
 }
 
 #[tauri::command]
 fn stop_rpc_thread() {
     println!("attempting to stop Discord RPC thread!");
-    let rpc_thread = RPC_THREAD.lock().unwrap().take();
-    if let Some(handle) = rpc_thread {
-        handle.abort();
+    if is_rpc_thread_up(true) {
+        println!("thread was up and should be stopped.");
     } else {
         eprintln!("[warn] Discord RPC thread is not running! could this be a JS problem?");
     }
-}
-
-#[tauri::command]
-#[deprecated(note="techinical debt when i didnt know you can actually .abort() a task.")]
-fn stop_rpc_thread_wrapper() {
-    println!("trying to stop");
-    stop_rpc_thread();
 }
 
 #[tokio::main]
@@ -71,10 +88,9 @@ async fn main() -> std::io::Result<()> {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             start_rpc_thread,
-            stop_rpc_thread_wrapper,
             stop_rpc_thread,
-            set_rpc_thread,
-            set_song
+            set_song,
+            is_rpc_thread_up
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

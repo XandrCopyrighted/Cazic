@@ -85,6 +85,6 @@ function startDiscordRPC() {
 }
 
 function stopDiscordRPC() {
-    invoke("stop_rpc_thread_wrapper")
+    invoke("stop_rpc_thread")
 }
 
