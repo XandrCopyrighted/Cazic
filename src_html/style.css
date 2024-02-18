@@ -2,7 +2,7 @@ body {
     font-family: system-ui;
     background-color: #414559;
     color: white;
-    overflow: hidden
+    overflow: visible
 }
 
 .watermark {
@@ -13,7 +13,7 @@ body {
     align-items: flex-end;
     display: flex;
     padding-right: 10px;
-    -webkit-user-select: none
+    user-select: none /* Don't know if this is gonna do anything */
 }
 
 .nav {
@@ -21,7 +21,6 @@ body {
 }
 
 .button {
-    /* height: 100vh; */
     background-color: transparent;
     border: none;
     color: white;
@@ -55,15 +54,6 @@ body {
     align-items: center;
     margin: 0 auto
 }
-
-/* 
-.minicontrols {
-    display: flex;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-} 
-*/
 
 .box {
     position: fixed;

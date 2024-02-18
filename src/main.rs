@@ -25,7 +25,7 @@ fn start_rpc_thread() {
         println!("Discord RPC thread started!");
         let mut client = DiscordIpcClient::new(&DISCORDRPC_APPLICATION_ID).unwrap();
         let _ = client.connect();
-        println!("client.connect succeeded");
+        println!("Client connected successfully");
 
         let song_name = DISCORDRPC_SONG_NAME.lock().unwrap().clone();
         println!("Obtained the song name Mutex: {}", song_name);
