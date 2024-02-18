@@ -13,10 +13,11 @@ body {
     align-items: flex-end;
     display: flex;
     padding-right: 10px;
+    -webkit-user-select: none
 }
 
 .nav {
-    margin-bottom: 30px;
+    margin-bottom: 30px
 }
 
 .button {
@@ -82,13 +83,13 @@ body {
 #fullscreen {
     position: fixed;
     bottom: 0;
-    right: 0;
+    right: 0
 }
 
 
 /* front "backend" stuff, idk I can't comment - XandrCopyrighted */
 #play {
-    display: none;
+    display: none
 }
 
 .audio {

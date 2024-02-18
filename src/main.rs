@@ -1,6 +1,6 @@
 use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 use lazy_static::lazy_static;
-use std::sync::{Arc, Mutex};
+use std::{sync::{Arc, Mutex}, path::Path};
 use tauri::async_runtime::TokioJoinHandle;
 
 const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
@@ -12,7 +12,11 @@ lazy_static! {
 
 #[tauri::command]
 fn set_song(new_name: String) {
-    *DISCORDRPC_SONG_NAME.lock().unwrap() = new_name;
+    let new_name_no_format = Path::new(&new_name)
+        .file_stem()
+        .and_then(|stem| stem.to_str())
+        .map_or_else(|| new_name.clone(), |s| s.to_string());
+    *DISCORDRPC_SONG_NAME.lock().unwrap() = new_name_no_format;
 }
 
 #[tauri::command]

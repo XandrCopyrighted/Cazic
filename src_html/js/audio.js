@@ -39,11 +39,11 @@ function playTrack(index) {
 
 function togglePlayandPause() {
     if (audioPlayer.paused) {
+        audioPlayer.play();
 		startDiscordRPC();
-		audioPlayer.play();
     } else {
-        stopDiscordRPC();
         audioPlayer.pause();
+        stopDiscordRPC();
     }
     updatePlayPauseIcon();
 }
