@@ -6,7 +6,7 @@
   },
   "package": {
     "productName": "Cazic",
-    "version": "0.0.5"
+    "version": "0.0.6"
   },
   "tauri": {
     "allowlist": {
@@ -39,9 +39,7 @@
         "fullscreen": false,
         "resizable": true,
         "title": "Cazic",
-        "width": 800,
         "minWidth": 640,
-        "height": 600,
         "minHeight": 480
       }
     ]

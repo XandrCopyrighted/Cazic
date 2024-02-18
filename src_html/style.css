@@ -35,17 +35,18 @@ body {
     cursor: pointer;
     right: 20%;
     margin: 0 auto;
-    background-color: #a5adce;
+    background-color: #a5adce
 }
 
 
-#bar::-ms-thumb {
+#bar::-webkit-slider-thumb {
     -webkit-appearance: none;
     background-color: #a5adce;
-    border: 3px solid #51576d;
+    border: 5px solid white;
     width: 10px;
-    height: 10px;
+    height: 10px
 }
+
 
 .controls {
     display: flex;

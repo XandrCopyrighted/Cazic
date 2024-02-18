@@ -3,7 +3,7 @@ use lazy_static::lazy_static;
 use std::sync::{Arc, Mutex};
 use tauri::async_runtime::TokioJoinHandle;
 
-const DISCORDRPC_APPLICATION_ID: &str = "1208230530362118195";
+const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
 
 lazy_static! {
     static ref DISCORDRPC_SONG_NAME: Mutex<String> = Mutex::new(String::new());
@@ -33,7 +33,7 @@ fn start_rpc_thread() {
         activity_base = activity_base.state(&song_name);
 
         let _ = client.set_activity(activity_base.assets(activity_assets));
-        println!("Activity set! Check your Discord to see if its working.");
+        println!("Set activity! Check your discord to see if its working.");
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(86400)).await;
@@ -79,7 +79,7 @@ fn stop_rpc_thread() {
     if is_rpc_thread_up(true) {
         println!("Thread was up and should be stopped.");
     } else {
-        eprintln!("[WARN] Discord RPC thread is not running! could this be a JS problem?");
+        eprintln!("[warn] Discord RPC thread is not running! Could this be a JS problem?");
     }
 }
 
