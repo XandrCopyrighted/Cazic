@@ -1,8 +1,8 @@
-name: Cazic_main
+name: Cazic_metadata
 
 on:
   push:
-    branches: ["main"]
+    branches: ["metadata"]
 
 env:
   CARGO_TERM_COLOR: always
