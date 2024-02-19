@@ -13,7 +13,7 @@ body {
     align-items: flex-end;
     display: flex;
     padding-right: 10px;
-    user-select: none /* Don't know if this is gonna do anything */
+    user-select: none
 }
 
 .nav {
@@ -69,6 +69,26 @@ body {
     padding: 20px;
     box-sizing: border-box
 }
+
+.metadatabox {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 60vw;
+    background-color: #51576d;
+    border-radius: 8px;
+    padding: 8px;
+    box-sizing: border-box;
+    color: #ffffff
+}
+
+.metadatabox:not(:empty) {
+    display: flex;
+}
+
+
 
 #fullscreen {
     position: fixed;

@@ -6,25 +6,37 @@ var audioPlayer = document.getElementById('play');
 var playPauseIcon = document.getElementById('playPauseIcon');
 var select = document.getElementById('audio');
 var fileselect = document.getElementById('audio');
+var songTitleElement = document.getElementById('songTitle');
+var filesProcessed = 0;
 
 
 function selectFile() {
     select.type = 'file';
     select.multiple = "multiple"
-    select.accept = "audio/mp3, audio/wav, audio/flac, audio/ogg"
+    select.accept = "audio/mp3, audio/flac"
     select.click();
 }
 
-function loadAndPlaySelectedFile() { // ChatGPT
-    for (var i = 0; i < fileselect.files.length; i++) {
-        var selectedFile = fileselect.files[i];
-        var objectURL = URL.createObjectURL(selectedFile);
-        playlist.push({ src: objectURL, title: selectedFile.name });
-    }
-    if (playlist.length === fileselect.files.length) {
-        playTrack(0);
+function loadAndPlaySelectedFile() {
+    for (var i =  0; i < fileselect.files.length; i++) {
+        (function (selectedFile) {
+            jsmediatags.read(selectedFile, {
+                onSuccess: function (tag) {
+                    var title = tag.tags.title ? tag.tags.title : selectedFile.name;
+                    playlist.push({ src: URL.createObjectURL(selectedFile), title: title });
+                    if (songTitleElement) {
+                        songTitleElement.textContent = title;
+                    }
+                    filesProcessed++;
+                    if (filesProcessed === fileselect.files.length) {
+                        playTrack(0);
+                    }
+                }
+            });
+        })(fileselect.files[i]);
     }
 }
+
 
 function playTrack(index) {
 	currentTrackIndex = index;

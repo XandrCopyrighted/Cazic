@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<script src="./js/general.js"></script>
+<script src="./js/jsmediatags.min.js" async></script>
+<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
 
 <body>
     <div class="nav">
@@ -25,6 +26,9 @@
             <audio id="play" controls></audio>
             <input id="bar" type="range" value="0">
         </div>
+        <div class="metadatabox">
+            <p id="songTitle">Click on the <img src="../assets/plus-button.png"/> button to start playing some songs!</p>
+        </div>
         <div class="controls">
             <button class="button" onclick="playPrevTrack()"><i class="bx bx-fast-forward-circle bx-flip-horizontal bx-sm"></i></button>
             <button class="button" onclick="togglePlayandPause()"><i id="playPauseIcon" class="bx bx-stop-circle bx-md"></i></button>
@@ -32,12 +36,9 @@
         </div>
         <div class="audio"> <!--should ALWAYS be below "controls"-->
             <audio id="play" autoplay onended="nextTrack()"></audio>
-            <input type="file" id="audio" name="pick_music" multiple="multiple" accept="audio/mp3, audio/wav, audio/flac, audio/ogg" onchange="loadAndPlaySelectedFile()"/>
+            <input type="file" id="audio" name="pick_music" title="Cazic Music Player" onchange="loadAndPlaySelectedFile()"/>
             <script src="./js/audio.js"></script>
         </div>
-        <!-- <div class="minicontrols">
-            <button class="button"><i class="bx bx-shuffle bx-xs"></i></button>
-        </div> -->
     </div>
     <button class="button" id="fullscreen"><i class="bx bx-fullscreen bx-xs"></i></button>
     <script src="./js/fullscreen.js"></script>

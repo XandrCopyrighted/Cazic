@@ -2,6 +2,7 @@ use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 use lazy_static::lazy_static;
 use std::{sync::{Arc, Mutex}, path::Path};
 use tauri::async_runtime::TokioJoinHandle;
+use colored::*;
 
 const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
 
@@ -22,22 +23,22 @@ fn set_song(new_name: String) {
 #[tauri::command]
 fn start_rpc_thread() {
     let rpc_thread = tokio::spawn(async {
-        println!("Discord RPC thread started!");
+        println!("{} thread started!", "Discord RPC".magenta());
         let mut client = DiscordIpcClient::new(&DISCORDRPC_APPLICATION_ID).unwrap();
         let _ = client.connect();
-        println!("Client connected successfully");
+        println!("Client connected {}", "successfully!".green().bold());
 
         let song_name = DISCORDRPC_SONG_NAME.lock().unwrap().clone();
-        println!("Obtained the song name Mutex: {}", song_name);
+        println!("Obtained the song name Mutex: {}", song_name.green().bold());
 
         let mut activity_base = activity::Activity::new();
         let activity_assets = activity::Assets::new();
 
-        activity_base = activity_base.details("Listening to music on Cazic!");
+        activity_base = activity_base.details("Listening to music!");
         activity_base = activity_base.state(&song_name);
 
         let _ = client.set_activity(activity_base.assets(activity_assets));
-        println!("Set activity! Check your discord to see if its working.");
+        println!("{} Check your Discord client and see if it's working.", "Activity set!".green().bold());
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(86400)).await;
@@ -79,11 +80,11 @@ fn is_rpc_thread_up(kill: bool) -> bool {
 
 #[tauri::command]
 fn stop_rpc_thread() {
-    println!("Attempting to stop Discord RPC thread!");
+    println!("Attempting to stop {} thread!", "Discord RPC".magenta());
     if is_rpc_thread_up(true) {
         println!("Thread was up and should be stopped.");
     } else {
-        eprintln!("[warn] Discord RPC thread is not running! Could this be a JS problem?");
+        eprintln!("[{}] Discord RPC thread is not running! Could this be a {}", "WARN".red().bold(), "JS problem?".italic());
     }
 }
 
@@ -98,6 +99,5 @@ async fn main() -> std::io::Result<()> {
         ])
         .run(tauri::generate_context!())
         .expect("Error while running Cazic");
-
     Ok(())
 }
