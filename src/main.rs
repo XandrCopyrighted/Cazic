@@ -24,7 +24,10 @@ fn start_rpc_thread() {
     let rpc_thread = tokio::spawn(async {
         println!("Discord RPC thread started!");
         let mut client = DiscordIpcClient::new(&DISCORDRPC_APPLICATION_ID).unwrap();
-        let _ = client.connect();
+        if let Err(err) = client.connect() {
+            eprintln!("Failed to connect to RPC endpoint! {}", err);
+            return;
+        }
         println!("Client connected successfully");
 
         let song_name = DISCORDRPC_SONG_NAME.lock().unwrap().clone();
@@ -36,7 +39,9 @@ fn start_rpc_thread() {
         activity_base = activity_base.details("Listening to music on Cazic!");
         activity_base = activity_base.state(&song_name);
 
-        let _ = client.set_activity(activity_base.assets(activity_assets));
+        if let Err(err) = client.set_activity(activity_base.assets(activity_assets)) {
+            eprintln!("Failed to set activity! {}", err);
+        }
         println!("Set activity! Check your discord to see if its working.");
 
         loop {
