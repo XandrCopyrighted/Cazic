@@ -1,8 +1,8 @@
-name: Cazic_main
+name: Cazic_fix-app-crash-when-discord-down
 
 on:
   push:
-    branches: ["main"]
+    branches: ["fix-app-crash-when-discord-down"]
 
 env:
   CARGO_TERM_COLOR: always
