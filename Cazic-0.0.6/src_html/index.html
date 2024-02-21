@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<script src="./js/general.js"></script>
+
+<body>
+    <div class="nav">
+        <button class="button" onclick="selectFile()" id="pick"><i class="bx bx-plus-circle bx-sm"></i></button>
+        <button class="button"><i class="bx bxs-playlist bx-sm"></i></button>
+        <button class="button"><i class="bx bx-cog bx-sm"></i></button>
+    </div>
+
+    <div class="watermark">
+        <h3>Cazic Music Player</h3>
+    </div>
+
+    </div>
+    <div class="box">
+        <div class="progress">
+            <audio id="play" controls></audio>
+            <input id="bar" type="range" value="0">
+        </div>
+        <div class="controls">
+            <button class="button" onclick="playPrevTrack()"><i class="bx bx-fast-forward-circle bx-flip-horizontal bx-sm"></i></button>
+            <button class="button" onclick="togglePlayandPause()"><i id="playPauseIcon" class="bx bx-stop-circle bx-md"></i></button>
+            <button class="button" onclick="playNextTrack()"><i class="bx bx-fast-forward-circle bx-sm"></i></button>
+        </div>
+        <div class="audio"> <!--should ALWAYS be below "controls"-->
+            <audio id="play" autoplay onended="nextTrack()"></audio>
+            <input type="file" id="audio" name="pick_music" multiple="multiple" accept="audio/mp3, audio/wav, audio/flac, audio/ogg" onchange="loadAndPlaySelectedFile()"/>
+            <script src="./js/audio.js"></script>
+        </div>
+        <!-- <div class="minicontrols">
+            <button class="button"><i class="bx bx-shuffle bx-xs"></i></button>
+        </div> -->
+    </div>
+    <button class="button" id="fullscreen"><i class="bx bx-fullscreen bx-xs"></i></button>
+    <script src="./js/fullscreen.js"></script>
+</body>
+</html>
