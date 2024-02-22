@@ -20,7 +20,7 @@
       "active": true,
       "targets": ["nsis", "msi"],
       "identifier": "com.xdr.cazic",
-      "publisher": "XandrCopyrighted and it's contributors",
+      "publisher": "XandrCopyrighted et al.",
       "category": "Music",
       "shortDescription": "Another music player written in Rust.",
       "icon": [
