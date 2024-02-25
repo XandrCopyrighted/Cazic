@@ -1,3 +1,5 @@
+#[cfg(unix)]
+pub mod depcheck {
 macro_rules! does_package_exist {
     ($package_manager:expr, $package_manager_flags:expr, $should_grep_output:expr, $package:expr) => {
         // FIXME: this is absolutely terrible.
@@ -147,4 +149,4 @@ pub fn runtime_dep_check() {
         eprintln!("taint is true; some commands failed to run.");
     }
 }
-
+}
