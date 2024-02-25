@@ -1,3 +1,5 @@
+#![deny(unsafe_code)]
+
 use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 use lazy_static::lazy_static;
 use std::{sync::{Arc, Mutex}, path::Path};
