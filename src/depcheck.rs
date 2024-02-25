@@ -61,7 +61,7 @@ pub fn runtime_dep_check() {
 
     let command: &str;
     let args: &str;
-    let mut target_webkit2gtk: &str = "webkit2gtks";
+    let mut target_webkit2gtk: &str = "webkit2gtk";
     let mut target_gst_plugin: &str = "gst-plugins-good";
     let mut should_grep: bool = false; // because package managers suck
                                        // this will make it less accurate but eh
