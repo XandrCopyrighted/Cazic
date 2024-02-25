@@ -23,7 +23,7 @@ fn set_song(new_name: String) {
 fn start_rpc_thread() {
     let rpc_thread = tokio::spawn(async {
         println!("Discord RPC thread started!");
-        let mut client = DiscordIpcClient::new(&DISCORDRPC_APPLICATION_ID).unwrap();
+        let mut client = DiscordIpcClient::new(DISCORDRPC_APPLICATION_ID).unwrap();
         if let Err(err) = client.connect() {
             eprintln!("Failed to connect to RPC endpoint! {}", err);
             return;
