@@ -34,8 +34,8 @@ fn start_rpc_thread() {
         let mut activity_base = activity::Activity::new();
         let activity_assets = activity::Assets::new();
 
-        activity_base = activity_base.details("Listening to music!");
-        activity_base = activity_base.state(&song_name);
+        activity_base = activity_base.details(&song_name);
+        activity_base = activity_base.timestamps(activity::Timestamps::new().start(std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs() as i64));
 
         let _ = client.set_activity(activity_base.assets(activity_assets));
         println!("{} Check your Discord client and see if it's working.", "Activity set!".green().bold());
@@ -43,7 +43,7 @@ fn start_rpc_thread() {
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(86400)).await;
         }
-    });
+   });
     *RPC_THREAD.lock().unwrap() = Some(rpc_thread);
 }
 

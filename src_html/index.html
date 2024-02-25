@@ -11,7 +11,7 @@
 
 <body>
     <div class="nav">
-        <button class="button" onclick="selectFile()" id="pick"><i class="bx bx-plus-circle bx-sm"></i></button>
+        <label for="audioInput" class="button" id="pick"><i class="bx bx-plus-circle bx-sm"></i></label>
         <button class="button"><i class="bx bxs-playlist bx-sm"></i></button>
         <button class="button"><i class="bx bx-cog bx-sm"></i></button>
     </div>
@@ -22,25 +22,24 @@
 
     </div>
     <div class="box">
-        <div class="progress">
+        <div class="seek">
             <audio id="play" controls></audio>
             <input id="bar" type="range" value="0">
         </div>
         <div class="metadatabox">
-            <p id="songTitle">Click on the <img src="../assets/plus-button.png"/> button to start playing some songs!</p>
+            <p id="songTitle">Click on the <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABeElEQVRIS71VgXHCMAyMJ2mYgDJBOwKdADYoTAJM0DIBsAFMUNgAJgn/nJSzFTtOj7q+0+V8UvT/siy7qvByhfNXWYCmaeYg8QZ7FSOns9jeOXfoI5kEQOIpflzB6ozKK/xLAO1jcVEAJF8j+FN+uOHL/RFJyLyCn2reYQvYi8St4V9akA6ASU5mTJ5ciCcIlXJtEM99uwIAKctOvBNlnCmRKvqRuA+/XBaA9aTkKHMQaJgECWLKVckV7pGSagOlW77guCGgjrHuA2A8/EqwVeEDfCNmlmIvCZIKxK8qtiA5f6hVpkBnh4xhydoPUMDu4lmcATCxAB12mjB3yP6ZWBK+guIAf1miC1SxXMEZFD9kzh5esqCP/foPOOR0m5o+fuaiBffof0eFqPAn6QKHtelr018NO+/S+SCsK/cnM675CPHm1vJfZ5IGXWRZymRlYp33KSF8L6h0+INjOofdRWNfc5RwXWC8N3wyo4k1R/ZN7qv/EF9xgDvi7uIZHH2atAAAAABJRU5ErkJggg=="/> button to start playing some songs!</p>
         </div>
         <div class="controls">
             <button class="button" onclick="playPrevTrack()"><i class="bx bx-fast-forward-circle bx-flip-horizontal bx-sm"></i></button>
             <button class="button" onclick="togglePlayandPause()"><i id="playPauseIcon" class="bx bx-stop-circle bx-md"></i></button>
             <button class="button" onclick="playNextTrack()"><i class="bx bx-fast-forward-circle bx-sm"></i></button>
         </div>
-        <div class="audio"> <!--should ALWAYS be below "controls"-->
-            <audio id="play" autoplay onended="nextTrack()"></audio>
-            <input type="file" id="audio" name="pick_music" title="Cazic Music Player" onchange="loadAndPlaySelectedFile()"/>
-            <script src="./js/audio.js"></script>
+        <div class="audio">
+        	<input type="file" id="audioInput" accept="audio/*" multiple style="display: none;">
         </div>
     </div>
     <button class="button" id="fullscreen"><i class="bx bx-fullscreen bx-xs"></i></button>
     <script src="./js/fullscreen.js"></script>
 </body>
 </html>
+

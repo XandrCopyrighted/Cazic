@@ -1,6 +1,6 @@
 {
   "build": {
-    "devPath": "http://127.0.0.1:5500/src_html",
+    "devPath": "src_html",
     "distDir": "src_html",
     "withGlobalTauri": true
   },

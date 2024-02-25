@@ -1,61 +1,47 @@
 const invoke = window.__TAURI__.invoke; // load Tauri's invoke so we can call rust from here.
 
 var playlist = [];
-var currentTrackIndex = 0;
-var audioPlayer = document.getElementById('play');
+let currentIndex = 0;
+let audioPlayer = new Audio();
 var playPauseIcon = document.getElementById('playPauseIcon');
 var select = document.getElementById('audio');
 var fileselect = document.getElementById('audio');
 var songTitleElement = document.getElementById('songTitle');
 var filesProcessed = 0;
 
+const prevBtn = document.querySelector('.playPrevTrack');
+const playBtn = document.querySelector('.togglePlayandPause');
+const nextBtn = document.querySelector('.playNextTrack');
 
-function selectFile() {
-    select.type = 'file';
-    select.multiple = "multiple"
-    select.accept = "audio/mp3, audio/flac"
-    select.click();
+document.getElementById('audioInput').addEventListener('change', handleFileSelect);
+  
+function handleFileSelect(event) {
+  const files = event.target.files;
+    
+  for (let i = 0; i < files.length; i++) {
+    playlist.push(URL.createObjectURL(files[i]));
+  }
 }
 
-function loadAndPlaySelectedFile() {
-    for (var i =  0; i < fileselect.files.length; i++) {
-        (function (selectedFile) {
-            jsmediatags.read(selectedFile, {
-                onSuccess: function (tag) {
-                    var title = tag.tags.title ? tag.tags.title : selectedFile.name;
-                    playlist.push({ src: URL.createObjectURL(selectedFile), title: title });
-                    if (songTitleElement) {
-                        songTitleElement.textContent = title;
-                    }
-                    filesProcessed++;
-                    if (filesProcessed === fileselect.files.length) {
-                        playTrack(0);
-                    }
-                }
-            });
-        })(fileselect.files[i]);
-    }
-}
-
-
-function playTrack(index) {
-	currentTrackIndex = index;
-	audioPlayer.src = playlist[index].src;
-	audioPlayer.load();
-	audioPlayer.play();
-	updatePlayPauseIcon();
-	stopDiscordRPC(); // TODO: add check to see if rpc is actually running
-	setDiscordRPCSong();
-	startDiscordRPC();
+function playAudio() {
+  if (playlist.length === 0) {
+    alert("bals");
+    return;
+  }
+  audioPlayer.src = playlist[currentIndex];
+  audioPlayer.play();
+  audioPlayer.addEventListener('ended', playNext);
 }
 
 function togglePlayandPause() {
     if (audioPlayer.paused) {
 		startDiscordRPC();
+		currentIndex = (currentIndex + 1) % playlist.length;
 		audioPlayer.play();
     } else {
         stopDiscordRPC();
         audioPlayer.pause();
+        audioPlayer.currentTime = 0;
     }
     updatePlayPauseIcon();
 }
