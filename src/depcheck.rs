@@ -70,7 +70,7 @@ pub fn runtime_dep_check() {
         PackageManager::Xbps => (command, args, should_grep) = ("xbps-query", "-l", true),
         PackageManager::Apt => (command, args, target_gst_plugin, should_grep) = ("apt", "list --installed", "gstreamer1.0-plugins-good", true),
         PackageManager::Dnf => (command, args, target_gst_plugin, should_grep) = ("dnf", "list installed", "gstreamer1.0-plugins-good", true),
-        PackageManager::Equery => (command, args) = ("equery", "list '*'"),
+        PackageManager::Equery => (command, args) = ("equery", "list gst-plugins-good"),
         PackageManager::Unknown => return /* give up */,
     }
 
