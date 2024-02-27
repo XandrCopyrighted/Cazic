@@ -1,5 +1,5 @@
 #[cfg(unix)]
-pub mod depcheck {
+pub mod unix_depcheck {
 macro_rules! does_package_exist {
     ($package_manager:expr, $package_manager_flags:expr, $should_grep_output:expr, $package:expr) => {
         if $should_grep_output {
