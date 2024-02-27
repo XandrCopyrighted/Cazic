@@ -63,7 +63,6 @@ pub fn runtime_dep_check() {
 
     let command: &str;
     let args: &str;
-    let mut target_webkit2gtk: &str = "webkit2gtk";
     let mut target_gst_plugin: &str = "gst-plugins-good";
     let mut should_grep: bool = false; // because package managers suck
                                        // this will make it less accurate but eh
@@ -78,29 +77,23 @@ pub fn runtime_dep_check() {
         PackageManager::Xbps => {
             command = "xbps-query";
             args = "-l";
-            target_webkit2gtk = "webkit2gtk"; // NOTE: i dont use void; PRAY.
-                                              // change this should it be different.
             should_grep = true;
         }
         PackageManager::Apt => {
             command = "apt";
             args = "list --installed";
-            target_webkit2gtk = "libwebkitgtk"; // its grepping; full name is libwebkitgtk-6.0-4
-                                                // why is it versioned??? wtf debian.
             target_gst_plugin = "gstreamer1.0-plugins-good";
             should_grep = true;
         }
         PackageManager::Dnf => {
             command = "dnf";
             args = "list installed";
-            target_webkit2gtk = "libwebkitgtk"; // ditto.
             target_gst_plugin = "gstreamer1.0-plugins-good";
             should_grep = true;
         }
         PackageManager::Equery => {
             command = "equery";
             args = "list '*'";
-            target_webkit2gtk = "libwebkitgtk"; // seriously don't know.
         }
 
         PackageManager::Unknown => todo!("consider this edge case"),
@@ -109,25 +102,13 @@ pub fn runtime_dep_check() {
 
     let mut is_missing_dependencies = false;
     let mut is_tainted = false; // this flag changes if something fails.
-    let webkit2gtk = does_package_exist!(command, args, should_grep, target_webkit2gtk);
     let gst_plugins_good = does_package_exist!(command, args, should_grep, target_gst_plugin);
-
-    if !webkit2gtk.stderr.is_empty() {
-        eprintln!("stderr in webkit2gtk!");
-        is_tainted = true;
-    }
 
     if !gst_plugins_good.stderr.is_empty() {
         eprintln!("stderr in gst-plugins-good!");
         is_tainted = true;
     }
 
-    if webkit2gtk.stdout.is_empty() {
-        println!("does not have dependency webkit2gtk!");
-        is_missing_dependencies = true;
-    } else {
-        println!("has dependency webkit2gtk!");
-    }
     if gst_plugins_good.stdout.is_empty() {
         println!("does not have dependency gst-plugins-good!");
         is_missing_dependencies = true;
@@ -138,7 +119,7 @@ pub fn runtime_dep_check() {
     if is_missing_dependencies == true {
         eprintln!("you are missing dependencies!");
         let a = std::process::Command::new("sh")
-            .args(["-c", "notify-send 'Cazic: You are missing a dependency! Do you have webkit2gtk or gst_plugins_good installed?'", "--urgency=critical"])
+            .args(["-c", "notify-send 'Cazic: You are missing a dependency! Audioplayer may not work without gst_plugins_good installed!'", "--urgency=critical"])
             .output()
             .unwrap();
         dbg!(a); // don't touch this code. you need it for notify-send to work (???)
