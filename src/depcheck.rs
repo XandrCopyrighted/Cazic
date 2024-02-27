@@ -71,7 +71,7 @@ pub fn runtime_dep_check() {
         PackageManager::Apt => (command, args, target_gst_plugin, should_grep) = ("apt", "list --installed", "gstreamer1.0-plugins-good", true),
         PackageManager::Dnf => (command, args, target_gst_plugin, should_grep) = ("dnf", "list installed", "gstreamer1.0-plugins-good", true),
         PackageManager::Equery => (command, args) = ("equery", "list '*'"),
-        PackageManager::Unknown => todo!("consider this edge case"),
+        PackageManager::Unknown => return /* give up */,
     }
 
     let gst_plugins_good = does_package_exist!(command, args, should_grep, target_gst_plugin);
