@@ -75,7 +75,6 @@ pub fn runtime_dep_check() {
     }
 
     let gst_plugins_good = does_package_exist!(command, args, should_grep, target_gst_plugin);
-    dbg!(&gst_plugins_good);
 
     if gst_plugins_good.stdout.is_empty() {
         eprintln!("does not have dependency gst-plugins-good!");
@@ -83,7 +82,6 @@ pub fn runtime_dep_check() {
             .args(["-c", "notify-send 'Cazic: You are missing a dependency! Audioplayer may not work without gst_plugins_good installed!'", "--urgency=critical"])
             .output()
             .unwrap();
-        // dbg!(a);
     } else {
         println!("has dependency gst-plugins-good!")
     }

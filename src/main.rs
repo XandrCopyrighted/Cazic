@@ -97,7 +97,7 @@ fn stop_rpc_thread() {
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    #[cfg(unix)] crate::depcheck::depcheck::runtime_dep_check();
+    #[cfg(unix)] tokio::spawn(async {crate::depcheck::depcheck::runtime_dep_check()});
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             start_rpc_thread,
