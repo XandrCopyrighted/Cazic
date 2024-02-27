@@ -2,7 +2,6 @@
 pub mod depcheck {
 macro_rules! does_package_exist {
     ($package_manager:expr, $package_manager_flags:expr, $should_grep_output:expr, $package:expr) => {
-        // FIXME: this is absolutely terrible.
         if $should_grep_output {
             std::process::Command::new("sh")
                 .args(["-c", format!("{} {} | grep {}", $package_manager, $package_manager_flags, $package).as_str()])
@@ -49,17 +48,14 @@ fn get_package_manager() -> PackageManager {
 }
 
 pub fn runtime_dep_check() {
-    /*
-     * check whether gst-plugins-good and webkit2gtk packages are installed
-     */
     /* packages:
-     * Pacman (i use arch btw): pacman -Q
-     * Void: xbps-query -l
+     * Arch (pacman) (i use arch btw): pacman -Q
+     * Void (xbps): xbps-query -l
      * Debian (apt): apt list --installed
      * Debian (dnf): dnf list installed
-     * Gentoo: equery list '*'
+     * Gentoo (emerge): equery list '*'
      */
-    let package_manager: PackageManager = get_package_manager();
+    let package_manager = get_package_manager();
 
     let command: &str;
     let args: &str;
@@ -70,64 +66,26 @@ pub fn runtime_dep_check() {
     // trying to make the code rather easy to maintain, at the cost of it being so long.
     // is there a more modular way to do this?
     match package_manager {
-        PackageManager::Pacman => {
-            command = "pacman";
-            args = "-Q";
-        }
-        PackageManager::Xbps => {
-            command = "xbps-query";
-            args = "-l";
-            should_grep = true;
-        }
-        PackageManager::Apt => {
-            command = "apt";
-            args = "list --installed";
-            target_gst_plugin = "gstreamer1.0-plugins-good";
-            should_grep = true;
-        }
-        PackageManager::Dnf => {
-            command = "dnf";
-            args = "list installed";
-            target_gst_plugin = "gstreamer1.0-plugins-good";
-            should_grep = true;
-        }
-        PackageManager::Equery => {
-            command = "equery";
-            args = "list '*'";
-        }
-
+        PackageManager::Pacman => (command, args) = ("pacman", "-Q"),
+        PackageManager::Xbps => (command, args, should_grep) = ("xbps-query", "-l", true),
+        PackageManager::Apt => (command, args, target_gst_plugin, should_grep) = ("apt", "list --installed", "gstreamer1.0-plugins-good", true),
+        PackageManager::Dnf => (command, args, target_gst_plugin, should_grep) = ("dnf", "list installed", "gstreamer1.0-plugins-good", true),
+        PackageManager::Equery => (command, args) = ("equery", "list '*'"),
         PackageManager::Unknown => todo!("consider this edge case"),
-        // _ => todo!("consider this edge case")
     }
 
-    let mut is_missing_dependencies = false;
-    let mut is_tainted = false; // this flag changes if something fails.
     let gst_plugins_good = does_package_exist!(command, args, should_grep, target_gst_plugin);
-
-    if !gst_plugins_good.stderr.is_empty() {
-        eprintln!("stderr in gst-plugins-good!");
-        is_tainted = true;
-    }
+    dbg!(&gst_plugins_good);
 
     if gst_plugins_good.stdout.is_empty() {
-        println!("does not have dependency gst-plugins-good!");
-        is_missing_dependencies = true;
-    } else {
-        println!("has dependency gst-plugins-good!")
-    }
-
-    if is_missing_dependencies == true {
-        eprintln!("you are missing dependencies!");
-        let a = std::process::Command::new("sh")
+        eprintln!("does not have dependency gst-plugins-good!");
+        std::process::Command::new("sh")
             .args(["-c", "notify-send 'Cazic: You are missing a dependency! Audioplayer may not work without gst_plugins_good installed!'", "--urgency=critical"])
             .output()
             .unwrap();
-        dbg!(a); // don't touch this code. you need it for notify-send to work (???)
+        // dbg!(a);
     } else {
-        println!("has all dependencies!");
-    }
-    if is_tainted == true {
-        eprintln!("taint is true; some commands failed to run.");
+        println!("has dependency gst-plugins-good!")
     }
 }
 }
