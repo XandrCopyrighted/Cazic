@@ -1,10 +1,9 @@
-#![deny(unsafe_code)]
+mod depcheck;
 
 use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 use lazy_static::lazy_static;
 use std::{sync::{Arc, Mutex}, path::Path};
 use tauri::async_runtime::TokioJoinHandle;
-use colored::*;
 
 const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
 
@@ -25,27 +24,33 @@ fn set_song(new_name: String) {
 #[tauri::command]
 fn start_rpc_thread() {
     let rpc_thread = tokio::spawn(async {
-        println!("{} thread started!", "Discord RPC".magenta());
-        let mut client = DiscordIpcClient::new(&DISCORDRPC_APPLICATION_ID).unwrap();
-        let _ = client.connect();
-        println!("Client connected {}", "successfully!".green().bold());
+        println!("Discord RPC thread started!");
+        let mut client = DiscordIpcClient::new(DISCORDRPC_APPLICATION_ID).unwrap();
+        if let Err(err) = client.connect() {
+            eprintln!("Failed to connect to RPC endpoint! {}", err);
+            return;
+        }
+        println!("Client connected successfully");
 
         let song_name = DISCORDRPC_SONG_NAME.lock().unwrap().clone();
-        println!("Obtained the song name Mutex: {}", song_name.green().bold());
+        println!("Obtained the song name Mutex: {}", song_name);
 
         let mut activity_base = activity::Activity::new();
         let activity_assets = activity::Assets::new();
 
-        activity_base = activity_base.details(&song_name);
-        activity_base = activity_base.timestamps(activity::Timestamps::new().start(std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs() as i64));
+        activity_base = activity_base.details("Listening to music on Cazic!");
+        activity_base = activity_base.state(&song_name);
 
-        let _ = client.set_activity(activity_base.assets(activity_assets));
-        println!("{} Check your Discord client and see if it's working.", "Activity set!".green().bold());
+        if let Err(err) = client.set_activity(activity_base.assets(activity_assets)) {
+            eprintln!("Failed to set activity! {}", err);
+            return;
+        }
+        println!("Set activity! Check your discord to see if its working.");
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(86400)).await;
         }
-   });
+    });
     *RPC_THREAD.lock().unwrap() = Some(rpc_thread);
 }
 
@@ -82,16 +87,17 @@ fn is_rpc_thread_up(kill: bool) -> bool {
 
 #[tauri::command]
 fn stop_rpc_thread() {
-    println!("Attempting to stop {} thread!", "Discord RPC".magenta());
+    println!("Attempting to stop Discord RPC thread!");
     if is_rpc_thread_up(true) {
         println!("Thread was up and should be stopped.");
     } else {
-        eprintln!("[{}] Discord RPC thread is not running! Could this be a {}", "WARN".red().bold(), "JS problem?".italic());
+        eprintln!("[warn] Discord RPC thread is not running! Could this be a JS problem?");
     }
 }
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    #[cfg(unix)] tokio::spawn(async {crate::depcheck::unix_depcheck::runtime_dep_check()});
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             start_rpc_thread,
@@ -101,5 +107,6 @@ async fn main() -> std::io::Result<()> {
         ])
         .run(tauri::generate_context!())
         .expect("Error while running Cazic");
+
     Ok(())
 }
