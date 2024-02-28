@@ -61,10 +61,7 @@ pub fn runtime_dep_check() {
     let args: &str;
     let mut target_gst_plugin: &str = "gst-plugins-good";
     let mut should_grep: bool = false; // because package managers suck
-                                       // this will make it less accurate but eh
 
-    // trying to make the code rather easy to maintain, at the cost of it being so long.
-    // is there a more modular way to do this?
     match package_manager {
         PackageManager::Pacman => (command, args) = ("pacman", "-Q"),
         PackageManager::Xbps => (command, args, should_grep) = ("xbps-query", "-l", true),
