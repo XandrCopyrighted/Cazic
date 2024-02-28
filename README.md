@@ -4,7 +4,7 @@
 
 # Cazic
 
-Another music application written in [Tauri](https://tauri.app/)
+Another music application created with [Tauri](https://tauri.app/)
 
 ## Table of contents
 
