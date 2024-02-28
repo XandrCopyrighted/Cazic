@@ -1,3 +1,5 @@
+mod depcheck;
+
 use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 use lazy_static::lazy_static;
 use std::{sync::{Arc, Mutex}, path::Path};
@@ -95,6 +97,7 @@ fn stop_rpc_thread() {
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    #[cfg(unix)] tokio::spawn(async {crate::depcheck::unix_depcheck::runtime_dep_check()});
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             start_rpc_thread,
