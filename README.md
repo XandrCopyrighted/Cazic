@@ -4,14 +4,14 @@
 
 # Cazic
 
-Another music application created with [Tauri](https://tauri.app/)
+Another music application created with [Tauri](https://tauri.app/).
 
 ## Table of contents
 
-- [Features](#features)
-- [Troubleshooting](#troubleshooting)
+- [🧠 Features](#🧠-features)
+- [🛠️ Troubleshooting](#🛠️-troubleshooting)
 
-## Features
+## 🧠 Features
 
 - Discord RPC
 - Album art as background (okay this isn't merged yet)
@@ -19,10 +19,11 @@ Another music application created with [Tauri](https://tauri.app/)
 - Can become the system handler for media files (okay this isn't merged either)
 - Keyboard shortcuts to efficiently manage what's playing (partial support as of right now)
 - Loop, shuffle, everything you would expect from a modern music player
+- Memory safety with Rust 🦀🦀🦀
 
 and much more!
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
 ### The app isn't starting!
 
