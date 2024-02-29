@@ -1,12 +1,12 @@
-const invoke = window.__TAURI__.invoke; // load Tauri's invoke so we can call rust from here.
 document.getElementById('input').addEventListener('change', handleFileSelect);
+document.getElementById('choose-file').addEventListener('click', () => document.getElementById('input').click());
 
 let playlist = [];
 let currentIndex = 0;
 let audioPlayer = document.getElementById('audio');
 let playPauseIcon = document.getElementById('playPauseIcon');
-let filesProcessed = 0;
 
+const invoke = window.__TAURI__.invoke; // Calls rust from here.
 const prevBtn = document.querySelector('.playPrevTrack');
 const playBtn = document.querySelector('.togglePlayandPause');
 const nextBtn = document.querySelector('.playNextTrack');
@@ -19,17 +19,13 @@ function handleFileSelect(event) {
     playAudio();
 }
 
-document.getElementById('choose-file').addEventListener('click', function() {
-    document.getElementById('input').click();
-});
-
-function playAudio() {
-    currentIndex = (currentIndex + 1) % playlist.length;
+function playAudio(index) {
+    if (index !== undefined) currentIndex = index;
     audioPlayer.src = playlist[currentIndex];
     audioPlayer.currentTime = 0;
-	audioPlayer.load();
-	audioPlayer.play();
+    audioPlayer.play();
 }
+
 
 function togglePlayandPause() {
     if (audioPlayer.paused) {
@@ -68,8 +64,7 @@ audioPlayer.addEventListener('timeupdate', function () {
 });
 
 function getCurrentTrack() {
-    let raw = playlist[currentIndex];
-    return raw["title"]; // raw title hahah
+    return audioPlayer.src["title"];
 }
 
 function setDiscordRPCSong() {
