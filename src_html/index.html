@@ -2,16 +2,18 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/backend.css">
+    <link rel="stylesheet" href="css/controls.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<script src="./js/jsmediatags.min.js" async></script>
+<script src="js/jsmediatags.min.js" async></script>
 <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
 
 <body>
     <div class="nav">
-        <label for="audioInput" class="button" id="pick"><i class="bx bx-plus-circle bx-sm"></i></label>
+        <button class="button" id="choose-file"><i class="bx bx-plus-circle bx-sm"></i></button>
         <button class="button"><i class="bx bxs-playlist bx-sm"></i></button>
         <button class="button"><i class="bx bx-cog bx-sm"></i></button>
     </div>
@@ -23,7 +25,6 @@
     </div>
     <div class="box">
         <div class="seek">
-            <audio id="play" controls></audio>
             <input id="bar" type="range" value="0">
         </div>
         <div class="metadatabox">
@@ -35,11 +36,13 @@
             <button class="button" onclick="playNextTrack()"><i class="bx bx-fast-forward-circle bx-sm"></i></button>
         </div>
         <div class="audio">
-        	<input type="file" id="audioInput" accept="audio/*" multiple style="display: none;">
+        	<input type="file" id="input" accept="audio/mp3, audio/wav" multiple>
+            <audio id="audio" controls preload="auto"></audio>
+            <script src="js/audio.js"></script>
         </div>
     </div>
     <button class="button" id="fullscreen"><i class="bx bx-fullscreen bx-xs"></i></button>
-    <script src="./js/fullscreen.js"></script>
+    <script src="js/fullscreen.js"></script>
 </body>
 </html>
 

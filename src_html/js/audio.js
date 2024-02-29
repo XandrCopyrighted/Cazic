@@ -1,46 +1,44 @@
 const invoke = window.__TAURI__.invoke; // load Tauri's invoke so we can call rust from here.
+document.getElementById('input').addEventListener('change', handleFileSelect);
 
-var playlist = [];
+let playlist = [];
 let currentIndex = 0;
-let audioPlayer = new Audio();
-var playPauseIcon = document.getElementById('playPauseIcon');
-var select = document.getElementById('audio');
-var fileselect = document.getElementById('audio');
-var songTitleElement = document.getElementById('songTitle');
-var filesProcessed = 0;
+let audioPlayer = document.getElementById('audio');
+let playPauseIcon = document.getElementById('playPauseIcon');
+let filesProcessed = 0;
 
 const prevBtn = document.querySelector('.playPrevTrack');
 const playBtn = document.querySelector('.togglePlayandPause');
 const nextBtn = document.querySelector('.playNextTrack');
 
-document.getElementById('audioInput').addEventListener('change', handleFileSelect);
-  
 function handleFileSelect(event) {
-  const files = event.target.files;
-    
-  for (let i = 0; i < files.length; i++) {
-    playlist.push(URL.createObjectURL(files[i]));
-  }
+    const files = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+        playlist.push(URL.createObjectURL(files[i]));
+    }
+    playAudio();
 }
 
+document.getElementById('choose-file').addEventListener('click', function() {
+    document.getElementById('input').click();
+});
+
 function playAudio() {
-  if (playlist.length === 0) {
-    alert("bals");
-    return;
-  }
-  audioPlayer.src = playlist[currentIndex];
-  audioPlayer.play();
-  audioPlayer.addEventListener('ended', playNext);
+    if (playlist.length === 0) {
+        alert("bals, add some music will ya?");
+        return;
+    }
 }
 
 function togglePlayandPause() {
     if (audioPlayer.paused) {
-		startDiscordRPC();
-		currentIndex = (currentIndex + 1) % playlist.length;
-		audioPlayer.play();
+        currentIndex = (currentIndex + 1) % playlist.length;
+        audioPlayer.src = playlist[currentIndex];
+        audioPlayer.play();
+        startDiscordRPC();
     } else {
-        stopDiscordRPC();
         audioPlayer.pause();
+        stopDiscordRPC();
         audioPlayer.currentTime = 0;
     }
     updatePlayPauseIcon();
@@ -51,19 +49,13 @@ function updatePlayPauseIcon() {
 }
 
 function playNextTrack() {
-    if (currentTrackIndex < playlist.length - 1) {
-        playTrack(currentTrackIndex + 1);
-    } else {
-        playTrack(0);
-    }
+    if (currentIndex < playlist.length - 1) playAudio(currentIndex + 1);
+    else playAudio(0);
 }
 
 function playPrevTrack() { 
-    if (currentTrackIndex > 0) {
-        playTrack(currentTrackIndex - 1);
-    } else {
-        playTrack(playlist.length - 1);
-    }
+    if (currentIndex > 0) playAudio(currentIndex - 1);
+    else playAudio(playlist.length - 1);
 }
 
 bar.addEventListener('click', function (e) { // ChatGPT
@@ -72,19 +64,9 @@ bar.addEventListener('click', function (e) { // ChatGPT
     audioPlayer.currentTime = newPosition * audioPlayer.duration;
 });
 
-
 audioPlayer.addEventListener('timeupdate', function () {
     let position = audioPlayer.currentTime / audioPlayer.duration * 100;
     bar.value = position;
-});
-
-audioPlayer.addEventListener('ended', function () {
-    if (currentTrackIndex < playlist.length - 1) {
-        playTrack(currentTrackIndex + 1); // Play the next track
-    } else {
-        audioPlayer.pause(); // Stop playing when it's the end of the playlist
-        updatePlayPauseIcon();
-    }
 });
 
 function getCurrentTrack() {
