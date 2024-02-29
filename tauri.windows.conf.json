@@ -6,7 +6,7 @@
   },
   "package": {
     "productName": "Cazic",
-    "version": "0.0.7"
+    "version": "0.0.6"
   },
   "tauri": {
     "allowlist": {
@@ -20,9 +20,9 @@
       "active": true,
       "targets": ["nsis", "msi"],
       "identifier": "com.xdr.cazic",
-      "publisher": "XandrCopyrighted",
+      "publisher": "XandrCopyrighted et al.",
       "category": "Music",
-      "shortDescription": "Another music player created with Tauri!",
+      "shortDescription": "Another music player written in Rust.",
       "icon": [
         "assets/app-icon/32x32.png",
         "assets/app-icon/128x128.png",
