@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD033 MD041 -->
+<!-- markdownlint-disable MD033 MD041 MD051 MD026 -->
 
 <img width="64" height="64" align="left" style="float: left; margin: 20 10px 0 10;" src="assets/logo.png" alt="Logo for Cazic">
 
@@ -10,6 +10,7 @@ Another music application created with [Tauri](https://tauri.app/).
 
 - [🧠 Features](#🧠-features)
 - [🛠️ Troubleshooting](#🛠️-troubleshooting)
+- [📦 Development & manual installation](#📦-development--manual-installation)
 
 ## 🧠 Features
 
@@ -55,3 +56,20 @@ sudo apt install gstreamer1.0-plugins-good
 ```shell
 emerge -av media-libs/gst-plugins-good
 ```
+
+# 📦 Development & manual installation
+
+> [!NOTE]
+> This section is for developers & advanced users. If you are looking for downloads, view the [releases page](https://github.com/XandrCopyrighted/Cazic/releases)
+
+<!-- To compile this app from source, you will need the [Rust Toolchain](https://rustup.rs) and [Tauri's build deps](https://tauri.app/v1/guides/getting-started/prerequisites#1-system-dependencies) if you are on Linux. -->
+
+This section assumes you have everything needed to build a Tauri app. That includes the [Rust Toolchain](https://rustup.rs) and [tauri-cli](https://tauri.app/v1/api/cli/) (which can be installed with `cargo install tauri-cli`), along with git (if you're planning to download this repo from the command line)
+
+```shell
+git clone https://github.com/XandrCopyrighted/Cazic.git
+cd Cazic
+cargo tauri dev
+```
+
+If you would like to download the latest bleeding-edge version, download the build artifacts from the [actions](https://github.com/XandrCopyrighted/Cazic/actions) section.
