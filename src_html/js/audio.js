@@ -5,6 +5,7 @@ let playlist = [];
 let currentIndex = 0;
 let audioPlayer = document.getElementById('audio');
 let playPauseIcon = document.getElementById('playPauseIcon');
+audioPlayer.autoplay = true;
 
 const invoke = window.__TAURI__.invoke; // Calls rust from here.
 const prevBtn = document.querySelector('.playPrevTrack');
