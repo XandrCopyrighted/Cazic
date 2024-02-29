@@ -24,22 +24,20 @@ document.getElementById('choose-file').addEventListener('click', function() {
 });
 
 function playAudio() {
-    if (playlist.length === 0) {
-        alert("bals, add some music will ya?");
-        return;
-    }
+    currentIndex = (currentIndex + 1) % playlist.length;
+    audioPlayer.src = playlist[currentIndex];
+    audioPlayer.currentTime = 0;
+	audioPlayer.load();
+	audioPlayer.play();
 }
 
 function togglePlayandPause() {
     if (audioPlayer.paused) {
-        currentIndex = (currentIndex + 1) % playlist.length;
-        audioPlayer.src = playlist[currentIndex];
-        audioPlayer.play();
-        startDiscordRPC();
+		startDiscordRPC();
+		audioPlayer.play();
     } else {
-        audioPlayer.pause();
         stopDiscordRPC();
-        audioPlayer.currentTime = 0;
+        audioPlayer.pause();
     }
     updatePlayPauseIcon();
 }
@@ -70,7 +68,7 @@ audioPlayer.addEventListener('timeupdate', function () {
 });
 
 function getCurrentTrack() {
-    let raw = playlist[currentTrackIndex];
+    let raw = playlist[currentIndex];
     return raw["title"]; // raw title hahah
 }
 
