@@ -6,7 +6,7 @@ use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 use lazy_static::lazy_static;
 use std::{sync::{Arc, Mutex}, path::Path};
 use tauri::async_runtime::TokioJoinHandle;
-use colored::*;
+use colored::Colorize;
 
 const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
 
