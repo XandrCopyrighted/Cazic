@@ -2,6 +2,7 @@ document.getElementById('input').addEventListener('change', handleFileSelect);
 document.getElementById('choose-file').addEventListener('click', () => document.getElementById('input').click());
 
 let playlist = [];
+let playlist_songnames = []; // hack workaround
 let currentIndex = 0;
 let audioPlayer = document.getElementById('audio');
 let playPauseIcon = document.getElementById('playPauseIcon');
@@ -16,6 +17,7 @@ function handleFileSelect(event) {
     const files = event.target.files;
     for (let i = 0; i < files.length; i++) {
         playlist.push(URL.createObjectURL(files[i]));
+        playlist_songnames.push(files[i].name);
     }
     playAudio();
 }
@@ -65,7 +67,7 @@ audioPlayer.addEventListener('timeupdate', function () {
 });
 
 function getCurrentTrack() {
-    return audioPlayer.src["title"];
+    return playlist_songnames[currentIndex];
 }
 
 function setDiscordRPCSong() {
@@ -74,6 +76,7 @@ function setDiscordRPCSong() {
 }
 
 function startDiscordRPC() {
+    setDiscordRPCSong();
     invoke("start_rpc_thread");
 }
 
