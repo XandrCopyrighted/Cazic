@@ -8,11 +8,11 @@ Another music application created with [Tauri](https://tauri.app/).
 
 ## Table of contents
 
-- [🧠 Features](#🧠-features)
-- [🛠️ Troubleshooting](#🛠️-troubleshooting)
-- [📦 Development & manual installation](#📦-development--manual-installation)
+- [🧠 Features](#features)
+- [🛠️ Troubleshooting](#troubleshooting)
+- [📦 Development & manual installation](#development--manual-installation)
 
-## 🧠 Features
+## Features
 
 - Discord RPC
 - Album art as background (okay this isn't merged yet)
@@ -24,7 +24,7 @@ Another music application created with [Tauri](https://tauri.app/).
 
 and much more!
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### The app isn't starting!
 
@@ -57,7 +57,7 @@ sudo apt install gstreamer1.0-plugins-good
 emerge -av media-libs/gst-plugins-good
 ```
 
-# 📦 Development & manual installation
+# Development & manual installation
 
 > [!NOTE]
 > This section is for developers & advanced users. If you are looking for downloads, view the [releases page](https://github.com/XandrCopyrighted/Cazic/releases)
