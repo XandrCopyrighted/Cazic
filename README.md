@@ -32,7 +32,7 @@ and much more!
 
 **On Linux**, please ensure you have `webkit2gtk` or `libwebkitgtk` installed. If that doesn't work, try [this step in Tauri's documentation](https://tauri.app/v1/guides/getting-started/prerequisites#1-system-dependencies).
 
-> [!IMPORTANT]
+> IMPORTANT:
 > You do **NOT** need Rust to run Cazic.
 
 ### Audio doesn't work! (Linux)
@@ -59,7 +59,7 @@ emerge -av media-libs/gst-plugins-good
 
 # Development & manual installation
 
-> [!NOTE]
+> NOTE:
 > This section is for developers & advanced users. If you are looking for downloads, view the [releases page](https://github.com/XandrCopyrighted/Cazic/releases)
 
 <!-- To compile this app from source, you will need the [Rust Toolchain](https://rustup.rs) and [Tauri's build deps](https://tauri.app/v1/guides/getting-started/prerequisites#1-system-dependencies) if you are on Linux. -->
@@ -67,7 +67,7 @@ emerge -av media-libs/gst-plugins-good
 This section assumes you have everything needed to build a Tauri app. That includes the [Rust Toolchain](https://rustup.rs) and [tauri-cli](https://tauri.app/v1/api/cli/) (which can be installed with `cargo install tauri-cli`), along with git (if you're planning to download this repo from the command line)
 
 ```shell
-git clone https://github.com/XandrCopyrighted/Cazic.git
+git clone https://codeberg.org/XDR/Cazic.git
 cd Cazic
 cargo tauri dev
 ```
