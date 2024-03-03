@@ -12,10 +12,12 @@
 
 #bar::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     background-color: #a5adce;
-    border: 5px solid white;
+    border: 2px solid white;
     width: 10px;
-    height: 10px
+    height: 10px;
+    border-radius: 50%
 }
 
 

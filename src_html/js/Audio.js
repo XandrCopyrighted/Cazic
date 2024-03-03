@@ -2,22 +2,18 @@ document.getElementById('input').addEventListener('change', handleFileSelect);
 document.getElementById('choose-file').addEventListener('click', () => document.getElementById('input').click());
 
 let playlist = [];
-let playlist_songnames = []; // hack workaround
+let playlist_songtitle = [];
 let currentIndex = 0;
 let audioPlayer = document.getElementById('audio');
 let playPauseIcon = document.getElementById('playPauseIcon');
-audioPlayer.autoplay = true;
 
 const invoke = window.__TAURI__.invoke; // Calls rust from here.
-const prevBtn = document.querySelector('.playPrevTrack');
-const playBtn = document.querySelector('.togglePlayandPause');
-const nextBtn = document.querySelector('.playNextTrack');
 
 function handleFileSelect(event) {
     const files = event.target.files;
     for (let i = 0; i < files.length; i++) {
         playlist.push(URL.createObjectURL(files[i]));
-        playlist_songnames.push(files[i].name);
+        playlist_songtitle.push(files[i].name);
     }
     playAudio();
 }
@@ -29,6 +25,19 @@ function playAudio(index) {
     audioPlayer.play();
 }
 
+audioPlayer.addEventListener('canplay', function () {
+    audioPlayer.play();
+    startDiscordRPC()
+});
+
+audioPlayer.addEventListener('timeupdate', function () {
+    let position = audioPlayer.currentTime / audioPlayer.duration * 100;
+    bar.value = position;
+});
+
+audioPlayer.addEventListener('ended', function () {
+    stopDiscordRPC();
+});
 
 function togglePlayandPause() {
     if (audioPlayer.paused) {
@@ -55,19 +64,15 @@ function playPrevTrack() {
     else playAudio(playlist.length - 1);
 }
 
-bar.addEventListener('click', function (e) { // ChatGPT
+bar.addEventListener('click', function (e) {
     let clickPosition = e.clientX - this.getBoundingClientRect().left;
     let newPosition = clickPosition / this.offsetWidth;
     audioPlayer.currentTime = newPosition * audioPlayer.duration;
-});
-
-audioPlayer.addEventListener('timeupdate', function () {
-    let position = audioPlayer.currentTime / audioPlayer.duration * 100;
-    bar.value = position;
+    bar.value = newPosition * 100;
 });
 
 function getCurrentTrack() {
-    return playlist_songnames[currentIndex];
+    return playlist_songtitle[currentIndex];
 }
 
 function setDiscordRPCSong() {
