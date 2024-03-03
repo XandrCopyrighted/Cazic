@@ -1,6 +1,7 @@
 steps:
   - name: linux
-    image: rust
+    image: rust:latest
+    environment: [CARGO_TERM_COLOR=always]
     script:
       - |
         apt-get update
