@@ -32,7 +32,10 @@ and much more!
 
 **On Linux**, please ensure you have `webkit2gtk` or `libwebkitgtk` installed. If that doesn't work, try [this step in Tauri's documentation](https://beta.tauri.app/guides/prerequisites/#linux).
 
-<p align="center" style="margin-bottom: -118px;"><img width="100%" src="assets/README.md/hOBNEGaFxyqx.svg"></p>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+   <img width="32" src="assets/README.md/pin.svg">
+   <p>You do <b>NOT</b> need Rust to run Cazic.</p>
+</div>
 
 ### Audio doesn't work! (Linux)
 
@@ -64,9 +67,10 @@ sudo apt install gstreamer1.0-plugins-good
 
 # Development & manual installation
 
-<p align="center" style="margin-bottom: -85px;"><img width="100%" src="assets/README.md/tJQyJEgGBXim.svg"></p>
-
-<!-- To compile this app from source, you will need the [Rust Toolchain](https://rustup.rs) and [Tauri's build deps](https://tauri.app/v1/guides/getting-started/prerequisites#1-system-dependencies) if you are on Linux. -->
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+   <img width="32" src="assets/README.md/pin.svg">
+   <p>This section is for developers &amp; advanced users: If you're seeking downloads, please check out our <b><a href="https://codeberg.org/XDR/Cazic/releases">releases page</a></b>.</p>
+</div>
 
 This section assumes you have everything needed to build a Tauri app. That includes the [Rust Toolchain](https://rustup.rs) and [Tauri-CLI](https://beta.tauri.app/references/v2/cli/#tab-panel-454), along with [Git](https://git-scm.com)
 
