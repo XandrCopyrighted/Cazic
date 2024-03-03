@@ -9,25 +9,10 @@ steps:
       - cargo install tauri-cli
       - cargo tauri build
 
-  - name: Windows
-    runs-on: windows-latest
-    image: rust:latest
-    environment: [CARGO_TERM_COLOR=always]
-    commands:
-      - rustup default stable
-      - cargo install tauri-cli
-      - cargo tauri build
-
   - name: Zip Artifact (Linux)
     image: rust:latest
     commands:
       - zip cazic_linux.zip target/release/bundle/*deb target/release/bundle/appimage/*AppImage -r
-
-  - name: Zip Artifact (Windows)
-    image: rust:latest
-    runs-on: windows-latest
-    commands:
-      - Compress-Archive -Path target/release/bundle/nsis/*exe,target/release/bundle/msi/*msi -DestinationPath cazic_windows.zip
 
   - name: Upload Artifact (Linux)
     image: rust:latest
@@ -35,10 +20,3 @@ steps:
     with:
       name: Cazic (Linux)
       path: cazic_linux.zip
-
-  - name: Upload Artifact (Windows)
-    image: rust:latest
-    uses: https://github.com/actions/upload-artifact@v4
-    with:
-      name: Cazic (Windows)
-      path: cazic_windows.zip
