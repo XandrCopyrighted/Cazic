@@ -80,4 +80,4 @@ cd Cazic
 cargo tauri dev
 ```
 
-To access the most cutting-edge version, download the latest build artifacts from [actions](https://github.com/XandrCopyrighted/Cazic/Actions).
+To access the most cutting-edge version, download the latest build artifacts from [actions](https://github.com/XandrCopyrighted/Cazic/actions).
