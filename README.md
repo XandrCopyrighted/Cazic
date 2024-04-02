@@ -1,6 +1,4 @@
-<!-- markdownlint-disable MD033 MD041 MD051 MD026 -->
-
-<img width="64" height="64" align="left" style="float: left; margin: 20 10px 0 10;" src="assets/logo.png" alt="Logo">
+<img width="100" height="120" align="left" style="float: left; margin: 20 10px 0 10;" src="assets/logo.png" alt="Logo">
 
 # Cazic
 
@@ -15,11 +13,11 @@ Another music application created with [Tauri](https://tauri.app/).
 ## Features
 
 - Discord RPC
-- Album art as background (okay this isn't merged yet)
+- Album art as background (Isn't merged)
 - Playlist support
-- Can become the system handler for media files (okay this isn't merged either)
-- Keyboard shortcuts to efficiently manage what's playing (partial support as of right now)
-- Loop, shuffle, everything you would expect from a modern music player
+- Can become the system handler for media files (Isn't merged)
+- Keyboard shortcuts to efficiently manage what's playing (Partial support)
+- Loop, shuffle, everything you would expect from a modern music player (Isn't merged)
 - Memory safety with Rust 🦀🦀🦀
 
 and much more!
