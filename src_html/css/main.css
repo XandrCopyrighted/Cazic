@@ -20,13 +20,6 @@ body {
     margin-bottom: 30px
 }
 
-.button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer
-}
-
 #fullscreen {
     position: fixed;
     bottom: 0;

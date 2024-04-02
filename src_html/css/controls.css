@@ -3,6 +3,8 @@
     height: 4px;
     position: fixed;
     width: 60%;
+    left: 20%;
+    top: 20px;
     cursor: pointer;
     right: 20%;
     margin: 0 auto;
@@ -20,6 +22,29 @@
     border-radius: 50%
 }
 
+.minibutton {
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer
+}
+
+.minicontrols {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    bottom: 5px;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer
+}
 
 .controls {
     display: flex;
@@ -39,6 +64,8 @@
     background-color: #51576d;
     border-radius: 8px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     box-sizing: border-box
 }
@@ -47,16 +74,13 @@
     display: none;
     position: fixed;
     bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 60vw;
     background-color: #51576d;
     border-radius: 8px;
     padding: 8px;
     box-sizing: border-box;
-    color: #ffffff
+    color: white;
 }
 
-.metadatabox:not(:empty) {
-    display: flex;
-}
+/* .metadatabox:not(:empty) {
+    display: flex
+} */

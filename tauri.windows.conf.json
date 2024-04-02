@@ -10,10 +10,12 @@
   },
   "tauri": {
     "allowlist": {
+      "systemTray": {
+        "iconPath": "assets/app-icon/128x128.png"
+      },
       "all": false,
-      "shell": {
-        "all": false,
-        "open": true
+      "notification": {
+        "all": true
       }
     },
     "bundle": {
@@ -40,7 +42,8 @@
         "resizable": true,
         "title": "Cazic",
         "minWidth": 640,
-        "minHeight": 480
+        "minHeight": 480,
+        "center": true
       }
     ]
   }

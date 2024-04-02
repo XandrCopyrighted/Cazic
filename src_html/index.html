@@ -15,7 +15,7 @@
     <div class="nav">
         <button class="button" id="choose-file"><i class="bx bx-plus-circle bx-sm"></i></button>
         <button class="button"><i class="bx bxs-playlist bx-sm"></i></button>
-        <button class="button"><i class="bx bx-cog bx-sm"></i></button>
+        <button class="button" id="openSettingsButton"><i class="bx bx-cog bx-sm"></i></button>
     </div>
 
     <div class="watermark">
@@ -34,6 +34,10 @@
             <button class="button" onclick="playPrevTrack()"><i class="bx bx-fast-forward-circle bx-flip-horizontal bx-sm"></i></button>
             <button class="button" onclick="togglePlayandPause()"><i id="playPauseIcon" class="bx bx-stop-circle bx-md"></i></button>
             <button class="button" onclick="playNextTrack()"><i class="bx bx-fast-forward-circle bx-sm"></i></button>
+        </div>
+        <div class="minicontrols">
+            <button class="minibutton" onclick="playPrevTrack()"><i class="bx bx-repeat bx-xs"></i></button>
+            <button class="minibutton" onclick="playPrevTrack()"><i class="bx bx-shuffle bx-xs"></i></button>
         </div>
         <div class="audio">
         	<input type="file" id="input" accept="audio/mp3, audio/wav" multiple>

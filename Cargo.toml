@@ -4,7 +4,7 @@ version = "0.0.7"
 description = "Another music player created with Tauri!"
 authors = ["Jaydon 'XandrCopyrighted' Nelson <xxandrr@proton.me>", "WilliamAnimate"]
 license = "MIT"
-repository = "https://github.com/XandrCopyrighted/Cazic"
+repository = "https://codeberg.org/XDR/Cazic"
 edition = "2021"
 
 [build-dependencies]
@@ -18,7 +18,7 @@ colored = "2.1.0"
 
 [dependencies.tauri]
 version = "1.6.1"
-features = ["shell-open", "shell-open-api", "wry", "tauri-runtime-wry", "open"]
+features = [ "notification-all", "system-tray", "shell-open-api", "wry", "tauri-runtime-wry", "open"]
 default-features = false
 
 [features]

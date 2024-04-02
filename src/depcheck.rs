@@ -6,12 +6,12 @@ macro_rules! does_package_exist {
             std::process::Command::new("sh")
                 .args(["-c", format!("{} {} | grep {}", $package_manager, $package_manager_flags, $package).as_str()])
                 .output()
-                .expect("💀")
+                .expect(":skull:")
         } else {
             std::process::Command::new("sh")
                 .args(["-c", format!("{} {} {}", $package_manager, $package_manager_flags, $package).as_str()])
                 .output()
-                .expect("💀")
+                .expect(":skull:")
         }
     }
 }
@@ -48,7 +48,7 @@ fn get_package_manager() -> PackageManager {
 }
 
 pub fn runtime_dep_check() {
-    /* packages:
+    /* packages:      ↓ :shut: - XDR
      * Arch (pacman) (i use arch btw): pacman -Q
      * Void (xbps): xbps-query -l
      * Debian (apt): apt list --installed
@@ -74,13 +74,13 @@ pub fn runtime_dep_check() {
     let gst_plugins_good = does_package_exist!(command, args, should_grep, target_gst_plugin);
 
     if gst_plugins_good.stdout.is_empty() {
-        eprintln!("does not have dependency gst-plugins-good!");
+        eprintln!("Doesn't have dependency gst-plugins-good");
         std::process::Command::new("sh")
             .args(["-c", "notify-send 'Cazic: You are missing a dependency! Audioplayer may not work without gst_plugins_good installed!'", "--urgency=critical"])
             .output()
             .unwrap();
     } else {
-        println!("has dependency gst-plugins-good!")
+        println!("You have dependency gst-plugins-good!")
     }
 }
 }

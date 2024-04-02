@@ -9,11 +9,13 @@
     "version": "0.0.7"
   },
   "tauri": {
+    "systemTray": {
+      "iconPath": "assets/app-icon/128x128.png"
+    },
     "allowlist": {
       "all": false,
-      "shell": {
-        "all": false,
-        "open": true
+      "notification": {
+        "all": true
       }
     },
     "bundle": {
@@ -39,7 +41,8 @@
         "resizable": true,
         "title": "Cazic Music Player",
         "minWidth": 640,
-        "minHeight": 480
+        "minHeight": 480,
+        "center": true
       }
     ]
   }

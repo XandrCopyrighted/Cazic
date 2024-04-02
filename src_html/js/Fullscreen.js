@@ -1,4 +1,5 @@
 var fullscreenButton = document.getElementById('fullscreen');
+var fullscreenIcon = fullscreenButton.querySelector('i'); // ChatGPT
 
 function toggleFullscreen() {
     if (document.fullscreenElement) {

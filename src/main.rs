@@ -5,6 +5,7 @@ mod depcheck;
 use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 use lazy_static::lazy_static;
 use std::{sync::{Arc, Mutex}, path::Path};
+use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 use tauri::async_runtime::TokioJoinHandle;
 use colored::Colorize;
 
@@ -100,7 +101,13 @@ fn stop_rpc_thread() {
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    #[cfg(unix)] tokio::spawn(async {crate::depcheck::unix_depcheck::runtime_dep_check()});
+    let quit_item = CustomMenuItem::new("quit".to_string(), "Quit Cazic");
+    let context_menu = SystemTrayMenu::new().add_item(quit_item);
+    let desktop_tray = SystemTray::new().with_menu(context_menu);
+    
+    #[cfg(unix)] 
+    tokio::spawn(async {crate::depcheck::unix_depcheck::runtime_dep_check()});
+    
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             start_rpc_thread,
@@ -108,7 +115,33 @@ async fn main() -> std::io::Result<()> {
             set_song,
             is_rpc_thread_up
         ])
+        .setup(|app| {
+            app.get_window("main").unwrap().show().unwrap();
+            Ok(())
+        })
+        .system_tray(desktop_tray)
+        .on_system_tray_event(|app, event| match event {
+            SystemTrayEvent::LeftClick { .. } => {
+                let window = app.get_window("main").unwrap();
+                if !window.is_visible().unwrap() {
+                    window.show().unwrap();
+                } else {
+                    window.set_focus().unwrap();
+                }
+            }
+            SystemTrayEvent::MenuItemClick { id, .. } => {
+                match id.as_str() {
+                    "quit" => std::process::exit(0),
+                    _ => {}
+                }
+            }
+            _ => {}
+        })
         .run(tauri::generate_context!())
-        .expect("Error while running Cazic");
+        .unwrap_or_else(|e| {
+            eprintln!("Error while running Cazic: {}", e);
+            std::process::exit(1);
+        });
+
     Ok(())
 }
