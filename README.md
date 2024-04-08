@@ -31,7 +31,7 @@ and much more!
 **On Linux**, please ensure you have `webkit2gtk` or `libwebkitgtk` installed. If that doesn't work, try [this step in Tauri's documentation](https://beta.tauri.app/guides/prerequisites/#linux).
 
 <div align="center">
-   <img width="32" src="assets/README.md/pin.svg">
+   <img width="32" src="https://gitlab.com/XDRwastaken/img/-/raw/main/.svg/pin.svg">
    <p>You do <b>NOT</b> need Rust to run Cazic.</p>
 </div>
 
@@ -95,16 +95,16 @@ sudo apt install libappindicator3-1
 # Development & manual installation
 
 <div align="center">
-   <img width="32" src="assets/README.md/pin.svg">
-   <p>This section is for developers &amp; advanced users: If you're seeking downloads, please check out our <b><a href="https://codeberg.org/XDR/Cazic/releases">releases page</a></b>.</p>
+   <img width="32" src="https://gitlab.com/XDRwastaken/img/-/raw/main/.svg/pin.svg">
+   <p>This section is for developers &amp; advanced users: If you're seeking downloads, please check out our <b><a href="https://gitlab.com/XDRwastaken/Cazic/-/releases">releases page</a></b>.</p>
 </div>
 
 This section assumes you have everything needed to build a Tauri app. That includes the [Rust Toolchain](https://rustup.rs) and [Tauri-CLI](https://beta.tauri.app/references/v2/cli/#tab-panel-454), along with [Git](https://git-scm.com)
 
 ```shell
-git clone https://codeberg.org/XDR/Cazic.git
+git clone https://gitlab.com/XDRwastaken/Cazic.git
 cd Cazic
 cargo tauri dev
 ```
 
-To access the most cutting-edge version, download the latest build artifacts from [actions](https://github.com/XandrCopyrighted/Cazic/actions).
+To access the most cutting-edge version, download the latest build artifacts from [pipelines](https://gitlab.com/XDRwastaken/Cazic/-/pipelines).
