@@ -11,12 +11,10 @@ stages:
 build_linux:
   stage: build
   script:
-    - apt-get update -qy
-    - apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev libxcb-shape0-dev libxcb-xfixes0-dev libxdo-dev
+    - apt-get update -yqq
+    - apt-get install -yqq libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev libxcb-shape0-dev libxcb-xfixes0-dev libxdo-dev
     - cargo install tauri-cli
     - cargo tauri build
-  tags:
-    - ubuntu
 
 zip_linux:
   stage: zip
@@ -25,16 +23,16 @@ zip_linux:
   artifacts:
     paths:
       - cazic_linux.zip
-  tags:
-    - ubuntu
 
 build_windows:
   stage: build
   script:
+    - apt-get update -yqq
+    - apt-get install mingw-w64 -yqq
+    - rustup target add x86_64-pc-windows-gnu
+    - apt-get install -yqq libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev libxcb-shape0-dev libxcb-xfixes0-dev libxdo-dev
     - cargo install tauri-cli
-    - cargo tauri build
-  tags:
-    - windows
+    - cargo tauri build --target x86_64-pc-windows-gnu
 
 zip_windows:
   stage: zip
@@ -43,8 +41,6 @@ zip_windows:
   artifacts:
     paths:
       - cazic_windows.zip
-  tags:
-    - windows
 
 create_artifact:
   stage: create_artifact
