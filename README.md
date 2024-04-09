@@ -107,4 +107,4 @@ cd Cazic
 cargo tauri dev
 ```
 
-To access the most cutting-edge version, download the latest build artifacts from [pipelines](https://gitlab.com/XDRwastaken/Cazic/-/pipelines).
+To access the most cutting-edge version, download the latest build [artifacts](https://gitlab.com/XDRwastaken/Cazic/-/artifacts)
