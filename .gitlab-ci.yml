@@ -12,7 +12,7 @@ build:
     - rustup toolchain install stable --profile minimal
     - pacman -S --needed webkit2gtk base-devel curl wget file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg libvips --noconfirm
     - cargo install tauri-cli
-    - cargo build build
+    - cargo tauri build
     - tar -czf cazic_linux.tar.gz target/release/bundle/*deb target/release/bundle/appimage/*
     - tar -czf cazic_windows.tar.gz target/release/bundle/nsis/*exe target/release/bundle/msi/*msi
   artifacts:
