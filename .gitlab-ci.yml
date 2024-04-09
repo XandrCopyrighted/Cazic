@@ -10,12 +10,16 @@ build:
   script:
     - pacman -Syu rustup --noconfirm
     - rustup toolchain install stable --profile minimal
-    - pacman -S --needed webkit2gtk base-devel curl wget file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg libvips --noconfirm
+    - rustup target add x86_64-pc-windows-gnu
+    - pacman -S --needed webkit2gtk base-devel curl wget file openssl appmenu-gtk-module mingw-w64 gtk3 libappindicator-gtk3 librsvg libvips --noconfirm
     - cargo install tauri-cli
-    - cargo tauri dev
+    - cargo build
+    - cargo build --target x86_64-pc-windows-gnu
     - tar -czf cazic_linux.tar.gz target/debug/cazic
+    - tar -czf cazic_windows.tar.gz target/x86_64-pc-windows-gnu/debug/cazic.exe target/x86_64-pc-windows-gnu/debug/WebView2Loader.dll
 
   artifacts:
     paths:
       - cazic_linux.tar.gz
+      - cazic_windows.tar.gz
     expire_in: 1 week
