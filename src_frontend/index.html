@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/backend.css">
+    <link rel="stylesheet" href="css/controls.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
+
+<body>
+    <div class="nav">
+        <button class="button" id="chooseFile"><i class="bx bx-plus-circle bx-sm"></i></button>
+        <button class="button" id="openQueueButton" onclick="toggleQueuePage()"><i class="bx bxs-playlist bx-sm"></i></button>
+        <button class="button" id="openSettingsButton"><i class="bx bx-cog bx-sm"></i></button>
+    </div>
+
+    <div class="watermark">
+        <h3>Cazic Music Player</h3>
+    </div>
+
+    <div class="music-info">
+        <p>Click on the <i class="bx bx-plus-circle bx-sm"></i> button to start playing some songs!</p>
+        <img id="img">
+        <p id="title"></p>
+        <p id="artist"></p>
+        <p id="album"></p>
+    </div>
+
+    <div class="audioplayer">
+        <input id="progressbar" type="range" value="0">
+        <div class="controls">
+            <button class="mini-button" onclick="toggleShuffle()"><i class="bx bx-shuffle bx-xs"></i></button>
+            <button class="button" onclick="playPrevTrack()"><i class="bx bx-fast-forward-circle bx-flip-horizontal bx-sm"></i></button>
+            <button class="button" onclick="togglePlayandPause()"><i id="playPauseIcon" class="bx bx-stop-circle bx-md"></i></button>
+            <button class="button" onclick="playNextTrack()"><i class="bx bx-fast-forward-circle bx-sm"></i></button>
+            <button class="mini-button" onclick="toggleRepeat()"><i class="bx bx-repeat bx-xs"></i></button>
+        </div>
+        <div class="audio">
+        	<input type="file" id="input" accept="audio/mp3, audio/wav, audio/flac, audio/ogg, audio/m4a, audio/3gp, audio/act, audio/alac, audio/webm, audio/wma" multiple>
+            <audio controls preload="auto"></audio>
+            <script src="javascript/jsmediatags.js" async></script>
+            <script src="javascript/main.js"></script>
+        </div>
+    </div>
+    <button class="button" id="fullscreen"><i class="bx bx-fullscreen bx-xs"></i></button>
+    <script>var fullscreenButton=document.getElementById('fullscreen');var fullscreenIcon=fullscreenButton.querySelector('i');function toggleFullscreen(){if(document.fullscreenElement){document.exitFullscreen()}else if(document.documentElement.requestFullscreen){document.documentElement.requestFullscreen()}updateFullscreenIcon()}function updateFullscreenIcon(){fullscreenIcon.className=document.fullscreenElement?'bx bx-fullscreen bx-xs':'bx bx-exit-fullscreen bx-xs'}fullscreenButton.addEventListener('click',toggleFullscreen);</script>
+</body>
+</html>
+

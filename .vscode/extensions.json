@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+      "ritwickdey.LiveServer",
+      "abusaidm.html-snippets",
+      "dustypomerleau.rust-syntax",
+      "mgmcdermott.vscode-language-babel",
+      "tauri-apps.tauri-vscode",
+      "abusaidm.html-snippets"
+    ]
+  }

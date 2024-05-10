@@ -1,7 +1,4 @@
 debug/
 target/
-Cargo.lock
 **/*.rs.bk
 *.pdb
-.gitpod.yml
-.vscode

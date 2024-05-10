@@ -1,8 +1,7 @@
 body {
     font-family: system-ui;
     background-color: #414559;
-    color: white;
-    overflow: visible
+    color: white
 }
 
 .watermark {
@@ -13,11 +12,7 @@ body {
     align-items: flex-end;
     display: flex;
     padding-right: 10px;
-    user-select: none
-}
-
-.nav {
-    margin-bottom: 30px
+    -webkit-user-select: none
 }
 
 #fullscreen {

@@ -1,12 +1,10 @@
 {
   "tauri": {
-    "systemTray": {
-      "iconPath": "assets/app-icon/128x128.png"
-    },
     "bundle": {
       "active": true,
-      "targets": ["appimage", "deb"],
+      "targets": ["apk"],
       "identifier": "com.xdr.cazic",
+      "publisher": "XDR et al.",
       "category": "Music",
       "shortDescription": "Another music player created with Tauri!",
       "icon": [
@@ -14,16 +12,6 @@
         "assets/app-icon/128x128.png",
         "assets/app-icon/128x128@2x.png"
       ]
-    },
-    "windows": [
-      {
-        "fullscreen": false,
-        "resizable": true,
-        "title": "Cazic",
-        "minWidth": 640,
-        "minHeight": 480,
-        "center": true
-      }
-    ]
+    }
   }
 }

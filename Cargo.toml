@@ -2,27 +2,28 @@
 name = "cazic"
 version = "0.0.7"
 description = "Another music player created with Tauri!"
-authors = ["Jaydon 'XandrCopyrighted' Nelson <xxandrr@proton.me>", "WilliamAnimate"]
+authors = ["Jaydon 'XDR' Nelson <xxdr@duck.com>", "WilliamAnimate"]
 license = "MIT"
-repository = "https://codeberg.org/XDR/Cazic"
+repository = "https://gitlab.com/XDRwastaken/Cazic"
 edition = "2021"
 
-[build-dependencies]
-tauri-build = { version = "1.5.1", features = [] }
-
 [dependencies]
-discord-rich-presence = "0.2.3"
-lazy_static = "1.4.0"
-tokio = { version = "1.37.0", features = ["full"] }
+discord-rich-presence = { git = "https://github.com/sardonicism-04/discord-rich-presence.git" }
+lazy_static = { git = "https://github.com/rust-lang-nursery/lazy-static.rs.git" }
+tokio = { version = "1.37", features = ["full"] }
 colored = "2.1.0"
 
+[build-dependencies]
+tauri-build = "1.5"
+
 [dependencies.tauri]
-version = "1.6.1"
-features = [ "notification-all", "system-tray", "shell-open-api", "wry", "tauri-runtime-wry", "open"]
+version = "1.6"
+features = ["system-tray", "wry"]
 default-features = false
 
-[features]
-custom-protocol = ["tauri/custom-protocol"]
+[[bin]]
+name = "cazic"
+path = "src_backend/main.rs"
 
 [profile.release]
 opt-level = 'z'

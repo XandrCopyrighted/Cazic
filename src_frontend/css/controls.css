@@ -1,4 +1,4 @@
-#bar {
+#progressbar {
     -webkit-appearance: none;
     height: 4px;
     position: fixed;
@@ -8,41 +8,46 @@
     cursor: pointer;
     right: 20%;
     margin: 0 auto;
+    z-index: 1; /* Ensure bar is behind thumb */
     background-color: #a5adce
 }
 
 
-#bar::-webkit-slider-thumb {
+#progressbar::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     background-color: #a5adce;
     border: 2px solid white;
     width: 10px;
     height: 10px;
+    z-index: 2; /* Ensure thumb is above .box */
     border-radius: 50%
 }
 
-.minibutton {
+.mini-button {
     background-color: transparent;
     border: none;
     color: black;
+    z-index: 3; /* Above .box */
     cursor: pointer
 }
 
-.minicontrols {
+.mini-controls {
     display: flex;
     justify-content: center;
     margin: auto;
     position: fixed;
     bottom: 0;
     width: 100%;
-    bottom: 5px;
+    z-index: 3; /* Above .box */
+    bottom: 5px
 }
 
 .button {
     background-color: transparent;
     border: none;
     color: white;
+    z-index: 3; /* Above .box */
     cursor: pointer
 }
 
@@ -50,10 +55,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 3; /* Above .box */
     margin: 0 auto
 }
 
-.box {
+.audioplayer {
     position: fixed;
     bottom: 20px;
     left: 50%;
@@ -67,20 +73,34 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    z-index: 4; /* Above other elements */
     box-sizing: border-box
 }
 
-.metadatabox {
-    display: none;
+.music-info {
+    z-index: 4;
     position: fixed;
-    bottom: 90px;
+    bottom: 110px;
     background-color: #51576d;
     border-radius: 8px;
     padding: 8px;
     box-sizing: border-box;
-    color: white;
+    left: 36%;
+    align-items: center;
+    color: white
+}
+  
+.music-info > * {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px
 }
 
-/* .metadatabox:not(:empty) {
-    display: flex
-} */
+#img {
+    margin-right: 8px;
+    max-width: 64px;
+    max-height: 64px
+}

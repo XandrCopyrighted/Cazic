@@ -1,0 +1,10 @@
+/* front "backend" stuff, i dont know I can't comment - XDR */
+.audio {
+    display: none
+}
+
+@media screen and (max-width: 640px) {
+    .box {
+        width: 90vw;
+    }
+}
