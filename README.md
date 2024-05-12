@@ -17,7 +17,7 @@ Another music application created with [Tauri](https://tauri.app/).
 - Playlist support
 - Can become the system handler for media files (Isn't merged)
 - Keyboard shortcuts to efficiently manage what's playing (Partial support)
-- Loop, shuffle, everything you would expect from a modern music player (Isn't merged)
+- Loop, shuffle, everything you would expect from a modern music player
 - Memory safety with Rust 🦀🦀🦀
 
 and much more!
@@ -61,35 +61,6 @@ emerge -av media-libs/gst-plugins-good
 
 ```shell
 sudo apt install gstreamer1.0-plugins-good
-```
-
-### Getting error `Failed to load ayatana-appindicator3 or appindicator3 dynamic library`
-
-Try installing the `libappindicator-gtk3` package:
-
-
-**Arch Linux**:
-
-```shell
-sudo pacman -S libappindicator-gtk3
-```
-
-**Fedora**:
-
-```shell
-sudo dnf install libappindicator-gtk3
-```
-
-**Gentoo**:
-
-```shell
-emerge -av dev-libs/libappindicator
-```
-
-**Debian**:
-
-```shell
-sudo apt install libappindicator3-1
 ```
 
 # Development & manual installation

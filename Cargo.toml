@@ -1,5 +1,5 @@
 [package]
-name = "cazic"
+name = "Cazic"
 version = "0.0.7"
 description = "Another music player created with Tauri!"
 authors = ["Jaydon 'XDR' Nelson <xxdr@duck.com>", "WilliamAnimate"]

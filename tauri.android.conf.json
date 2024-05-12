@@ -4,7 +4,6 @@
       "active": true,
       "targets": ["apk"],
       "identifier": "com.xdr.cazic",
-      "publisher": "XDR et al.",
       "category": "Music",
       "shortDescription": "Another music player created with Tauri!",
       "icon": [

@@ -1,0 +1,15 @@
+.default-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    z-index: 3;
+    cursor: pointer
+}
+
+.default-button-black {
+    background-color: transparent;
+    color: black;
+    border: none;
+    z-index: 3;
+    cursor: pointer
+}
