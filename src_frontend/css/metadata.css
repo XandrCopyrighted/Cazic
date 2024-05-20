@@ -1,0 +1,19 @@
+.music-info {
+    z-index: 4; /* Above other elements */
+    position: fixed;
+    bottom: 0;
+    border-radius: 8px;
+    padding: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.player .music-info {
+    margin-top: auto;
+}
+
+#img {
+    margin-right: 8px;
+    max-width: 64px;
+    max-height: 64px
+}

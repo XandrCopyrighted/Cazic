@@ -4,19 +4,56 @@ body {
     color: white
 }
 
-.watermark {
+.artwork-background {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
     position: fixed;
-    top: 0;
-    right: 0;
-    justify-content: flex-end;
-    align-items: flex-end;
+    bottom: 70px;
+    right: 3vh;
+    z-index: 3 /* Above .player */
+}
+
+.audio {
+    display: none
+}
+
+.controls {
+    align-items: center;
     display: flex;
-    padding-right: 10px;
-    -webkit-user-select: none
+    justify-content: space-between;
+    margin: 0 auto;
+    z-index: 3 /* Above .player */
 }
 
 #fullscreen {
-    position: fixed;
     bottom: 0;
+    position: fixed;
     right: 0
+}
+
+.player {
+    background-color: #51576d;
+    border-radius: 8px;
+    bottom: 20px;
+    display: flex;
+    height: 70px;
+    left: 50%;
+    padding: 20px;
+    position: fixed;
+    transform: translateX(-50%);
+    width: 80vw;
+    z-index: 4 /* Above other elements */
+}
+
+.watermark {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    -webkit-user-select: none
 }

@@ -1,7 +1,9 @@
 use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
-use crate::{DISCORDRPC_APPLICATION_ID, DISCORDRPC_SONG_NAME, RPC_THREAD};
+use crate::{DISCORDRPC_SONG_NAME, RPC_THREAD};
 use colored::Colorize;
 use std::sync::atomic::{AtomicBool, Ordering::Relaxed};
+
+const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
 
 lazy_static::lazy_static!{
     static ref RPC_ENABLED: AtomicBool = AtomicBool::new(true);
@@ -9,14 +11,14 @@ lazy_static::lazy_static!{
 
 pub fn toggle_rpc() {
     let rpc_enabled = RPC_ENABLED.load(Relaxed);
-    println!("[DEBUG] toggling RPC! current RPC_ENABLED: {rpc_enabled}");
+    println!("{} Toggling RPC! Current RPC_ENABLED status: {rpc_enabled}", "[DEBUG]".yellow());
     RPC_ENABLED.store(!rpc_enabled, Relaxed);
 }
 
 #[tauri::command]
 pub fn start_rpc_thread() {
     if !RPC_ENABLED.load(Relaxed) {
-        println!("[DEBUG] RPC is disabled! not spawning RPC thread and returning");
+        println!("{} RPC is disabled! RPC thread will not be spawned and returning", "[DEBUG]".yellow());
         return;
     }
     let rpc_thread = tokio::spawn(async {

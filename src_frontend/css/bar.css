@@ -1,0 +1,35 @@
+#progress-bar {
+    -webkit-appearance: none;
+    height: 4px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    width: 60%;
+    z-index: 1; /* Ensure bar is behind thumb */
+    background-color: #a5adce
+}
+
+#volume-bar {
+    -webkit-appearance: none;
+    height: 4px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    width: 200px;
+    cursor: pointer;
+    z-index: 1; /* Ensure bar is behind thumb */
+    background-color: #a5adce
+}
+
+#progress-bar::-webkit-slider-thumb,
+#volume-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #a5adce;
+    border: 2px solid white;
+    width: 10px;
+    height: 10px;
+    z-index: 2; /* Ensure thumb is above .player */
+    border-radius: 50%
+}
