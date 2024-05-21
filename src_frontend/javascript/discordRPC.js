@@ -8,7 +8,7 @@ function startDiscordRPC() {
 function setDiscordRPCSong() {
     const currentTrack = queue[currentIndex];
     const metadata = {
-        newName: currentTrack.title,
+        songName: currentTrack.title,
         artist: currentTrack.artist,
         album: currentTrack.album
     };

@@ -8,10 +8,6 @@
     transform: translateX(-50%);
 }
 
-.player .music-info {
-    margin-top: auto;
-}
-
 #img {
     margin-right: 8px;
     max-width: 64px;

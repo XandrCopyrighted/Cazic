@@ -1,5 +1,5 @@
 [package]
-name = "Cazic"
+name = "cazic"
 version = "0.0.7"
 description = "Another music player created with Tauri!"
 authors = ["Jaydon 'XDR' Nelson <xxdr@duck.com>", "WilliamAnimate"]
@@ -11,7 +11,6 @@ edition = "2021"
 discord-rich-presence = { git = "https://github.com/sardonicism-04/discord-rich-presence.git" }
 lazy_static = { git = "https://github.com/rust-lang-nursery/lazy-static.rs.git" }
 tokio = { version = "1.37", features = ["full"] }
-colored = "2.1.0"
 
 [build-dependencies]
 tauri-build = "1.5"
@@ -22,7 +21,7 @@ features = ["system-tray", "wry"]
 default-features = false
 
 [[bin]]
-name = "cazic"
+name = "Cazic"
 path = "src_backend/main.rs"
 
 [profile.release]

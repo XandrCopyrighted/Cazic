@@ -4,7 +4,7 @@
 mod rpc;
 
 use lazy_static::lazy_static;
-use std::{sync::{Arc, Mutex}, path::Path};
+use std::{sync::{Arc, Mutex}, path::Path, ffi::OsStr};
 use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 use tauri::async_runtime::TokioJoinHandle;
 use crate::rpc::{start_rpc_thread, stop_rpc_thread, is_rpc_thread_up};
@@ -16,13 +16,19 @@ lazy_static! {
 }
 
 #[tauri::command]
-fn set_song(new_name: String, artist: String) {
-    let new_name_no_format = Path::new(&new_name)
-        .file_stem()
-        .and_then(|stem| stem.to_str())
-        .map_or_else(|| new_name.clone(), |s| s.to_string());
+fn set_song(song_name: String, artist: String) {
+    let song_name_format = if song_name.contains('/') || song_name.contains('\\') {
+        Path::new(&song_name)
+            .file_stem()
+            .unwrap_or_else(|| OsStr::new(&song_name))
+            .to_str()
+            .unwrap_or(&song_name)
+            .to_string()
+    } else {
+        song_name
+    };
 
-    *DISCORDRPC_SONG_NAME.lock().unwrap() = format!("{} - {}", artist, new_name_no_format);
+    *DISCORDRPC_SONG_NAME.lock().unwrap() = format!("{} - {}", artist, song_name_format);
 }
 
 #[tokio::main]

@@ -4,7 +4,6 @@ const playbackState = document.getElementById('playbackState');
 const titleElement = document.getElementById('title');
 const artistElement = document.getElementById('artist');
 const albumElement = document.getElementById('album');
-const musicInfo = document.querySelector('.music-info > p:first-child');
 const audio = new Audio();
 
 let queue = [];
@@ -21,25 +20,12 @@ function handleFileSelect(event) {
     }
 }
 
-function handleTrackEnd() {
-    if (isRepeat) {
-        playAudio(currentIndex);
-    } else {
-        playNextTrack();
-    }
-    stopDiscordRPC();
-}
-
 function playAudio(index) {
     if (index !== undefined) currentIndex = index;
-    if (isPlaying) {
-        audio.pause();
-        stopDiscordRPC();
-    }
     audio.src = queue[currentIndex].src;
     audio.play();
     isPlaying = true;
-    updateMusicInfo();
+    //updateMusicInfo();
     updatePlaybackIcon();
     startDiscordRPC();
 }
@@ -52,6 +38,21 @@ function togglePlaybackState() {
     }
     isPlaying = !isPlaying;
     updatePlaybackIcon();
+}
+
+/*
+function togglePlaybackState() {
+    if (!isPlaying) {
+        audio.pause();
+    } else {
+        audio.play();
+    }
+    updatePlaybackIcon();
+}
+*/
+
+function updatePlaybackIcon() {
+    playbackState.className = audio.paused ? 'bx bx-play-circle bx-md' : 'bx bx-pause-circle bx-md';
 }
 
 function playNextTrack() {
@@ -74,6 +75,7 @@ function playPrevTrack() {
 
 function toggleRepeat() {
     isRepeat = !isRepeat;
+    toggleRepeatColor();
 }
 
 function toggleShuffle() {
@@ -85,6 +87,7 @@ function toggleShuffle() {
         queue = [...originalQueue];
         currentIndex = 0;
     }
+    toggleShuffleColor();
 }
 
 function shuffleQueue() {
@@ -103,10 +106,16 @@ function getRandomIndex(max, exclude) {
     return index;
 }
 
-function updateMusicInfo() {
-    const currentTrack = queue[currentIndex];
-    titleElement.textContent = currentTrack ? currentTrack.title || 'Unknown Title' : '';
-    artistElement.textContent = currentTrack ? currentTrack.artist || 'Unknown Artist' : '';
-    albumElement.textContent = currentTrack ? currentTrack.album || 'Unknown Album' : '';
-    musicInfo.style.display = 'none' || 'block';
+//function updateMusicInfo() {
+//    const currentTrack = queue[currentIndex];
+//    titleElement.textContent = currentTrack ? currentTrack.title || 'Unknown Title' : '';
+//    artistElement.textContent = currentTrack ? currentTrack.artist || 'Unknown Artist' : '';
+//    albumElement.textContent = currentTrack ? currentTrack.album || 'Unknown Album' : '';
+//}
+
+window.onload = function() {
+    const settings = JSON.parse(localStorage.getItem('settings')) || {};
+
+    // Apply the settings to the application
+    // Example: applyTheme(settings.theme);
 }
