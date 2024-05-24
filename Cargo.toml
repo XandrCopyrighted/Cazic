@@ -13,11 +13,11 @@ tauri-build = { version = "1.5.1", features = [] }
 [dependencies]
 discord-rich-presence = "0.2.3"
 lazy_static = "1.4.0"
-tokio = { version = "1.36.0", features = ["full"] }
+tokio = { version = "1.36.0", features = ["macros", "rt-multi-thread", "time"] }
 
 [dependencies.tauri]
 version = "1.5.4"
-features = ["shell-open", "shell-open-api", "wry", "tauri-runtime-wry", "open"]
+features = [ "shell-open", "wry" ]
 default-features = false
 
 [features]
