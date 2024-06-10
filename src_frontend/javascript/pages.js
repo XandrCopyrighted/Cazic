@@ -1,30 +1,57 @@
-function openSettingsPage() {
-    const settingsOverlay = document.getElementById('page-overlay');
-  
-    if (settingsOverlay) {
-      settingsOverlay.style.display = 'block';
-  
-      const saveButton = document.getElementById('saveSettings');
-      const closeButton = document.getElementById('closeSettings');
-  
-      saveButton.addEventListener('click', saveSettings);
-      closeButton.addEventListener('click', closeSettings);
-  
-      function saveSettings() {
-        // Save settings to localStorage
+function toggleSettingsPage() {
+    const saveButton = document.getElementById('saveSettings');
+    const settingsOverlay = document.getElementById('settings-page');
+
+    if (settingsOverlay.style.display === 'none') {
+        settingsOverlay.style.display = 'block';
+        saveButton.addEventListener('click', saveSettings);
+    } else {
+        closeSettings();
+    }
+
+    function saveSettings() {
+        const themeRadios = document.querySelectorAll('input[name="theme"]');
+        let selectedTheme;
+
+        for (const radio of themeRadios) {
+            if (radio.checked) {
+                selectedTheme = radio.value;
+                break;
+            }
+        }
+
         const settings = {
-          // Get the values from the form elements
+            theme: selectedTheme
         };
+
         localStorage.setItem('settings', JSON.stringify(settings));
         closeSettings();
-      }
-  
-      function closeSettings() {
+        applyTheme(selectedTheme);
+    }
+
+    function closeSettings() {
         settingsOverlay.style.display = 'none';
         saveButton.removeEventListener('click', saveSettings);
-        closeButton.removeEventListener('click', closeSettings);
-      }
-    } else {
-      console.error('Settings overlay element not found');
+    }
+}
+
+function toggleQueuePage() {
+    const queuePage = document.getElementById('queue-page');
+
+    queuePage.style.display = queuePage.style.display === 'none' ? 'block' : 'none';
+    updateQueueList();
+}
+
+function applyTheme(theme) {
+    const body = document.body;
+
+    body.classList.remove('theme-amoled', 'theme-rose-pine', 'theme-dracula');
+
+    if (theme === 'amoled') {
+        body.classList.add('theme-amoled');
+    } else if (theme === 'rose-pine') {
+        body.classList.add('theme-rose-pine');
+    } else if (theme === 'dracula') {
+        body.classList.add('theme-dracula');
     }
 }

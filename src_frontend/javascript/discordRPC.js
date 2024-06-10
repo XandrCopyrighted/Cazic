@@ -10,7 +10,8 @@ function setDiscordRPCSong() {
     const metadata = {
         songName: currentTrack.title,
         artist: currentTrack.artist,
-        album: currentTrack.album
+        /* album: currentTrack.album,
+        image: currentTrack.image */
     };
     invoke("set_song", metadata);
 }

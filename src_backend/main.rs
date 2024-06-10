@@ -68,18 +68,10 @@ async fn main() -> std::io::Result<()> {
         .setup(|app| {
             app.get_window("main").unwrap().show().unwrap();
             Ok(())
+
         })
         .system_tray(desktop_tray)
         .on_system_tray_event(|app, event| match event {
-            SystemTrayEvent::LeftClick { .. } => {
-                let window = app.get_window("main").unwrap();
-                if window.is_visible().unwrap() {
-                    window.hide().unwrap();
-                } else {
-                    window.show().unwrap();
-                    window.set_focus().unwrap();
-                }
-            }
             SystemTrayEvent::MenuItemClick { id, .. } => {
                 match id.as_str() {
                     "next" => {

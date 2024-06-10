@@ -1,7 +1,7 @@
 body {
     font-family: system-ui;
-    background-color: #414559;
-    color: white
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .audio {
@@ -14,12 +14,6 @@ body {
     justify-content: space-between;
     margin: 0 auto;
     z-index: 3 /* Above .player */
-}
-
-#fullscreen {
-    bottom: 0;
-    position: fixed;
-    right: 0
 }
 
 .watermark {

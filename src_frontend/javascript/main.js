@@ -18,6 +18,7 @@ function handleFileSelect(event) {
     for (const file of files) {
         readTags(file);
     }
+    setTimeout(updateQueueList, 0);
 }
 
 function playAudio(index) {
@@ -25,9 +26,10 @@ function playAudio(index) {
     audio.src = queue[currentIndex].src;
     audio.play();
     isPlaying = true;
-    //updateMusicInfo();
     updatePlaybackIcon();
     startDiscordRPC();
+    updateQueueList();
+    updateMetadata();
 }
 
 function togglePlaybackState() {
@@ -39,17 +41,6 @@ function togglePlaybackState() {
     isPlaying = !isPlaying;
     updatePlaybackIcon();
 }
-
-/*
-function togglePlaybackState() {
-    if (!isPlaying) {
-        audio.pause();
-    } else {
-        audio.play();
-    }
-    updatePlaybackIcon();
-}
-*/
 
 function updatePlaybackIcon() {
     playbackState.className = audio.paused ? 'bx bx-play-circle bx-md' : 'bx bx-pause-circle bx-md';
@@ -106,16 +97,70 @@ function getRandomIndex(max, exclude) {
     return index;
 }
 
-//function updateMusicInfo() {
-//    const currentTrack = queue[currentIndex];
-//    titleElement.textContent = currentTrack ? currentTrack.title || 'Unknown Title' : '';
-//    artistElement.textContent = currentTrack ? currentTrack.artist || 'Unknown Artist' : '';
-//    albumElement.textContent = currentTrack ? currentTrack.album || 'Unknown Album' : '';
-//}
-
 window.onload = function() {
     const settings = JSON.parse(localStorage.getItem('settings')) || {};
+    const savedTheme = settings.theme || 'dark';
 
-    // Apply the settings to the application
-    // Example: applyTheme(settings.theme);
+    applyTheme(savedTheme);
+
+    const themeRadios = document.querySelectorAll('input[name="theme"]');
+    for (const radio of themeRadios) {
+        radio.checked = (radio.value === savedTheme);
+    }
+    applyTheme(savedTheme);
+};
+
+function updateQueueList() {
+    const queueList = document.getElementById('queue-list');
+    queueList.innerHTML = '';
+
+    for (let i = 0; i < queue.length; i++) {
+        const track = queue[i];
+        const listItem = document.createElement('li');
+        listItem.classList.add('queue-item');
+
+        const songTitle = document.createElement('span');
+        songTitle.textContent = `${track.title} - ${track.artist}`;
+
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('default-button');
+        removeButton.innerHTML = '<i class="bx bx-x bx-xs"></i>';
+        removeButton.dataset.index = i;
+        removeButton.addEventListener('click', removeSongFromQueue);
+
+        listItem.appendChild(songTitle);
+        listItem.appendChild(removeButton);
+        queueList.appendChild(listItem);
+    }
+}
+
+function removeSongFromQueue(event) {
+    const index = event.currentTarget.dataset.index;
+    if (queue[index].image) {
+        URL.revokeObjectURL(queue[index].image);
+    }
+    queue.splice(index, 1);
+    updateQueueList();
+
+    if (index === currentIndex) {
+        playNextTrack();
+    } else if (index < currentIndex) {
+        currentIndex--;
+    }
+} // This code is kinda bugged
+
+function updateMetadata() {
+    const currentTrack = queue[currentIndex];
+    const albumArtElement = document.getElementById('album-art');
+    const songTitleElement = document.getElementById('song-title');
+    const songArtistElement = document.getElementById('song-artist');
+
+    if (currentTrack.image) {
+        albumArtElement.src = currentTrack.image;
+    } else {
+        albumArtElement.src = '../../assets/Default_Artwork.jpg';
+    }
+
+    songTitleElement.textContent = currentTrack.title || 'Unknown Title';
+    songArtistElement.textContent = currentTrack.artist || 'Unknown Artist';
 }

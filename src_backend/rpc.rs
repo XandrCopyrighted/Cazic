@@ -2,7 +2,7 @@ use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
 use crate::{DISCORDRPC_SONG_NAME, RPC_THREAD};
 use std::sync::atomic::{AtomicBool, Ordering::Relaxed};
 
-const DISCORDRPC_APPLICATION_ID: &str = "1207492076057665608";
+const DISCORDRPC_APPLICATION_ID: &str = "1248494632908755046";
 
 lazy_static::lazy_static!{
     static ref RPC_ENABLED: AtomicBool = AtomicBool::new(true);

@@ -1,6 +1,6 @@
 .default-button {
     background-color: transparent;
-    color: white;
+    color: var(--icon-color);
     border: none;
     z-index: 3;
     cursor: pointer
@@ -8,12 +8,12 @@
 
 .default-black-button {
     background-color: transparent;
-    color: black;
+    color: var(--icon-inactive-color);
     border: none;
     z-index: 3;
     cursor: pointer
 }
 
 .default-active-button {
-    color: white
+    color: var(--icon-active-color);
 }

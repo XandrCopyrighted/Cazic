@@ -1,13 +1,6 @@
-.settings {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)
-}
-
 .text-button {
-    background-color: #51576d;
-    color: white;
+    background-color: var(--bar-thumb-color);
+    color: var(--text-color);
     border: none;
     padding: 10px 20px;
     text-align: center;
@@ -19,5 +12,13 @@
 }
 
 #text-button:hover {
-    background-color: #3a3d4f
+    background-color: var(--button-hover);
+}
+
+.queue-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
 }

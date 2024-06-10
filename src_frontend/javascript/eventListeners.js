@@ -41,9 +41,15 @@ audio.addEventListener('ended', () => {
     if (isRepeat) {
         playAudio(currentIndex);
     } else if (queue.length > 1) {
+        if (queue[currentIndex].image) {
+            URL.revokeObjectURL(queue[currentIndex].image);
+        }
         playNextTrack();
     } else {
         isPlaying = false;
+        if (queue[currentIndex].image) {
+            URL.revokeObjectURL(queue[currentIndex].image);
+        }
     }
 });
 

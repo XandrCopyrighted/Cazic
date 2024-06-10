@@ -1,9 +1,6 @@
 stages:
   - linux
   - windows
-  - macos
-  - android
-  - ios
 
 variables:
   CARGO_TERM_COLOR: always
@@ -38,63 +35,4 @@ windows:
   artifacts:
     paths:
       - cazic_windows.tar.gz
-    expire_in: 1 week
-
-macos:
-  stage: macos
-  image: rust:latest
-  script:
-    - rustup target add x86_64-apple-darwin aarch64-apple-darwin
-    - brew install openssl@1.1 libwebkit2gtk
-    - cargo install tauri-cli
-    - cargo-tauri build --target x86_64-apple-darwin
-    - cargo-tauri build --target aarch64-apple-darwin
-    - tar -czf cazic_macos.tar.gz target/x86_64-apple-darwin/debug/cazic target/aarch64-apple-darwin/debug/cazic
-
-  artifacts:
-    paths:
-      - cazic_macos.tar.gz
-    expire_in: 1 week
-
-android:
-  stage: android
-  image: rust:latest
-  script:
-    - apt install -y openjdk-18-jdk
-    - wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2024.1.1.7/android-studio-2024.1.1.7-linux.tar.gz
-    - tar -zxvf android-studio-2024.1.1.7-linux.tar.gz
-    - sudo mv android-studio /opt/
-    - sudo ln -sf /opt/android-studio/bin/studio.sh /bin/android-studio
-    - export ANDROID_HOME="$HOME/Android/Sdk"; export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"; export JAVA_HOME=/opt/android-studio/jbr
-    - rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
-    - apt-get update; apt-get install -y ibwebkit2gtk-4.0-dev build-essential curl wget file libssl-dev libgtk-3-dev librsvg2-dev
-    - cargo install tauri-cli
-    - cargo-tauri build --target aarch64-linux-android
-    - cargo-tauri build --target i686-linux-android
-    - cargo-tauri build --target armv7-linux-androideabi
-    - cargo-tauri build --target x86_64-linux-android
-    - tar -czf cazic_android.tar.gz target/aarch64-linux-android/debug/cazic.apk target/i686-linux-android/debug/cazic.apk target/armv7-linux-androideabi/debug/cazic.apk target/x86_64-linux-android/debug/cazic.apk
-
-  artifacts:
-    paths:
-      - cazic_android.tar.gz
-    expire_in: 1 week
-    
-ios:
-  stage: ios
-  image: rust:latest
-  script:
-    - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    - brew install cocoapods
-    - rustup target add aarch64-apple-ios x86_64-apple-ios aarch64-apple-ios-sim
-    - apt-get update; apt-get install -y ibwebkit2gtk-4.0-dev build-essential curl wget file libssl-dev libgtk-3-dev librsvg2-dev
-    - cargo install tauri-cli
-    - cargo-tauri build --target arm64e-apple-ios
-    - cargo-tauri build --target x86_64-apple-ios
-    - cargo-tauri build --target aarch64-apple-ios-sim
-    - tar -czf cazic_ios.tar.gz target/arm64e-apple-ios/debug/cazic.ipa target/x86_64-apple-ios/debug/cazic.ipa target/aarch64-apple-ios-sim/debug/cazic.ipa
-
-  artifacts:
-    paths:
-      - cazic_ios.tar.gz
     expire_in: 1 week
