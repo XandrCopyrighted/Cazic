@@ -20,6 +20,9 @@ version = "1.6"
 features = ["system-tray", "wry"]
 default-features = false
 
+[features]
+custom-protocol = ["tauri/custom-protocol"]
+
 [[bin]]
 name = "Cazic"
 path = "src_backend/main.rs"
