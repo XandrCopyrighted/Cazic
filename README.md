@@ -1,4 +1,4 @@
-<img width="100" height="120" align="left" style="float: left; margin: 20 10px 0 10;" src="assets/logo.png" alt="Logo">
+<img width="100" height="120" align="left" style="float: left; margin: 20 10px 0 10;" src="assets/Cazic.png" alt="Logo">
 
 # Cazic
 
