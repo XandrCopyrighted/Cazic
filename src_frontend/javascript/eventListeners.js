@@ -28,16 +28,12 @@ function handleKeydown(event) {
     }
 }
 
-function toggleRepeatColor() {
-    repeat.classList.toggle('default-active-button');
-}
-
-function toggleShuffleColor() {
-    shuffle.classList.toggle('default-active-button');
-}
+function toggleRepeatColor() {repeat.classList.toggle('icon-default')};
+function toggleShuffleColor() {shuffle.classList.toggle('icon-default')};
 
 audio.addEventListener('ended', () => {
     stopDiscordRPC();
+    updatePlaybackIcon();
     if (isRepeat) {
         playAudio(currentIndex);
     } else if (queue.length > 1) {
@@ -54,11 +50,13 @@ audio.addEventListener('ended', () => {
 });
 
 audio.addEventListener('timeupdate', function() {
-    let position = audio.currentTime / audio.duration * 100;
-    progressBar.value = position;
+    if (audio.duration !== 0) {
+        const position = (audio.currentTime / audio.duration) * 100;
+        progressBar.value = position;
+    }
 });
 
-document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('contextmenu', event => event.preventDefault()); // Disables right click
 document.addEventListener('keydown', handleKeydown);
 input.addEventListener('change', handleFileSelect);
 fileSelectButton.addEventListener('click', () => input.click());
@@ -69,6 +67,4 @@ progressBar.addEventListener('click', e => {
     audio.currentTime = newPosition * audio.duration;
 });
 
-volumeBar.addEventListener('input', function() {
-    audio.volume = volumeBar.value;
-});
+volumeBar.addEventListener('input', function() {audio.volume = volumeBar.value});
