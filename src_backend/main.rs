@@ -49,8 +49,7 @@ async fn main() -> std::io::Result<()> {
         .add_item(quit_item);
     
     let desktop_tray = SystemTray::new().with_menu(context_menu);
-    
-    #[cfg(unix)]
+
     tauri::Builder::default()
         .on_window_event(|event| match event.event() {
             tauri::WindowEvent::CloseRequested { api, .. } => {
