@@ -153,7 +153,7 @@ function updateMetadata() {
     if (currentTrack.image) {
         albumArtElement.src = currentTrack.image;
     } else {
-        albumArtElement.src = '../../assets/Default_Artwork.jpg';
+        albumArtElement.src = '../../icons/Cazic/Default_Artwork.jpg';
     }
 
     songTitleElement.textContent = currentTrack.title || 'Unknown Title';
