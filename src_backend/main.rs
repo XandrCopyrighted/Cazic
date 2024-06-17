@@ -80,7 +80,7 @@ async fn main() -> std::io::Result<()> {
                     "prev" => window.eval("playPrevTrack()").unwrap(),
                     "quit" => std::process::exit(0),
                     "show_hide" => if window.is_visible().unwrap() {window.hide().unwrap();}else{window.show().unwrap();window.set_focus().unwrap();}, // Yes, I need help
-                    "toggle_rpc" => toggle_rpc(),
+                    "toggle_rpc" => rpc::toggle_rpc(),
                     _ => {}
                 }
             }
