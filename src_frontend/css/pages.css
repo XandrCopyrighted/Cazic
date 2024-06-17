@@ -1,24 +1,7 @@
-.text-button {
-    background-color: var(--bar-thumb-color);
-    color: var(--text-color);
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    transition-duration: 0.4s;
-}
-
-#text-button:hover {
-    background-color: var(--button-hover);
-}
-
 .queue-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd
 }
