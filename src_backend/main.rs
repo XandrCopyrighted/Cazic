@@ -73,30 +73,14 @@ async fn main() -> std::io::Result<()> {
         .system_tray(desktop_tray)
         .on_system_tray_event(|app, event| match event {
             SystemTrayEvent::MenuItemClick { id, .. } => {
+                let window = app.get_window("main").unwrap();
                 match id.as_str() {
-                    "next" => {
-                        let window = app.get_window("main").unwrap();
-                        window.eval("playNextTrack()").unwrap();
-                    },
-                    "play_pause" => {
-                        let window = app.get_window("main").unwrap();
-                        window.eval("togglePlaybackState()").unwrap();
-                    },
-                    "prev" => {
-                        let window = app.get_window("main").unwrap();
-                        window.eval("playPrevTrack()").unwrap();
-                    },
+                    "next" => window.eval("playNextTrack()").unwrap(),
+                    "play_pause" => window.eval("togglePlaybackState()").unwrap(),
+                    "prev" => window.eval("playPrevTrack()").unwrap(),
                     "quit" => std::process::exit(0),
-                    "show_hide" => {
-                        let window = app.get_window("main").unwrap();
-                        if window.is_visible().unwrap() {
-                            window.hide().unwrap();
-                        } else {
-                            window.show().unwrap();
-                            window.set_focus().unwrap();
-                        }
-                    },
-                    "toggle_rpc" => rpc::toggle_rpc(),                    
+                    "show_hide" => if window.is_visible().unwrap() {window.hide().unwrap();}else{window.show().unwrap();window.set_focus().unwrap();}, // Yes, I need help
+                    "toggle_rpc" => toggle_rpc(),
                     _ => {}
                 }
             }
@@ -104,7 +88,7 @@ async fn main() -> std::io::Result<()> {
         })
         .run(tauri::generate_context!())
         .unwrap_or_else(|error| {
-            eprintln!("Error while running Cazic: {}", error);
+            eprintln!("Error running Cazic: {}", error);
             std::process::exit(1);
         });
     Ok(())
