@@ -4,7 +4,7 @@ function createDataURL(data, format) { // Had to use AI to display the song's im
     return `data:${format};base64,${window.btoa(str)}`;
 }
 
-function getFileNameWithoutExtension(fileName) { // wait why dont I just use rust for this
+function getFileNameWithoutExtension(fileName) {
     const lastDotIndex = fileName.lastIndexOf('.');
     return lastDotIndex !== -1 ? fileName.slice(0, lastDotIndex) : fileName;
 }
