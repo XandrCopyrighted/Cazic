@@ -24,12 +24,12 @@ function handleFileSelect(event) {
 function playAudio(index) {
     if (index !== undefined) currentIndex = index;
     audio.src = queue[currentIndex].src;
+    updateQueueList();
+    updateMetadata();
     audio.play();
     isPlaying = true;
     updatePlaybackIcon();
     startDiscordRPC();
-    updateQueueList();
-    updateMetadata();
 }
 
 function togglePlaybackState() {
@@ -47,6 +47,7 @@ function updatePlaybackIcon() {
 }
 
 function playNextTrack() {
+    stopDiscordRPC()
     if (isShuffle) {
         currentIndex = getRandomIndex(queue.length, currentIndex);
     } else {
@@ -56,6 +57,7 @@ function playNextTrack() {
 }
 
 function playPrevTrack() {
+    stopDiscordRPC()
     if (isShuffle) {
         currentIndex = getRandomIndex(queue.length, currentIndex);
     } else {
@@ -72,10 +74,10 @@ function toggleRepeat() {
 function toggleShuffle() {
     isShuffle = !isShuffle;
     if (isShuffle) {
-        originalQueue = [...queue];
+        originalQueue = queue.slice();
         shuffleQueue();
     } else {
-        queue = [...originalQueue];
+        originalQueue = queue.slice();
         currentIndex = 0;
     }
     toggleShuffleColor();
@@ -87,14 +89,6 @@ function shuffleQueue() {
         [queue[i], queue[j]] = [queue[j], queue[i]];
     }
     currentIndex = 0;
-}
-
-function getRandomIndex(max, exclude) {
-    let index = Math.floor(Math.random() * max);
-    while (index === exclude) {
-        index = Math.floor(Math.random() * max);
-    }
-    return index;
 }
 
 window.onload = function() {
@@ -136,8 +130,9 @@ function updateQueueList() {
 
 function removeSongFromQueue(event) {
     const index = event.currentTarget.dataset.index;
-    if (queue[index].image) {
-        URL.revokeObjectURL(queue[index].image);
+    const removedTrack = queue.splice(index, 1)[0];
+    if (removedTrack.image) {
+        URL.revokeObjectURL(removedTrack.image);
     }
     queue.splice(index, 1);
     updateQueueList();
