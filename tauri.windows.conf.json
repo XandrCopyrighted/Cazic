@@ -1,7 +1,7 @@
 {
   "tauri": {
     "systemTray": {
-      "iconPath": "assets/AppIcons/128x128.png"
+      "iconPath": "assets/appicons/128x128.png"
     },
     "bundle": {
       "active": true,
@@ -11,10 +11,10 @@
       "category": "Music",
       "shortDescription": "Another music player created with Tauri!",
       "icon": [
-        "assets/AppIcons/32x32.png",
-        "assets/AppIcons/128x128.png",
-        "assets/AppIcons/256x256.png",
-        "assets/AppIcons/window.ico"
+        "assets/appicons/32x32.png",
+        "assets/appicons/128x128.png",
+        "assets/appicons/256x256.png",
+        "assets/appicons/windows.ico"
       ]
     },
     "windows": [
