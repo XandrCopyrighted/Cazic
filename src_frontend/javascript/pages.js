@@ -78,16 +78,36 @@ function updateQueueList() {
         const listItem = document.createElement('li');
         listItem.classList.add('queue-item');
 
-        const songTitle = document.createElement('span');
-        songTitle.textContent = `${track.title} - ${track.artist}`;
+        const container = document.createElement('div');
+        container.id = 'container';
 
-        const removeButton = document.createElement('icon-default');
-        removeButton.classList.add('default-button');
+        const albumArt = document.createElement('img');
+        albumArt.id = 'album-art';
+        albumArt.src = track.image ? track.image : '../../icons/Cazic/Default_Artwork.jpg';
+        container.appendChild(albumArt);
+
+        const songInfo = document.createElement('div');
+        songInfo.id = 'song-info';
+
+        const songTitle = document.createElement('span');
+        songTitle.id = 'song-title';
+        songTitle.textContent = track.title;
+        songInfo.appendChild(songTitle);
+
+        const songArtist = document.createElement('span');
+        songArtist.id = 'song-artist';
+        songArtist.textContent = track.artist;
+        songInfo.appendChild(songArtist);
+
+        container.appendChild(songInfo);
+
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('icon-default');
         removeButton.innerHTML = '<i class="bx bx-x bx-xs"></i>';
         removeButton.dataset.index = i;
         removeButton.addEventListener('click', removeSongFromQueue);
 
-        listItem.appendChild(songTitle);
+        listItem.appendChild(container);
         listItem.appendChild(removeButton);
         queueList.appendChild(listItem);
     }
