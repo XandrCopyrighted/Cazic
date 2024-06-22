@@ -1,3 +1,16 @@
+window.onload = function() {
+    const settings = JSON.parse(localStorage.getItem('settings')) || {};
+    const savedTheme = settings.theme || 'dark';
+
+    applyTheme(savedTheme);
+
+    const themeRadios = document.querySelectorAll('input[name="theme"]');
+    for (const radio of themeRadios) {
+        radio.checked = (radio.value === savedTheme);
+    }
+    applyTheme(savedTheme);
+};
+
 function toggleSettingsPage() {
     const saveButton = document.getElementById('saveSettings');
     const settingsOverlay = document.getElementById('settings-page');
@@ -35,13 +48,6 @@ function toggleSettingsPage() {
     }
 }
 
-function toggleQueuePage() {
-    const queuePage = document.getElementById('queue-page');
-
-    queuePage.style.display = queuePage.style.display === 'none' ? 'block' : 'none';
-    updateQueueList();
-}
-
 function applyTheme(theme) {
     const body = document.body;
 
@@ -55,3 +61,50 @@ function applyTheme(theme) {
         body.classList.add('theme-dracula');
     }
 }
+
+function toggleQueuePage() {
+    const queuePage = document.getElementById('queue-page');
+
+    queuePage.style.display = queuePage.style.display === 'none' ? 'block' : 'none';
+    updateQueueList();
+}
+
+function updateQueueList() {
+    const queueList = document.getElementById('queue-list');
+    queueList.innerHTML = '';
+
+    for (let i = 0; i < queue.length; i++) {
+        const track = queue[i];
+        const listItem = document.createElement('li');
+        listItem.classList.add('queue-item');
+
+        const songTitle = document.createElement('span');
+        songTitle.textContent = `${track.title} - ${track.artist}`;
+
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('default-button');
+        removeButton.innerHTML = '<i class="bx bx-x bx-xs"></i>';
+        removeButton.dataset.index = i;
+        removeButton.addEventListener('click', removeSongFromQueue);
+
+        listItem.appendChild(songTitle);
+        listItem.appendChild(removeButton);
+        queueList.appendChild(listItem);
+    }
+}
+
+function removeSongFromQueue(event) {
+    const index = event.currentTarget.dataset.index;
+    const removedTrack = queue.splice(index, 1)[0];
+    if (removedTrack.image) {
+        URL.revokeObjectURL(removedTrack.image);
+    }
+    queue.splice(index, 1);
+    updateQueueList();
+
+    if (index === currentIndex) {
+        playNextTrack();
+    } else if (index < currentIndex) {
+        currentIndex--;
+    }
+} // This code is kinda bugged

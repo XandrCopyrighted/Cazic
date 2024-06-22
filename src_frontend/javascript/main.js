@@ -91,59 +91,6 @@ function shuffleQueue() {
     currentIndex = 0;
 }
 
-window.onload = function() {
-    const settings = JSON.parse(localStorage.getItem('settings')) || {};
-    const savedTheme = settings.theme || 'dark';
-
-    applyTheme(savedTheme);
-
-    const themeRadios = document.querySelectorAll('input[name="theme"]');
-    for (const radio of themeRadios) {
-        radio.checked = (radio.value === savedTheme);
-    }
-    applyTheme(savedTheme);
-};
-
-function updateQueueList() {
-    const queueList = document.getElementById('queue-list');
-    queueList.innerHTML = '';
-
-    for (let i = 0; i < queue.length; i++) {
-        const track = queue[i];
-        const listItem = document.createElement('li');
-        listItem.classList.add('queue-item');
-
-        const songTitle = document.createElement('span');
-        songTitle.textContent = `${track.title} - ${track.artist}`;
-
-        const removeButton = document.createElement('button');
-        removeButton.classList.add('default-button');
-        removeButton.innerHTML = '<i class="bx bx-x bx-xs"></i>';
-        removeButton.dataset.index = i;
-        removeButton.addEventListener('click', removeSongFromQueue);
-
-        listItem.appendChild(songTitle);
-        listItem.appendChild(removeButton);
-        queueList.appendChild(listItem);
-    }
-}
-
-function removeSongFromQueue(event) {
-    const index = event.currentTarget.dataset.index;
-    const removedTrack = queue.splice(index, 1)[0];
-    if (removedTrack.image) {
-        URL.revokeObjectURL(removedTrack.image);
-    }
-    queue.splice(index, 1);
-    updateQueueList();
-
-    if (index === currentIndex) {
-        playNextTrack();
-    } else if (index < currentIndex) {
-        currentIndex--;
-    }
-} // This code is kinda bugged
-
 function updateMetadata() {
     const currentTrack = queue[currentIndex];
     const albumArtElement = document.getElementById('album-art');
