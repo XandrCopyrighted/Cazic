@@ -10,7 +10,7 @@ edition = "2021"
 [dependencies]
 discord-rich-presence = { git = "https://github.com/sardonicism-04/discord-rich-presence.git" }
 lazy_static = { git = "https://github.com/rust-lang-nursery/lazy-static.rs.git" }
-tokio = { version = "1.38", features = ["full"] }
+tokio = { version = "1.38", features = ["macros", "rt-multi-thread", "time"] }
 
 [build-dependencies]
 tauri-build = "1.5"
