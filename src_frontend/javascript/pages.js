@@ -81,7 +81,7 @@ function updateQueueList() {
         const songTitle = document.createElement('span');
         songTitle.textContent = `${track.title} - ${track.artist}`;
 
-        const removeButton = document.createElement('button');
+        const removeButton = document.createElement('icon-default');
         removeButton.classList.add('default-button');
         removeButton.innerHTML = '<i class="bx bx-x bx-xs"></i>';
         removeButton.dataset.index = i;
