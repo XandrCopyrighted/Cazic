@@ -114,17 +114,17 @@ function updateQueueList() {
 }
 
 function removeSongFromQueue(event) {
-    const index = event.currentTarget.dataset.index;
+    const index = parseInt(event.currentTarget.getAttribute('data-index'), 10);
     const removedTrack = queue.splice(index, 1)[0];
+
     if (removedTrack.image) {
         URL.revokeObjectURL(removedTrack.image);
     }
-    queue.splice(index, 1);
-    updateQueueList();
 
-    if (index === currentIndex) {
-        playNextTrack();
-    } else if (index < currentIndex) {
+    if (index < currentIndex) {
         currentIndex--;
+    } else if (index === currentIndex && queue.length > 0) {
+        playNextTrack();
     }
-} // This code is kinda bugged
+    updateQueueList();
+}
