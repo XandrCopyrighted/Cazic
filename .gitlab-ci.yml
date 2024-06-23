@@ -8,8 +8,7 @@ desktop:
   stage: main
   image: archlinux:base
   before_script:
-    - pacman -Syu --needed webkit2gtk base-devel curl wget file openssl zip appmenu-gtk-module sed mingw-w64 gtk3 libappindicator-gtk3 librsvg rustup libvips --noconfirm
-    - sed -i 's/"devPath": "http:\/\/localhost:5500\/src_frontend",/"devPath": "src_frontend",/' tauri.conf.json
+    - pacman -Syu --needed webkit2gtk base-devel curl wget file openssl zip appmenu-gtk-module mingw-w64 gtk3 libappindicator-gtk3 librsvg rustup libvips --noconfirm
     - rustup toolchain install stable --profile minimal
     - rustup target add x86_64-pc-windows-gnu
     - cargo install tauri-cli
