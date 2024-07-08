@@ -1,9 +1,6 @@
-const input = document.getElementById('input');
-const fileSelectButton = document.getElementById('fileSelectButton');
 const playbackState = document.getElementById('playbackState');
 const titleElement = document.getElementById('title');
 const artistElement = document.getElementById('artist');
-const albumElement = document.getElementById('album');
 const audio = new Audio();
 
 let queue = [];
@@ -78,11 +75,20 @@ function toggleShuffle() {
     }
 }
 
+function toggleMetadataVisibility() {
+    const ui = document.querySelector('.metadata');
+    if (queue.length === 0) {
+        ui.style.display = 'none';
+    } else {
+        ui.style.display = 'flex';
+    }
+}
+
 function updateMetadata() {
     const currentTrack = queue[currentIndex];
     const albumArtElement = document.getElementById('album-art');
-    const songTitleElement = document.getElementById('song-title');
-    const songArtistElement = document.getElementById('song-artist');
+    const titleElement = document.getElementById('song-title');
+    const artistElement = document.getElementById('song-artist');
 
     if (currentTrack.image) {
         albumArtElement.src = currentTrack.image;
@@ -90,14 +96,18 @@ function updateMetadata() {
         albumArtElement.src = '../../icons/Cazic/Default_Artwork.jpg';
     }
 
-    songTitleElement.textContent = currentTrack.title || 'Unknown Title';
-    songArtistElement.textContent = currentTrack.artist || 'Unknown Artist';
+    titleElement.textContent = currentTrack.title || 'Unknown Title';
+    artistElement.textContent = currentTrack.artist || 'Unknown Artist';
+
+    toggleMetadataVisibility();
 }
 
-function getRandomIndex(max, exclude) { // Why did I remove this?
+function getRandomIndex(max, exclude) {
     let index = Math.floor(Math.random() * max);
     while (index === exclude) {
         index = Math.floor(Math.random() * max);
     }
     return index;
 }
+
+toggleMetadataVisibility();
