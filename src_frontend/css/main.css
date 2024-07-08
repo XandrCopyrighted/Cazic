@@ -1,0 +1,38 @@
+body {
+    font-family: system-ui;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.audio {
+    display: none
+}
+
+.controls {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    z-index: 3 /* Above .player */
+}
+
+.watermark {
+    padding-right: 10px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    -webkit-user-select: none
+}
+
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}

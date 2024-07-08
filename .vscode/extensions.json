@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "ritwickdey.LiveServer",
+    "abusaidm.html-snippets",
+    "LyonSyonII.rust-syntax",
+    "dustypomerleau.rust-syntax",
+    "tauri-apps.tauri-vscode"
+  ]
+}

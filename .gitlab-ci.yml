@@ -1,0 +1,27 @@
+stages:
+  - main
+
+variables:
+  CARGO_TERM_COLOR: always
+
+desktop:
+  stage: main
+  image: archlinux:base
+  before_script:
+    - pacman -Syu --needed webkit2gtk base-devel curl wget file openssl zip appmenu-gtk-module mingw-w64 gtk3 libappindicator-gtk3 librsvg rustup libvips --noconfirm
+    - rustup toolchain install stable --profile minimal
+    - rustup target add x86_64-pc-windows-gnu
+    - cargo install tauri-cli
+    - mv tauri.conf.json.artifact tauri.conf.json
+  script:
+    - cargo build --release
+    - cargo build --release --target x86_64-pc-windows-gnu
+  after_script:
+    - tar -czf cazic_linux.tar.gz target/release/Cazic
+    - zip -r cazic_windows.zip target/x86_64-pc-windows-gnu/release/Cazic.exe target/x86_64-pc-windows-gnu/release/WebView2Loader.dll
+
+  artifacts:
+    paths:
+      - cazic_linux.tar.gz
+      - cazic_windows.zip
+    expire_in: 1 week

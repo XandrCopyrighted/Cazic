@@ -1,0 +1,51 @@
+:root { /* Default */
+    --background-color: #414559; 
+    --bar-color: #a5adce;
+    --bar-thumb-color: #a5adce;
+    --button: #51576d;
+    --button-hover: #626880;
+    --icon-default: #fff;
+    --icon-default_black: #000;
+    --player-color: #51576d;
+    --subtext-color: #888;
+    --text-color: #f8f8f2
+}
+
+.theme-amoled {
+    --background-color: #000; 
+    --bar-color: #373737;
+    --bar-thumb-color: #373737;
+    --button: #1a1818;
+    --button-hover: #2c2929;
+    --icon-default: #fff;
+    --icon-default_black: #000;
+    --player-color: #1f1e24;
+    --subtext-color: #888;
+    --text-color: #f8f8f2
+}
+
+.theme-dracula {
+    --background-color: #282A36; 
+    --bar-color: #6272A4;
+    --bar-thumb-color: #6272A4;
+    --button: #44475A;
+    --button-hover: #BD93F9;
+    --icon-default: #e0def4;
+    --icon-default_black: #000;
+    --player-color: #44475A;
+    --subtext-color: #888;
+    --text-color: #f8f8f2
+}
+
+.theme-rose-pine {
+    --background-color: #232136; 
+    --bar-color: #2a273f;
+    --bar-thumb-color: #2a273f;
+    --button: #393552;
+    --button-hover: #56526e;
+    --icon-default: #e0def4;
+    --icon-default_black: #000;
+    --player-color: #393552;
+    --subtext-color: #888;
+    --text-color: #e0def4
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+        <link rel="stylesheet" href="css/themes.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bar.css">
+        <link rel="stylesheet" href="css/ui/buttons.css">
+        <link rel="stylesheet" href="css/ui/icons.css">
+        <link rel="stylesheet" href="css/pages.css">
+        <link rel="stylesheet" href="css/metadata.css">
+    </head>
+
+    <script src="javascript/pages.js" defer></script>
+    <script src="javascript/jsmediatags/main.js" async></script>
+    <script src="javascript/discordRPC.js"></script>
+
+    <body>
+        <div class="nav">
+            <button class="icon-default"><i id="fileSelectButton" class="bx bx-plus-circle bx-sm"></i></button>
+            <button class="icon-default" onclick="toggleQueuePage()"><i id="openQueueButton" class="bx bxs-playlist bx-sm"></i></button>
+            <button class="icon-default" onclick="toggleSettingsPage()"><i id="openSettingsButton" class="bx bx-cog bx-sm"></i></button>
+        </div>
+
+        <h3 class="watermark">Cazic Music Player</h3>
+
+        <div class="metadata">
+            <img id="album-art">
+            <div id="song-info">
+                <span id="song-title"></span>
+                <span id="song-artist"></span>
+            </div>
+        </div>
+        <div class="player">
+            <input id="progress-bar" type="range" value="0">
+            <input id="volume-bar" type="range" min="0" max="1" step="0.01" value="1">
+            <div class="controls">
+                <button class="icon-default_black" onclick="toggleShuffle()"><i id="shuffle-button" class="bx bx-shuffle bx-xs"></i></button>
+                <button class="icon-default" onclick="playPrevTrack()"><i class="bx bx-fast-forward-circle bx-flip-horizontal bx-sm"></i></button>
+                <button class="icon-default" onclick="togglePlaybackState()"><i id="playbackState" class="bx bx-stop-circle bx-md"></i></button>
+                <button class="icon-default" onclick="playNextTrack()"><i class="bx bx-fast-forward-circle bx-sm"></i></button>
+                <button class="icon-default_black" onclick="toggleRepeat()"><i id="repeat-button" class="bx bx-repeat bx-xs"></i></button>
+            </div>
+            <div class="audio">
+                <input type="file" id="input" accept="audio/mp3, audio/wav, audio/flac, audio/ogg, audio/m4a, audio/alac, audio/webm" multiple>
+                <audio controls></audio>
+                <script src="javascript/jsmediatags/readTag.js"></script>
+                <script src="javascript/main.js"></script>
+                <script src="javascript/eventListeners.js"></script>
+            </div>
+        </div>
+        <div class="pages">
+            <div id="settings-page" class="overlay" style="display: none">
+                <div class="settings-content">
+                    <h2>Settings</h2>
+                    <div class="theme-selection">
+                        <label>
+                            <input type="radio" name="theme" value="default" checked>
+                            Default
+                        </label>
+                        <label>
+                            <input type="radio" name="theme" value="amoled">
+                            Amoled
+                        </label>
+                        <label>
+                            <input type="radio" name="theme" value="dracula">
+                            Dracula
+                        </label>
+                        <label>
+                            <input type="radio" name="theme" value="rose-pine">
+                            Rosé Pine
+                        </label>
+                    </div>
+                    <button class="button" id="saveSettings">Save</button>
+                </div>
+            </div>
+            <div id="queue-page" class="overlay" style="display: none">
+                <div class="queue-content">
+                    <h2>Queue</h2>
+                    <ul id="queue-list"></ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

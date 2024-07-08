@@ -1,0 +1,19 @@
+.icon-default {
+    background-color: transparent;
+    color: var(--icon-default);
+    border: none;
+    z-index: 3;
+    cursor: pointer
+}
+
+.icon-default_black {
+    background-color: transparent;
+    color: var(--icon-default_black);
+    border: none;
+    z-index: 3;
+    cursor: pointer
+}
+
+.icon-default_black:active { /* maybe move this to javascript */
+    color: white
+}

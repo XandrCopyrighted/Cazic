@@ -1,25 +1,39 @@
 {
+  "build": {
+    "devPath": "src_frontend",
+    "distDir": "src_frontend",
+    "withGlobalTauri": true
+  },
+  "package": {
+    "productName": "Cazic",
+    "version": "0.0.7"
+  },
   "tauri": {
     "systemTray": {
       "iconPath": "icons/128x128.png"
     },
     "bundle": {
       "active": true,
-      "targets": ["appimage", "deb"],
+      "targets": "all",
       "identifier": "com.xdr.cazic",
       "category": "Music",
       "shortDescription": "Another music player created with Tauri!",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
-        "icons/256x256.png"
+        "icons/256x256.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
       ]
+    },
+    "security": {
+      "csp": null
     },
     "windows": [
       {
-        "fullscreen": false,
+        "fullscreen": true,
         "resizable": true,
-        "title": "Cazic",
+        "title": "Cazic Music Player",
         "minWidth": 640,
         "minHeight": 480,
         "center": true

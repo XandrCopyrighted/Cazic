@@ -1,33 +1,29 @@
 {
   "build": {
-    "devPath": "src_html",
-    "distDir": "src_html",
+    "devPath": "http://localhost:5500/src_frontend",
+    "distDir": "src_frontend",
     "withGlobalTauri": true
   },
   "package": {
     "productName": "Cazic",
-    "version": "0.0.6"
+    "version": "0.0.7"
   },
   "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      }
+    "systemTray": {
+      "iconPath": "icons/128x128.png"
     },
     "bundle": {
       "active": true,
       "targets": "all",
       "identifier": "com.xdr.cazic",
       "category": "Music",
-      "shortDescription": "Another music player written in Rust.",
+      "shortDescription": "Another music player created with Tauri!",
       "icon": [
-        "assets/app-icon/32x32.png",
-        "assets/app-icon/128x128.png",
-        "assets/app-icon/128x128@2x.png",
-        "assets/app-icon/icon.icns",
-        "assets/app-icon/icon.ico"
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/256x256.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
       ]
     },
     "security": {
@@ -35,11 +31,12 @@
     },
     "windows": [
       {
-        "fullscreen": false,
+        "fullscreen": true,
         "resizable": true,
         "title": "Cazic Music Player",
         "minWidth": 640,
-        "minHeight": 480
+        "minHeight": 480,
+        "center": true
       }
     ]
   }
