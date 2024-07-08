@@ -13,3 +13,7 @@
     z-index: 3;
     cursor: pointer
 }
+
+.icon-default_black:active { /* maybe move this to javascript */
+    color: white
+}

@@ -28,9 +28,6 @@ function handleKeydown(event) {
     }
 }
 
-function toggleRepeatColor() {repeat.classList.toggle('icon-default')};
-function toggleShuffleColor() {shuffle.classList.toggle('icon-default')};
-
 audio.addEventListener('ended', () => {
     stopDiscordRPC();
     updatePlaybackIcon();

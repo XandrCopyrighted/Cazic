@@ -58,17 +58,13 @@ function playNextTrack() {
 
 function playPrevTrack() {
     stopDiscordRPC()
-    if (isShuffle) {
-        currentIndex = getRandomIndex(queue.length, currentIndex);
-    } else {
-        currentIndex = (currentIndex - 1 + queue.length) % queue.length;
-    }
+    currentIndex = (currentIndex - 1 + queue.length) % queue.length;
     playAudio(currentIndex);
 }
 
 function toggleRepeat() {
     isRepeat = !isRepeat;
-    toggleRepeatColor();
+    repeat.classList.toggle('icon-default');
 }
 
 function toggleShuffle() {
@@ -80,15 +76,6 @@ function toggleShuffle() {
         originalQueue = queue.slice();
         currentIndex = 0;
     }
-    toggleShuffleColor();
-}
-
-function shuffleQueue() {
-    for (let i = queue.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [queue[i], queue[j]] = [queue[j], queue[i]];
-    }
-    currentIndex = 0;
 }
 
 function updateMetadata() {
@@ -105,4 +92,12 @@ function updateMetadata() {
 
     songTitleElement.textContent = currentTrack.title || 'Unknown Title';
     songArtistElement.textContent = currentTrack.artist || 'Unknown Artist';
+}
+
+function getRandomIndex(max, exclude) { // Why did I remove this?
+    let index = Math.floor(Math.random() * max);
+    while (index === exclude) {
+        index = Math.floor(Math.random() * max);
+    }
+    return index;
 }
