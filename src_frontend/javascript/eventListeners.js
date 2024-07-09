@@ -65,3 +65,4 @@ progressBar.addEventListener('click', e => {
 });
 
 volumeBar.addEventListener('input', function() {audio.volume = volumeBar.value});
+document.addEventListener('DOMContentLoaded', toggleMetadataVisibility);
