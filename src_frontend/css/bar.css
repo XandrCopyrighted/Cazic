@@ -12,7 +12,7 @@
     z-index: 4
 }
 
-#progress-bar {
+#progressBar {
     -webkit-appearance: none;
     height: 4px;
     position: fixed;
@@ -24,7 +24,7 @@
     background-color: var(--bar-color);
 }
 
-#volume-bar {
+#volumeBar {
     -webkit-appearance: none;
     height: 4px;
     position: fixed;
@@ -37,8 +37,8 @@
     background-color: var(--bar-color);
 }
 
-#progress-bar::-webkit-slider-thumb,
-#volume-bar::-webkit-slider-thumb {
+#progressBar::-webkit-slider-thumb,
+#volumeBar::-webkit-slider-thumb {
     -webkit-appearance: none;
     background-color: var(--bar-thumb-color);
     border: 3px solid white;

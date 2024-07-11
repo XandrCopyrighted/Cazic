@@ -1,7 +1,7 @@
-const progressBar = document.getElementById('progress-bar');
+const progressBar = document.getElementById('progressBar');
 const repeat = document.getElementById('repeat-button');
 const shuffle = document.getElementById('shuffle-button');
-const volumeBar = document.getElementById('volume-bar');
+const volumeBar = document.getElementById('volumeBar');
 
 function handleKeydown(event) {
     switch (event.key) {

@@ -207,7 +207,7 @@ dependencies = [
 
 [[package]]
 name = "cazic"
-version = "0.0.7"
+version = "0.0.8"
 dependencies = [
  "discord-rich-presence",
  "lazy_static 1.5.0",

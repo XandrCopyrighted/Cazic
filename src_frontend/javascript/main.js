@@ -61,7 +61,7 @@ function playPrevTrack() {
 
 function toggleRepeat() {
     isRepeat = !isRepeat;
-    repeat.classList.toggle('icon-default');
+    repeat.classList.toggle('defaultIcons');
 }
 
 function toggleShuffle() {
@@ -86,9 +86,9 @@ function toggleMetadataVisibility() {
 
 function updateMetadata() {
     const currentTrack = queue[currentIndex];
-    const albumArtElement = document.getElementById('album-art');
-    const titleElement = document.getElementById('song-title');
-    const artistElement = document.getElementById('song-artist');
+    const albumArtElement = document.getElementById('songArt');
+    const titleElement = document.getElementById('songTitle');
+    const artistElement = document.getElementById('songArtist');
 
     if (currentTrack.image) {
         albumArtElement.src = currentTrack.image;
@@ -109,5 +109,3 @@ function getRandomIndex(max, exclude) {
     }
     return index;
 }
-
-toggleMetadataVisibility();

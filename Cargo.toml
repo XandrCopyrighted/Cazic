@@ -1,6 +1,6 @@
 [package]
 name = "cazic"
-version = "0.0.7"
+version = "0.0.8"
 description = "Another music player created with Tauri!"
 authors = ["Jaydon 'XDR' Nelson <xxdr@duck.com>", "WilliamAnimate"]
 license = "MIT"

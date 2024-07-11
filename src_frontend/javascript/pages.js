@@ -13,7 +13,7 @@ window.onload = function() {
 
 function toggleSettingsPage() {
     const saveButton = document.getElementById('saveSettings');
-    const settingsOverlay = document.getElementById('settings-page');
+    const settingsOverlay = document.getElementById('settingsPage');
 
     if (settingsOverlay.style.display === 'none') {
         settingsOverlay.style.display = 'block';
@@ -50,59 +50,54 @@ function toggleSettingsPage() {
 
 function applyTheme(theme) {
     const body = document.body;
+    body.classList.remove('theme-amoled', 'theme-dracula', 'theme-light');
 
-    body.classList.remove('theme-amoled', 'theme-rose-pine', 'theme-dracula');
-
-    if (theme === 'amoled') {
-        body.classList.add('theme-amoled');
-    } else if (theme === 'rose-pine') {
-        body.classList.add('theme-rose-pine');
-    } else if (theme === 'dracula') {
-        body.classList.add('theme-dracula');
+    if (theme !== 'default') {
+        body.classList.add(`theme-${theme}`);
     }
 }
 
 function toggleQueuePage() {
-    const queuePage = document.getElementById('queue-page');
+    const queuePage = document.getElementById('queuePage');
 
     queuePage.style.display = queuePage.style.display === 'none' ? 'block' : 'none';
     updateQueueList();
 }
 
 function updateQueueList() {
-    const queueList = document.getElementById('queue-list');
+    const queueList = document.getElementById('queueList');
     queueList.innerHTML = '';
 
     for (let i = 0; i < queue.length; i++) {
         const track = queue[i];
         const listItem = document.createElement('li');
-        listItem.classList.add('queue-item');
+        listItem.classList.add('queueItem');
 
         const container = document.createElement('div');
         container.id = 'container';
 
-        const albumArt = document.createElement('img');
-        albumArt.id = 'album-art';
-        albumArt.src = track.image ? track.image : '../../icons/Cazic/Default_Artwork.jpg';
-        container.appendChild(albumArt);
+        const songArt = document.createElement('img');
+        songArt.id = 'songArt';
+        songArt.src = track.image ? track.image : '../../icons/Cazic/Default_Artwork.jpg';
+        container.appendChild(songArt);
 
         const songInfo = document.createElement('div');
-        songInfo.id = 'song-info';
+        songInfo.className = 'songInfo';
 
         const songTitle = document.createElement('span');
-        songTitle.id = 'song-title';
+        songTitle.id = 'songTitle';
         songTitle.textContent = track.title;
         songInfo.appendChild(songTitle);
 
         const songArtist = document.createElement('span');
-        songArtist.id = 'song-artist';
+        songArtist.id = 'songArtist';
         songArtist.textContent = track.artist;
         songInfo.appendChild(songArtist);
 
         container.appendChild(songInfo);
 
         const removeButton = document.createElement('button');
-        removeButton.classList.add('icon-default');
+        removeButton.classList.add('defaultIcons');
         removeButton.innerHTML = '<i class="bx bx-x bx-xs"></i>';
         removeButton.dataset.index = i;
         removeButton.addEventListener('click', removeSongFromQueue);

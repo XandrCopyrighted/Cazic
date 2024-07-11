@@ -4,24 +4,24 @@
     margin-right: 10px;
 }
 
-#album-art {
+#songArt {
     width: 50px;
     height: 50px;
     margin-right: 10px
 }
 
-#song-info {
+.songInfo {
     display: flex;
     flex-direction: column
 }
 
-#song-title {
+#songTitle {
     color: var(--text-color);
     font-weight: bold;
     font-size: 14px
 }
 
-#song-artist {
+#songArtist {
     color: var(--subtext-color);
     font-size: 12px
 }
