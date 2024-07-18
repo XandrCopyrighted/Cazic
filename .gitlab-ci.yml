@@ -8,8 +8,8 @@ desktop:
   stage: main
   image: archlinux:base
   before_script:
-    - pacman -Syu --needed webkit2gtk base-devel curl wget file openssl zip appmenu-gtk-module mingw-w64 gtk3 libappindicator-gtk3 librsvg rustup libvips --noconfirm
-    - rustup toolchain install stable --profile minimal
+    - pacman -Syu --needed webkit2gtk-4.1 base-devel curl wget file openssl zip appmenu-gtk-module mingw-w64 gtk3 libappindicator-gtk3 librsvg rustup --noconfirm
+    - rustup toolchain install nightly --profile minimal
     - rustup target add x86_64-pc-windows-gnu
     - cargo install tauri-cli
     - mv tauri.conf.json.artifact tauri.conf.json

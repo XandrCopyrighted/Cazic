@@ -1,31 +1,40 @@
 [package]
 name = "cazic"
 version = "0.0.8"
-description = "Another music player created with Tauri!"
-authors = ["Jaydon 'XDR' Nelson <xxdr@duck.com>", "WilliamAnimate"]
+description = "A modern music player designed for the modern era."
+authors = [
+    "Jaydon 'XDR' Nelson <xxdr@duck.com>",
+    "WilliamAnimate <nyameowmeow@duck.com>",
+] # wtf is wrong with you william?
 license = "MIT"
-repository = "https://gitlab.com/XDRwastaken/Cazic"
+repository = "https://gitlab.com/XDRwastaken/Cazic" # MIRROR: https://github.com/XandrCopyrighted/Cazic
 edition = "2021"
 
 [dependencies]
-discord-rich-presence = { git = "https://github.com/sardonicism-04/discord-rich-presence.git" }
+discord-rich-presence = { git = "https://github.com/sardonicism-04/discord-rich-presence.git" } # Bro's not dead, pog
 lazy_static = { git = "https://github.com/rust-lang-nursery/lazy-static.rs.git" }
 tokio = { version = "1.38", features = ["macros", "rt-multi-thread", "time"] }
 
 [build-dependencies]
-tauri-build = "1.5"
+tauri-build = "2.0.0-beta"
 
 [dependencies.tauri]
-version = "1.7"
-features = ["system-tray", "wry"]
+version = "2.0.0-beta"
+features = ["wry", "tray-icon"]
 default-features = false
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]
+default = ["custom-protocol"]
 
 [[bin]]
 name = "Cazic"
-path = "src_backend/main.rs"
+path = "src_backend/main.rs" # Doesn't work when building full release, idk why
+
+[lib]
+name = "cazic_lib"
+path = "src_backend/lib.rs"
+crate-type = ["staticlib", "cdylib", "rlib"]
 
 [profile.release]
 opt-level = 'z'

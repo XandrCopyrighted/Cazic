@@ -1,20 +1,21 @@
 {
-  "tauri": {
-    "systemTray": {
-      "iconPath": "icons/128x128.png"
-    },
-    "bundle": {
-      "active": true,
-      "targets": ["appimage", "deb"],
-      "identifier": "com.xdr.cazic",
-      "category": "Music",
-      "shortDescription": "Another music player created with Tauri!",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/256x256.png"
-      ]
-    },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "appimage",
+      "deb"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/256x256.png"
+    ],
+    "category": "Music",
+    "shortDescription": "Another music player created with Tauri!"
+  },
+  "identifier": "com.xdr.cazic",
+  "plugins": {},
+  "app": {
     "windows": [
       {
         "fullscreen": false,
@@ -24,6 +25,9 @@
         "minHeight": 480,
         "center": true
       }
-    ]
+    ],
+    "trayIcon": {
+      "iconPath": "icons/128x128.png"
+    }
   }
 }

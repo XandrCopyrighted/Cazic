@@ -1,30 +1,30 @@
 {
   "build": {
-    "devPath": "src_frontend",
-    "distDir": "src_frontend",
-    "withGlobalTauri": true
+    "frontendDist": "src_frontend",
+    "devUrl": "src_frontend"
   },
-  "package": {
-    "productName": "Cazic",
-    "version": "0.0.8"
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/256x256.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Music",
+    "shortDescription": "Another music player created with Tauri!",
+    "createUpdaterArtifacts": "v1Compatible"
   },
-  "tauri": {
-    "systemTray": {
+  "productName": "Cazic",
+  "version": "0.0.8",
+  "identifier": "com.xdr.cazic",
+  "plugins": {},
+  "app": {
+    "withGlobalTauri": true,
+    "trayIcon": {
       "iconPath": "icons/128x128.png"
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "com.xdr.cazic",
-      "category": "Music",
-      "shortDescription": "Another music player created with Tauri!",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/256x256.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
     },
     "security": {
       "csp": null
