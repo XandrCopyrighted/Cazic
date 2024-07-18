@@ -24,6 +24,6 @@ Another music application created with [Tauri](https://tauri.app/).
 and much more!
 
 <div align="center">
-   <img width="32" src="https://gitlab.com/XDRwastaken/img/-/raw/main/.svg/pin.svg">
+   <img width="32" src="https://gitlab.com/XDRwastaken/img/-/raw/main/.svg/question.svg">
    <p>Go to the <a href="https://gitlab.com/XDRwastaken/Cazic/-/wikis/home">wiki page</a> for more infomation.</p>
 </div>
