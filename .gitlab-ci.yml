@@ -1,11 +1,12 @@
 stages:
-  - main
+  - desktop
+  - mobile
 
 variables:
   CARGO_TERM_COLOR: always
 
 desktop:
-  stage: main
+  stage: desktop
   image: archlinux:base
   before_script:
     - pacman -Syu --needed webkit2gtk-4.1 base-devel curl wget file openssl zip appmenu-gtk-module mingw-w64 gtk3 libappindicator-gtk3 librsvg rustup --noconfirm
@@ -27,19 +28,22 @@ desktop:
     expire_in: 1 week
 
 mobile:
-  stage: main
-  image: redemonbr/android-sdk:noble-stable-tools
+  stage: mobile
+  image: redemonbr/android-sdk:api-32-tools
   variables:
     ASDK_ACCEPT_LICENSES: "yes"
     ASDK_ACCEPT_LICENSES_SILENT: "yes"
   before_script:
+    - apt install rustup -y
     - rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
     - sdkmanager "ndk;23.1.7779620"
     - export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
   script:
     - cargo tauri android init
     - cargo tauri android build --release
+  after_script:
+    - zip -r cazic_android.zip gen/android/app/build/outputs/apk/release/*.apk
   artifacts:
     paths:
-      - gen/android/app/build/outputs/apk/release/*.apk
+      - cazic_android.zip
     expire_in: 1 week
