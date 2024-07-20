@@ -14,8 +14,9 @@
       "icons/icon.ico"
     ],
     "category": "Music",
-    "shortDescription": "Another music player created with Tauri!",
-    "createUpdaterArtifacts": "v1Compatible"
+    "shortDescription": "A modern music player designed for the modern era.",
+    "createUpdaterArtifacts": "v1Compatible",
+    "license": "MIT"
   },
   "productName": "Cazic",
   "version": "0.0.8",

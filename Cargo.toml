@@ -2,10 +2,7 @@
 name = "cazic"
 version = "0.0.8"
 description = "A modern music player designed for the modern era."
-authors = [
-    "Jaydon 'XDR' Nelson <xxdr@duck.com>",
-    "WilliamAnimate <nyameowmeow@duck.com>",
-] # wtf is wrong with you william?
+authors = ["Jaydon 'XDR' Nelson <xxdr@duck.com>", "WilliamAnimate <nyameowmeow@duck.com>"] # wtf is wrong with you william?
 license = "MIT"
 repository = "https://gitlab.com/XDRwastaken/Cazic" # MIRROR: https://github.com/XandrCopyrighted/Cazic
 edition = "2021"

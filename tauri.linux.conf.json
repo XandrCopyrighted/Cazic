@@ -1,33 +1,29 @@
 {
   "bundle": {
-    "active": true,
     "targets": [
       "appimage",
-      "deb"
+      "deb",
+      "rpm"
     ],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
       "icons/256x256.png"
     ],
-    "category": "Music",
-    "shortDescription": "Another music player created with Tauri!"
-  },
-  "identifier": "com.xdr.cazic",
-  "plugins": {},
-  "app": {
-    "windows": [
-      {
-        "fullscreen": false,
-        "resizable": true,
-        "title": "Cazic",
-        "minWidth": 640,
-        "minHeight": 480,
-        "center": true
+    "linux": {
+      "rpm": {
+        "epoch": 0,
+        "release": "0.0.8",
+        "provides": ["cazic.rpm"],
+        "depends": ["webkit2gtk4.1-devel.rpm", "gstreamer1-plugins-good.rpm"]
+      },
+      "deb": {
+        "epoch": 0,
+        "release": "0.0.8",
+        "provides": ["cazic.deb"],
+        "depends": ["libwebkit2gtk-4.1-dev.deb", "gstreamer1.0-plugins-good.deb"],
+        "section": null
       }
-    ],
-    "trayIcon": {
-      "iconPath": "icons/128x128.png"
     }
   }
 }

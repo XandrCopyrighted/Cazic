@@ -1,6 +1,5 @@
 {
   "bundle": {
-    "active": true,
     "targets": [
       "nsis",
       "msi"
@@ -11,25 +10,6 @@
       "icons/256x256.png",
       "icons/icon.ico"
     ],
-    "publisher": "XDR et al.",
-    "category": "Music",
-    "shortDescription": "Another music player created with Tauri!"
-  },
-  "identifier": "com.xdr.cazic",
-  "plugins": {},
-  "app": {
-    "windows": [
-      {
-        "fullscreen": false,
-        "resizable": true,
-        "title": "Cazic",
-        "minWidth": 640,
-        "minHeight": 480,
-        "center": true
-      }
-    ],
-    "trayIcon": {
-      "iconPath": "icons/128x128.png"
-    }
+    "publisher": "XDR et al."
   }
 }
