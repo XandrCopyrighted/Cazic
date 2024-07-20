@@ -12,7 +12,7 @@ desktop:
     - pacman -Syu --needed webkit2gtk-4.1 base-devel curl wget file openssl zip appmenu-gtk-module mingw-w64 gtk3 libappindicator-gtk3 librsvg rustup --noconfirm
     - rustup toolchain install nightly --profile minimal
     - rustup target add x86_64-pc-windows-gnu
-    - cargo install tauri-cli
+    - cargo install tauri-cli@=2.0.0-beta.22
     - mv tauri.conf.json.artifact tauri.conf.json
   script:
     - cargo build --release
@@ -35,7 +35,10 @@ mobile:
     ASDK_ACCEPT_LICENSES_SILENT: "yes"
   before_script:
     - apt install rustup -y
+    - rustup toolchain install nightly --profile minimal
+    - apt install libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
     - rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
+    - cargo install tauri-cli@=2.0.0-beta.22
     - sdkmanager "ndk;23.1.7779620"
     - export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
   script:
