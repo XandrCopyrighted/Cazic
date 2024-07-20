@@ -9,6 +9,6 @@
       "icons/256x256.png"
     ],
     "publisher": "XDR et al.",
-    "minSdkVersion": 26
+    "minSdkVersion": 24
   }
 }

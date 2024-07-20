@@ -24,14 +24,12 @@ default-features = false
 custom-protocol = ["tauri/custom-protocol"]
 default = ["custom-protocol"]
 
-[[bin]]
-name = "Cazic"
-path = "src_backend/main.rs" # Doesn't work when building full release, idk why
-
 [lib]
 name = "cazic_lib"
-path = "src_backend/lib.rs"
-crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bin]]
+name = "Cazic"
+path = "src/main.rs" # Doesn't work when building full release, idk why
 
 [profile.release]
 opt-level = 'z'

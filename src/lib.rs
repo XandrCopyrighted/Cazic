@@ -1,18 +1,12 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 #[macro_use]
-mod rpc;
-
-#[cfg(mobile)]
-mod mobile;
+mod discord_rpc;
 
 use lazy_static::lazy_static;
 use std::{sync::{Arc, Mutex}, path::Path, ffi::OsStr};
-use tauri::menu::{MenuBuilder, MenuItemBuilder};
-use tauri::tray::TrayIconBuilder;
-use tauri::Manager;
-use tauri::async_runtime::TokioJoinHandle;
-use crate::rpc::{start_rpc_thread, stop_rpc_thread, is_rpc_thread_up};
+use tauri::{menu::{MenuBuilder, MenuItemBuilder}, tray::TrayIconBuilder, Manager, async_runtime::TokioJoinHandle};
+use crate::discord_rpc::{start_thread, stop_thread, is_thread_up};
 
 lazy_static! {
     static ref DISCORDRPC_SONG_NAME: Mutex<String> = Mutex::new(String::new());
@@ -36,6 +30,7 @@ fn set_song(song_name: String, artist: String) {
     *DISCORDRPC_SONG_NAME.lock().unwrap() = format!("{} - {}", artist, song_name_format);
 }
 
+#[cfg_attr(mobile, tauri::mobile_entry_point)]
 #[tokio::main]
 pub async fn run() -> std::io::Result<()> {
     tauri::Builder::default()
@@ -69,7 +64,7 @@ pub async fn run() -> std::io::Result<()> {
                         window.eval("playPrevTrack()").unwrap();
                     }
                     "toggle_rpc" => {
-                        rpc::toggle_rpc();
+                        discord_rpc::toggle_rpc();
                     }
                     "show_hide" => {
                         let window = app.get_webview_window("main").unwrap();
@@ -85,10 +80,10 @@ pub async fn run() -> std::io::Result<()> {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            is_rpc_thread_up,
+            is_thread_up,
             set_song,
-            start_rpc_thread,
-            stop_rpc_thread,
+            start_thread,
+            stop_thread
         ])
         .run(tauri::generate_context!())
         .unwrap_or_else(|error| {

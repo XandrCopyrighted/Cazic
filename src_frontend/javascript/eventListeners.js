@@ -53,7 +53,6 @@ audio.addEventListener('timeupdate', function() {
     }
 });
 
-document.addEventListener('contextmenu', event => event.preventDefault()); // Disables right click
 document.addEventListener('keydown', handleKeydown);
 input.addEventListener('change', handleFileSelect);
 fileSelectButton.addEventListener('click', () => input.click());

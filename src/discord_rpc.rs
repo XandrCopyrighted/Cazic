@@ -15,7 +15,7 @@ pub fn toggle_rpc() {
 }
 
 #[tauri::command]
-pub fn start_rpc_thread() {
+pub fn start_thread() {
     if !RPC_ENABLED.load(Relaxed) {
         println!("\x1b[33m[DEBUG]\x1b[0m RPC is disabled! RPC thread will not be spawned and returning");
         return;
@@ -58,7 +58,7 @@ pub fn start_rpc_thread() {
 }
 
 #[tauri::command]
-pub fn is_rpc_thread_up(kill: bool) -> bool {
+pub fn is_thread_up(kill: bool) -> bool {
     let rpc_thread = RPC_THREAD.lock().unwrap().take();
     if let Some(handle) = rpc_thread {
         if kill {
@@ -71,9 +71,9 @@ pub fn is_rpc_thread_up(kill: bool) -> bool {
 }
 
 #[tauri::command]
-pub fn stop_rpc_thread() {
+pub fn stop_thread() {
     println!("Attempting to stop \x1b[35mDiscord RPC\x1b[0m thread!");
-    if is_rpc_thread_up(true) {
+    if is_thread_up(true) {
         println!("Thread was up and should be stopped.");
     } else {
         eprintln!("\x1b[1;31m[WARN]\x1b[0m Discord RPC thread is not running! Could this be a \x1b[3mJS problem?\x1b[0m");
