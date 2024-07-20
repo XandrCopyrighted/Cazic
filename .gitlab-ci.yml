@@ -15,8 +15,8 @@ desktop:
     - cargo install tauri-cli@=2.0.0-beta.22
     - mv tauri.conf.json.artifact tauri.conf.json
   script:
-    - cargo build --release
-    - cargo build --release --target x86_64-pc-windows-gnu
+    - cargo build
+    - cargo build --target x86_64-pc-windows-gnu
   after_script:
     - tar -czf cazic_linux.tar.gz target/release/Cazic
     - zip -r cazic_windows.zip target/x86_64-pc-windows-gnu/release/Cazic.exe target/x86_64-pc-windows-gnu/release/WebView2Loader.dll
@@ -43,7 +43,7 @@ mobile:
     - export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
   script:
     - cargo tauri android init
-    - cargo tauri android build --release
+    - cargo tauri android build
   after_script:
     - zip -r cazic_android.zip gen/android/app/build/outputs/apk/release/*.apk
   artifacts:

@@ -32,7 +32,7 @@
     },
     "windows": [
       {
-        "fullscreen": true,
+        "fullscreen": false,
         "resizable": true,
         "title": "Cazic Music Player",
         "minWidth": 640,
