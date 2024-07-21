@@ -1,7 +1,7 @@
 {
   "build": {
-    "frontendDist": "src_frontend",
-    "devUrl": "src_frontend"
+    "frontendDist": "src",
+    "devUrl": "src"
   },
   "bundle": {
     "active": true,

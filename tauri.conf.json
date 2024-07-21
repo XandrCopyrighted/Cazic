@@ -1,7 +1,7 @@
 {
   "build": {
-    "frontendDist": "src_frontend",
-    "devUrl": "http://localhost:5500/src_frontend"
+    "frontendDist": "src",
+    "devUrl": "http://localhost:5500/src"
   },
   "bundle": {
     "active": true,
